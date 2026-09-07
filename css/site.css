@@ -182,6 +182,9 @@ main.single{grid-template-columns:1fr}
 .recent-item .meta{font-size:12px;margin-top:2px}
 .recent-item .when{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap;font-weight:700}
 .leader-take{color:var(--text);margin-top:10px;line-height:1.65;font-size:15px}
+.legend-strategy{margin-top:8px}
+.legend-strategy h3{margin:18px 0 6px;font-size:16px}
+.legend-strategy h3:first-child{margin-top:0}
 .section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:10px;gap:12px;flex-wrap:wrap;min-width:0}
 .section-title h3{margin:0;font-size:18px;color:var(--text);min-width:0;overflow-wrap:anywhere}
 .list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}

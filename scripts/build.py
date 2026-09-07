@@ -6,9 +6,13 @@ import html
 import json
 import re
 import hashlib
+import sys
 from collections import defaultdict
 from datetime import date, timedelta
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legend_strategy import html_for as strategy_html, hub_excerpt
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://riftbounddecklists.com"
@@ -230,6 +234,16 @@ LEGEND_META = {
         "set": "Vendetta", "tier": "C",
         "blurb": "Arcane council mage. Time Warp piles that Best-Of'd Barcelona.",
     },
+    "Kai'Sa, Daughter of the Void": {
+        "short": "Kai'Sa", "img": "card-back", "domains": ("Fury", "Mind"),
+        "set": "Origins", "tier": "B",
+        "blurb": "Void survivor midrange. City Challenge winner in Shenzhen and a regular Top 16 in August Showdowns.",
+    },
+    "Teemo, Swift Scout": {
+        "short": "Teemo", "img": "card-back", "domains": ("Chaos", "Mind"),
+        "set": "Origins", "tier": "D",
+        "blurb": "Mushroom tempo. A spicy Chaos-Mind Showdown legend, not a regional pair.",
+    },
 }
 
 SHOP = [
@@ -325,6 +339,11 @@ def legend_img(full: str) -> str:
     if img == "card-back" or img.endswith("card-back"):
         return "/img/card-back.jpg"
     return f"/img/legends/{img}"
+
+
+def strategy_slug(name: str) -> str:
+    meta = LEGEND_META.get(name, {})
+    return slugify(meta.get("short") or name) + "-strategy"
 
 
 def color_class(domains) -> str:
@@ -504,7 +523,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-1" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-2" />
   <link rel="canonical" href="{e(canon)}" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#b42318" />
@@ -621,7 +640,9 @@ def seeded_history(name: str, price: float):
 def build():
     barcelona = parse_barcelona((ROOT / "data/barcelona-top-decks.txt").read_text(encoding="utf-8", errors="replace"))
     extra = parse_extra((ROOT / "data/extra-lists.txt").read_text(encoding="utf-8", errors="replace"))
-    decks = barcelona + extra
+    scraped_path = ROOT / "data/scraped-lists.txt"
+    scraped = parse_extra(scraped_path.read_text(encoding="utf-8", errors="replace")) if scraped_path.exists() else []
+    decks = barcelona + extra + scraped
     # de-dupe by id
     uniq = {}
     for d in decks:
@@ -665,7 +686,7 @@ def build():
     for d in decks:
         if d not in picked:
             picked.append(d)
-        if len(picked) >= 80:
+        if len(picked) >= 160:
             break
     for d in picked:
         cc = color_class(d["domains"])
@@ -761,7 +782,7 @@ def build():
             <h3>Recent lists</h3>
             <div class="muted">{len(picked)} lists</div>
           </div>
-          <p class="muted">Newest first. At least one list from each legend, then the latest results. Standard is the constructed format on these pages.</p>
+          <p class="muted">Newest first. At least one list from each legend, then the latest results. {len(decks)} public Standard lists from August–September 2026 tournaments, including Singapore, Wuhan, Ottawa, Speyer, and City Challenges.</p>
           <ul class="recent-list" aria-label="Recent decklists">
 {chr(10).join(recent_items)}
           </ul>
@@ -843,9 +864,16 @@ def build():
               <span class="pill">{e(meta["set"])}</span>
               <span class="pill">Standard</span>
             </div>
-            <p class="leader-take">{e(meta["blurb"])}</p>
+            {hub_excerpt(name, meta, f"/guides/{e(strategy_slug(name))}.html")}
           </div>
         </div>
+        <section class="legend-strategy policy" style="margin-top:22px">
+          <div class="section-title">
+            <h3>Current meta</h3>
+            <div class="muted">August–September 2026</div>
+          </div>
+          {strategy_html(name, meta, len(lists), f"/decklists/{e(slug)}.html")}
+        </section>
         <section class="deck-index" style="margin-top:22px">
           <div class="section-title">
             <h3>Lists</h3>
@@ -950,8 +978,9 @@ def build():
     write(ROOT / "data/search.json", json.dumps(search_index, ensure_ascii=False, indent=2))
     write(ROOT / "js/search.js", SEARCH_JS)
     write(ROOT / "robots.txt", "User-agent: *\nAllow: /\nSitemap: https://riftbounddecklists.com/sitemap.xml\n")
-    urls = ["/", "/tier-list.html", "/format.html", "/events.html", "/privacy.html", "/search.html", "/prices.html", "/shop/", "/guides/", "/decklists/"]
+    urls = ["/", "/tier-list.html", "/format.html", "/events.html", "/privacy.html", "/search.html", "/prices.html", "/shop/", "/guides/", "/guides/legend-strategy.html", "/decklists/"]
     urls += [f"/decklists/{legend_slug(n)}.html" for n in legends_ordered]
+    urls += [f"/guides/{strategy_slug(n)}.html" for n in legends_ordered]
     urls += [d["url"] for d in decks]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:
@@ -1083,8 +1112,9 @@ def events_page():
             <li><strong>14 August 2026</strong> — 10K Showdown Auckland Card Show (301 players).</li>
             <li><strong>16 August 2026</strong> — RiftAtlas Convergence #2 (257 players).</li>
             <li><strong>23 August 2026</strong> — NRG Series $5k Constructed Showdown (Vendetta constructed).</li>
-            <li><strong>30 August 2026</strong> — S4 Wuhan Regional Open (~1,280 players).</li>
-            <li><strong>4–6 September 2026</strong> — Regional Qualifier Singapore, Singapore EXPO. Akali defeated Kennen in the finals. Official preview: <a href="https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-singapore/" target="_blank" rel="noopener">All Eyes on Singapore</a>.</li>
+            <li><strong>15–16 August 2026</strong> — Riftbound Showdown Series Germany, Speyer. Public Top 32 lists are on this site.</li>
+            <li><strong>30 August 2026</strong> — S4 Wuhan Regional Open (~1,280 players). Public Top 64 lists are on this site.</li>
+            <li><strong>4–6 September 2026</strong> — Regional Qualifier Singapore, Singapore EXPO. Akali defeated Kennen in the finals. Public Top cut lists are on this site. Official preview: <a href="https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-singapore/" target="_blank" rel="noopener">All Eyes on Singapore</a>.</li>
           </ul>
           <h3>Coming up</h3>
           <ul>
@@ -1343,11 +1373,7 @@ def build_guides(legends_ordered, by_legend, search_index):
         ("Channel", "channel", "How you bring runes into play. Banner shorthand: Channel. Conquer. Score."),
         ("Sideboard", "sideboard", "Best-of-three only. Core rules: 0 or 8 cards. Some 2026 packets use 10. Copy the event document."),
         ("Starter decks", "starter-decks", "Champion precons exist. Official primer walks Lee Sin, Jinx, and Viktor as teaching examples."),
-        ("Riftbound meta", "riftbound-meta", "August–September 2026: Kennen and Master Yi are the regional pair. Ornn won Barcelona. Akali won Singapore."),
-        ("Kennen strategy", "kennen-strategy", "Chaos-Order storm. Seal of Discord, Lightning Rush, Rhasa, Stacked Deck. See <a href=\"/decklists/kennen-heart-of-the-tempest.html\">Kennen lists</a>."),
-        ("Akali strategy", "akali-strategy", "Fury-Calm assassin that just won Singapore. See <a href=\"/decklists/akali-rogue-assassin.html\">Akali lists</a>."),
-        ("Master Yi strategy", "master-yi-strategy", "Body-Calm combat. The Bladesman printing is the regional one. See <a href=\"/decklists/master-yi-wuju-bladesman.html\">Yi lists</a>."),
-        ("Ornn strategy", "ornn-strategy", "Calm-Mind forge value. Barcelona champion. See <a href=\"/decklists/ornn-fire-below-the-mountain.html\">Ornn lists</a>."),
+        ("Riftbound meta", "riftbound-meta", "August–September 2026: Kennen and Master Yi are the regional pair. Ornn won Barcelona. Akali won Singapore. Per-legend strategy lives on each legend page and in the strategy guides."),
         ("Riot Games", "riot-games", "Designer and IP holder. This fan site is not affiliated with Riot."),
         ("UVS Games", "uvs-games", "English-language publishing and distribution partner."),
         ("Piltover Archive", "piltover-archive", "Official card gallery and deck tools at piltoverarchive.com."),
@@ -1368,15 +1394,39 @@ def build_guides(legends_ordered, by_legend, search_index):
         topic_links.append(f'        <a class="item" href="/guides/{slug}.html"><div><div>{e(title)}</div><div class="muted">Topic</div></div><span class="link">Open →</span></a>')
         search_index.append({"title": title, "url": f"/guides/{slug}.html", "hay": f"{title} {blurb}"})
 
+    strat_links = []
+    for name in legends_ordered:
+        meta = LEGEND_META[name]
+        sslug = strategy_slug(name)
+        lists = by_legend[name]
+        body = strategy_html(name, meta, len(lists), f"/decklists/{e(legend_slug(name))}.html")
+        write(ROOT / f"guides/{sslug}.html", guide_page(f"{meta['short']} strategy", sslug, f'<div class="policy">{body}</div>'))
+        strat_links.append(f'        <a class="item" href="/guides/{sslug}.html"><div><div>{e(meta["short"])} strategy</div><div class="muted">{e(" / ".join(meta["domains"]))} · {meta.get("tier", "D")}</div></div><span class="link">Open →</span></a>')
+        search_index.append({"title": f"{meta['short']} strategy", "url": f"/guides/{sslug}.html", "hay": f"{name} strategy meta {meta['blurb']}"})
+    write(ROOT / "guides/legend-strategy.html", layout(
+        "Legend strategy | Vendetta Standard",
+        "Current-meta strategy for every Riftbound legend with public Standard lists on this site.",
+        f'''      <div class="card hero">
+        <div class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / Legend strategy</div>
+        <h2>Legend strategy</h2>
+        <p>August–September 2026 Vendetta Standard. Each page is a game plan, key cards, matchups, and when to register that legend. Lists stay on the legend hubs.</p>
+        <div class="list">
+{chr(10).join(strat_links)}
+        </div>
+      </div>''',
+        current="guides", canonical=f"{SITE}/guides/legend-strategy.html",
+    ))
+    search_index.append({"title": "Legend strategy", "url": "/guides/legend-strategy.html", "hay": "legend strategy meta kennen akali ornn yi"})
+    topic_links.insert(0, '        <a class="item" href="/guides/legend-strategy.html"><div><div>Legend strategy</div><div class="muted">Current meta</div></div><span class="link">Open →</span></a>')
+
     char_links = []
     (ROOT / "guides/characters").mkdir(parents=True, exist_ok=True)
     for name in legends_ordered:
         meta = LEGEND_META[name]
         slug = slugify(meta["short"])
         lists = by_legend[name]
-        body = f'''<p>{e(meta["blurb"])}</p>
-        <p>Domains: {e(" / ".join(meta["domains"]))}. Set: {e(meta["set"])}.</p>
-        <p><a href="/decklists/{e(legend_slug(name))}.html">{len(lists)} public lists →</a></p>'''
+        body = strategy_html(name, meta, len(lists), f"/decklists/{e(legend_slug(name))}.html")
+        body += f'<p>Domains: {e(" / ".join(meta["domains"]))}. Set: {e(meta["set"])}.</p>'
         write(ROOT / f"guides/characters/{slug}.html", layout(
             f"{meta['short']} | Riftbound guides",
             meta["blurb"],
@@ -1396,7 +1446,7 @@ def build_guides(legends_ordered, by_legend, search_index):
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Guides</div>
         <h2>Riftbound TCG guides</h2>
-        <p>Topic and legend pages that link to the constructed lists on this site.</p>
+        <p>Topic pages, per-legend strategy, and character pages that link to the constructed lists on this site.</p>
         <div class="section-title"><h3>Topics</h3></div>
         <div class="list">{chr(10).join(topic_links)}</div>
         <div class="section-title" style="margin-top:28px"><h3>Legends</h3><div class="muted">{len(char_links)} names</div></div>
