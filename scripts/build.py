@@ -689,7 +689,7 @@ def build():
           <div class="home-splash-bar">
             <div>
               <h2>Riftbound Decklists</h2>
-              <p class="banner-terms">Channel runes · Hold battlefields · Conquer · Score the Rift · Summoner Skirmish to Regionals</p>
+              <p class="banner-terms">Channel runes · Hold battlefields · Conquer · Score the Rift</p>
             </div>
           </div>
         </section>
@@ -698,7 +698,7 @@ def build():
           <div>
             <div class="kicker">Official Riot / UVS site</div>
             <div class="title">Riftbound organized play</div>
-            <div class="muted" style="color:rgba(255,255,255,0.82);margin-top:4px">Regional Qualifiers, Showdown Series, Summoner Skirmish, Championships</div>
+            <div class="muted" style="color:rgba(255,255,255,0.82);margin-top:4px">Regional Qualifiers, Showdown Series, Championships</div>
           </div>
           <div class="go">Official events →</div>
         </a>
@@ -714,7 +714,7 @@ def build():
           </a>
           <a class="home-big home-big-leaders" href="#legends">
             <span class="home-big-title">Legends</span>
-            <span class="home-big-note">Riftbound legends — not leaders, not summoners</span>
+            <span class="home-big-note">Every legend picture on this site</span>
           </a>
           <a class="home-big home-big-shop" href="/shop/">
             <span class="home-big-title">Shop</span>
@@ -744,7 +744,7 @@ def build():
             <div class="home-leaders-intro-row">
               <div>
                 <h3>Legends</h3>
-                <p>Pick a picture. Each page has lists for that legend. In Riftbound you build around a Legend (League players are summoners; the card is the legend). Names live in the <a href="/guides/">guides</a>.</p>
+                <p>Pick a picture. Each page has lists for that legend. Names live in the <a href="/guides/">guides</a>.</p>
               </div>
               <a href="/decklists/">All legend pages →</a>
             </div>
@@ -792,14 +792,14 @@ def build():
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Legends</div>
         <h2>Legends</h2>
-        <p>Riftbound organizes decks around a Legend, not a leader. League of Legends still calls you a summoner; the card that sits outside your 40 is the Legend. Current Standard is the only constructed format in organized play.</p>
+        <p>Riftbound organizes decks around a Legend — the identity card that sits outside your 40. Current Standard is the only constructed format in organized play.</p>
         <div class="leader-grid">
 {chr(10).join(tiles)}
         </div>
       </div>''',
         current="legends", canonical=f"{SITE}/decklists/",
     ))
-    search_index.append({"title": "Legends", "url": "/decklists/", "hay": "legends summoners leaders decklists"})
+    search_index.append({"title": "Legends", "url": "/decklists/", "hay": "legends decklists"})
 
     # Per-legend hubs + deck pages
     for name, lists in by_legend.items():
@@ -1079,6 +1079,9 @@ def events_page():
           <h3>Just played</h3>
           <ul>
             <li><strong>14–23 August 2026</strong> — Regional Qualifier Barcelona (2,130+ players). Ornn won. Official recap: <a href="https://playriftbound.com/en-us/news/organizedplay/barcelonas-top-decks/" target="_blank" rel="noopener">Barcelona's Top Decks</a>.</li>
+            <li><strong>8 August 2026</strong> — Riftbound Showdown Ottawa (594 players). Rengar won.</li>
+            <li><strong>14 August 2026</strong> — 10K Showdown Auckland Card Show (301 players).</li>
+            <li><strong>16 August 2026</strong> — RiftAtlas Convergence #2 (257 players).</li>
             <li><strong>23 August 2026</strong> — NRG Series $5k Constructed Showdown (Vendetta constructed).</li>
             <li><strong>30 August 2026</strong> — S4 Wuhan Regional Open (~1,280 players).</li>
             <li><strong>4–6 September 2026</strong> — Regional Qualifier Singapore, Singapore EXPO. Akali defeated Kennen in the finals. Official preview: <a href="https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-singapore/" target="_blank" rel="noopener">All Eyes on Singapore</a>.</li>
@@ -1326,7 +1329,7 @@ def build_guides(legends_ordered, by_legend, search_index):
         ("Origins", "origins", "Origins (OGN) is the launch set. It rotates with the 2026 sets on Standard's two-year clock."),
         ("Spiritforged", "spiritforged", "Spiritforged (SFD) is set 2. Still Standard legal."),
         ("Unleashed", "unleashed", "Unleashed (UNL) is set 3. Master Yi, Wuju Bladesman and Irelia came in as regional staples."),
-        ("Legend", "legend", "The Legend is the identity card. It is not a Leader and it is not you-the-summoner. Organize decks by Legend."),
+        ("Legend", "legend", "The Legend is the identity card. Organize decks by Legend."),
         ("Chosen Champion", "chosen-champion", "One champion unit starts available. It counts toward the three-copy limit."),
         ("Runes", "runes", "Twelve runes. Six domains: Fury, Calm, Mind, Body, Chaos, Order. Splits like 9–3 Chaos-Order show up in Kennen."),
         ("Battlefields", "battlefields", "Three unique battlefields. In competitive 1v1 you choose one each game."),
