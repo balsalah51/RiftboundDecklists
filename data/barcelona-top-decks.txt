@@ -1,0 +1,297 @@
+Barcelona’s Top Decks
+
+# Barcelona’s Top Decks
+
+Ornn beat the heat to come out on top in Spain!
+
+After a long hiatus, competitive Riftbound returned in a big way with over 2,130 competitors battling it out on Saturday, and 379 continuing the fight on Sunday. Of keen interest was to see what the Best-Of rotation would do to the field and while it definitely impacted some deck choices, others held the course with an eye to a top finish to earn a spot to one of the Regional Championships.
+
+Pour one out for Ahri, Darius, Garen, Jinx, Lee Sin, Leona, Volibear, and Yasuo who were all missing from the main event. However, shout outs go to the Master Yi, Wuju Bladesman, Vi, Kai’Sa, Lux, Vikor, and Annie players who came to play. And a special nod to the lone pilots for Miss Fortune, Sett, and Teemo - we salute you.
+
+The Top 8 featured five legends with the most surprising of them going on to win it all. MICE TheManLand took Ornn to victory, defeating CTCG Koko Lopez playing perhaps the deck of the event: Kennen. Kennen held three of the Top 8 slots, with Master Yi, Wuju Bladesman holding two, and the rest of the Top 8 was Ornn, our previous European RQ champion MICE Squirtle running back Azir, and Rengar being piloted by the dominant DSG Prismaticism.
+
+The colored cells below reflect which decks were not competing for Best-Of.
+
+| | Day 1 | | Day 2 | |
+| --- | --- | --- | --- | --- |
+| Legend | # Played | % of Field | # Played | % of Field |
+| Kennen | 270 | 12.7% | 81 | 21.4% |
+| Master Yi, WB | 199 | 9.3% | 47 | 12.4% |
+| Irelia | 164 | 7.7% | 36 | 9.5% |
+| Rek'Sai | 109 | 5.1% | 21 | 5.5% |
+| Nasus | 103 | 4.8% | 14 | 3.7% |
+| Rengar | 96 | 4.5% | 26 | 6.9% |
+| Draven | 89 | 4.2% | 9 | 2.4% |
+| Azir | 79 | 3.7% | 22 | 5.8% |
+| Kha'Zix | 79 | 3.7% | 15 | 4.0% |
+| Diana | 78 | 3.7% | 16 | 4.2% |
+| Jayce | 72 | 3.4% | 11 | 2.9% |
+| LeBlanc | 70 | 3.3% | 14 | 3.7% |
+| Akali | 65 | 3.1% | 10 | 2.6% |
+| Ezreal | 59 | 2.8% | 16 | 4.2% |
+| Lillia | 47 | 2.2% | 4 | 1.1% |
+| Fiora | 45 | 2.1% | 5 | 1.3% |
+| Ornn | 42 | 2.0% | 5 | 1.3% |
+| Rumble | 41 | 1.9% | 3 | 0.8% |
+| Vi | 40 | 1.9% | 0 | 0.0% |
+| Ambessa | 34 | 1.6% | 1 | 0.3% |
+| Vex | 29 | 1.4% | 2 | 0.5% |
+| Mel | 28 | 1.3% | 2 | 0.5% |
+| Lucian | 27 | 1.3% | 1 | 0.3% |
+| Zed | 25 | 1.2% | 1 | 0.3% |
+| Master Yi, WM | 25 | 1.2% | 0 | 0.0% |
+| Ivern | 24 | 1.1% | 1 | 0.3% |
+| Pyke | 24 | 1.1% | 0 | 0.0% |
+| Jhin | 20 | 0.9% | 1 | 0.3% |
+| Jax | 19 | 0.9% | 1 | 0.3% |
+| Sivir | 18 | 0.8% | 3 | 0.8% |
+| Kai'Sa | 18 | 0.8% | 2 | 0.5% |
+| Lux | 17 | 0.8% | 5 | 1.3% |
+| Renekton | 16 | 0.8% | 1 | 0.3% |
+| Renata Glasc | 15 | 0.7% | 0 | 0.0% |
+| Shen | 14 | 0.7% | 0 | 0.0% |
+| Viktor | 12 | 0.6% | 2 | 0.5% |
+| Poppy | 10 | 0.5% | 0 | 0.0% |
+| Annie | 5 | 0.2% | 1 | 0.3% |
+| Miss Fortune | 1 | 0.0% | 0 | 0.0% |
+| Sett | 1 | 0.0% | 0 | 0.0% |
+| Teemo | 1 | 0.0% | 0 | 0.0% |
+
+### On the Best-Of Nomenclature
+
+Before we get to the decks, we want to clarify the naming of Best-Of cards. As Riftbound grows we’re going to find, from time to time, a need to realign on terminology. Best-Of prizing has reached one of those cases.
+
+Up to now ‘Best-of’ has been used interchangeably as the naming of when someone is #1 with their Legend in a tournament, as well as for the prize received for doing so. When it was just Regional Qualifiers offering those prizes it wasn’t an issue. But now that Showdown Series are underway and more and more players are attending those events (703 at NRG Milwaukee this past weekend!) We need to refine the terminology as a Showdown Series Best-Of prize is not the same as a Regional Qualifier Best-Of prize (which is also not the same as what will be awarded at Regional Championships.)
+
+So, we feel the need to divorce the term Best-Of from being both the finish and the award, and be more specific on what the prize being given is:
+
+Best-Of - The achievement of being #1 with your Legend at a tournament.
+
+Foil Plated Legend - The award received for being a Best-Of at a Regional Qualifier (or a Riftbound Regional next year.)
+
+Foil Overnumber Plated Legend - The award received for being a Best-Of at the upcoming Regional Championships.
+
+Plated Legend (or Non-Foil Plated Legend) - The prize awarded at Showdown Series events, and are also available on the Prize Wall at Regional Qualifier events.
+
+We know that many players will continue to use the confusing ‘Best-Of’ as a shorthand for the prizes awarded, but we are asking the community, organizers, and other entities who track or list these for various purposes, to adopt this nomenclature.
+
+# Best-of Decks
+
+| | |
+| --- | --- |
+| GiammyAsr Legend Rank: #1/10 Overall Ranking: #655 | |
+| Legend: 1 Poppy, Keeper of the Hammer Champion: 1 Poppy, Paragon Main Deck: 3 Blood Money 3 Catalyst of Aeons 3 Confront 2 Cull the Weak 3 Dazzling Aurora 2 Disposal Order 3 Elder Dragon 3 Flurry of Blades 2 Forge of the Future 3 Harnessed Dragon 3 Mobilize 1 Rift Herald 2 Sabotage 3 Sacrifice 1 Salvage 2 The Ruination | Battlefields: 1 Dragon Roost 1 Forgotten Monument 1 Sigil of the Storm Rune Pool: 6 Body Rune 6 Order Rune Sideboard: 2 Challenge 3 Rengar, Trophy Hunter 1 Sabotage 2 Salvage 2 Unyielding Spirit |
+
+| | |
+| --- | --- |
+| CC ImboSlice Legend Rank: #1/34 Overall Ranking: #546 | |
+| Legend: 1 Vi, Piltover Enforcer Champion: 1 Vi, Peacekeeper Main Deck: 2 Blighted Battleaxe 3 Carrion Dredger 3 Deathgrip 2 Ferrous Forerunner 3 Hextech Gauntlets 2 Hidden Blade 3 Honest Broker 3 Jhin, Murderous Artist 3 Kai'Sa, Survivor 3 Kennen, Keeper of Balance 2 Long Sword 1 Rek'Sai, Breacher 3 Rengar, Unseen 1 Seal of Rage 1 Shen, Kinkou 2 Tactical Retreat 2 Unsung Hero | Battlefields: 1 Forge of the Fluft 1 Sunken Temple 1 Vilemaw's Lair Rune Pool: 7 Fury Rune 5 Order Rune Sideboard: 2 Ashe, Focused 1 Brittle Steel 2 Decree of Unity 1 Facebreaker 2 Forge of the Future 2 Salvage |
+
+| | |
+| --- | --- |
+| Qilby Legend Rank: #1/14 Overall Ranking: #513 | |
+| Legend: 1 Shen, Eye of Twilight Champion: 1 Shen, Kinkou Main Deck: 2 Akali, Silent 2 Back Off 1 Charm 3 Defy 3 Disciple of Shen 3 Discipline 2 Dragon Form 1 Hidden Blade 2 Kennen, Keeper of Balance 2 Ki Barrier 2 Meditation 2 Mutated Mouser 2 Nami, Headstrong 3 Scuttle Crab 2 Shadow Dash 1 Shen, Kinkou 1 Shen, Leader of the Kinkou Order 3 Sona, Harmonious 2 Vi, Peacekeeper | Battlefields: 1 Forbidding Waste 1 Grove of the God-Willow 1 Kinkou Temple Rune Pool: 6 Calm Rune 6 Order Rune Sideboard: 2 Crumbling Sands 2 Decree of Focus 2 Decree of Unity 2 Janna, Savior 2 Salvage |
+
+| | |
+| --- | --- |
+| Shouks17 Legend Rank: #1/25 Overall Ranking: #431 | |
+| Legend: 1 Master Yi, Wuju Master Champion: 1 Master Yi, Tempered Main Deck: 2 Back Off 2 Concentrate 3 Defy 3 Discipline 2 Emperor's Divide 3 Gemhand Hunter 3 Grim Resolve 2 Herald of Spring 3 Master Yi, Unstoppable 2 Punch First 1 Rampage 2 Scuttle Crab 2 Skyward Strike 3 Voracious Gromp 3 Wuju Apprentice 3 Zhonya's Hourglass | Battlefields: 1 Amateur Recital 1 Gardens of Becoming 1 Seat of Power Rune Pool: 6 Body Rune 6 Calm Rune Sideboard: 1 Alpha Strike 1 Concentrate 2 Disarming Rake 2 Disposal Order 1 Rampage 2 Sabotage 1 Skyward Strike |
+
+| | |
+| --- | --- |
+| Jasonj115 Legend Rank: #1/15 Overall Ranking: #420 | |
+| Legend: 1 Renata Glasc, Chem-Baroness Champion: 1 Renata Glasc, Mastermind Main Deck: 1 Cloth Armor 2 Forge of the Future 3 Hidden Blade 3 Honest Broker 2 Hostile Takeover 3 Jayce, Man of Progress 1 Kennen, Keeper of Balance 1 Mel, Newly Awakened 3 Patched Porobot 2 Plundering Poro 1 Shen, Kinkou 2 Singularity 3 Stupefy 3 Temporal Breach 1 Thousand-Tailed Watcher 3 Time Warp 3 Vanguard Armory 2 Wages of Pain | Battlefields: 1 Rockfall Path 1 Treasure Hoard 1 Trifarian War Camp Rune Pool: 7 Mind Rune 5 Order Rune Sideboard: 2 Bellows Breath 2 Cull the Weak 1 Decree of Unity 1 Imperial Decree 2 Salvage 1 Singularity 1 Thousand-Tailed Watcher |
+
+| | |
+| --- | --- |
+| JSTR Fase Legend Rank: #1/24 Overall Ranking: #394 | |
+| Legend: 1 Pyke, Bloodharbor Ripper Champion: 1 Pyke, Dockside Butcher Main Deck: 3 Bewitching Spirit 1 Brittle Steel 2 Cleave 1 Ezreal, Prodigy 3 Falling Star 1 Ferrous Forerunner 3 Fizz, Trickster 1 Gust Monk 3 Noxus Hopeful 3 Pack of Wonders 1 Piercing Light 3 Stacked Deck 2 Star-Crossed 1 Tail-Cloaked Matriarch 2 The List 3 Traveling Merchant 3 Treasure Trove 3 Void Seeker | Battlefields: 1 Frozen Fortress 1 Ripper's Bay 1 Void Gate Rune Pool: 5 Chaos Rune 7 Fury Rune Sideboard: 1 Angler Beast 1 Brittle Steel 1 Decree of Discord 1 Downwell 2 Ferrous Forerunner 2 Gust 1 Kha'Zix, Mutating Horror 1 Ravenbloom Prefect |
+
+| | |
+| --- | --- |
+| Kyouya Legend Rank: #1/34 Overall Ranking: #345 | |
+| Legend: 1 Ambessa, Matriarch of War Champion: 1 Ambessa, The Wolf Main Deck: 1 Ambessa, The Wolf 3 Challenge 2 First Mate 1 Forge of the Future 2 Guttural Roar 1 Hidden Blade 3 Irresistible Faefolk 2 Kennen, Keeper of Balance 1 Ki Barrier 3 Kinkou Initiate 3 Legion Marauder 1 Noxian Emissary 1 Onslaught 2 Public Execution 3 Punch First 2 Rampage 2 Rengar, Trophy Hunter 1 Repulse 1 Sabotage 2 Solari Sunhawk 2 Vi, Peacekeeper | Battlefields: 1 Risen Altar 1 Seat of Power 1 Sunken Temple Rune Pool: 7 Body Rune 5 Order Rune Sideboard: 2 Decree of Strength 1 Disposal Order 2 Kayle, Justified 2 Ruin Runner 1 Sabotage 2 Salvage |
+
+| | |
+| --- | --- |
+| I MARTINEZ 88 Legend Rank: #1/19 Overall Ranking: #337 | |
+| Legend: 1 Jax, Grandmaster at Arms Champion: 1 Jax, Unmatched Main Deck: 2 Back Off 3 Brutalizer 3 Counter Strike 3 Defy 3 Discipline 2 First Mate 3 Guardian Angel 3 Irresistible Faefolk 3 Lucian, Merciless 2 Punch First 3 Rampage 2 Rengar, Trophy Hunter 3 Ruin Runner 3 Scuttle Crab 1 Trinity Force | Battlefields: 1 Ornn's Forge 1 Star Spring 1 Sunken Temple Rune Pool: 7 Body Rune 5 Calm Rune Sideboard: 2 Decree of Focus 2 Decree of Strength 3 Disarming Rake 2 Not So Fast 1 Onslaught |
+
+| | |
+| --- | --- |
+| Aserty Legend Rank: #1/24 Overall Ranking: #277 | |
+| Legend: 1 Ivern, Green Father Champion: 1 Ivern, Nurturer Main Deck: 2 Affectionate Poro 2 Astral Heron 1 Back Off 1 Call to Glory 1 Daisy! 3 Defy 3 Discipline 2 Emperor's Divide 2 Fallen Feline 3 Friendship 2 Frisky Hunter 2 Grand Strategem 1 Ivern, Nurturer 1 Kennen, Keeper of Balance 1 Ki Barrier 3 Mutated Mouser 1 Not So Fast 2 Solari Sunhawk 3 Stalwart Poro 3 Trusty Ramhound | Battlefields: 1 Forbidding Waste 1 Rockfall Path 1 Vilemaw's Lair Rune Pool: 6 Calm Rune 6 Order Rune Sideboard: 1 Daisy! 2 Decree of Unity 2 Flurry of Feathers 2 Janna, Savior 3 Salvage |
+
+| | |
+| --- | --- |
+| Jibbs Legend Rank: #1/20 Overall Ranking: #255 | |
+| Legend: 1 Jhin, Virtuoso Champion: 1 Jhin, Meticulous Killer Main Deck: 1 Bellows Breath 3 Consult the Past 3 Curtain Call 3 Deadly Flourish 2 Ferrous Forerunner 2 Forecaster 3 Noxus Hopeful 1 Orb of Regret 3 Plundering Poro 2 Progress Day 1 Rocket Barrage 3 Singularity 3 Sprite Burst 3 Stupefy 2 Thousand-Tailed Watcher 2 Time Warp 1 Unchecked Power 1 Watchful Sentry | Battlefields: 1 Frozen Fortress 1 Rockfall Path 1 Sigil of the Storm Rune Pool: 4 Fury Rune 8 Mind Rune Sideboard: 2 Brittle Steel 2 Decree of Insight 1 Falling Comet 1 Ferrous Forerunner 1 Frigid Touch 2 Pickpocket 1 Temporal Breach |
+
+| | |
+| --- | --- |
+| MaskofMomentum Legend Rank: #1/16 Overall Ranking: #251 | |
+| Legend: 1 Renekton, Butcher of the Sands Champion: 1 Renekton, Rage Fueled Main Deck: 1 Cleave 1 Darius, Trifarian 2 Ferrous Forerunner 3 First Mate 1 Grim Apothecary 3 Inferna 3 Irresistible Faefolk 3 Kai'Sa, Survivor 3 Kinkou Initiate 3 Nidalee, Cat Form 3 Noxus Hopeful 3 Pit Rookie 3 Punch First 2 Rampage 3 Rengar, Trophy Hunter 2 Sabotage | Battlefields: 1 Protective Sands 1 Seat of Power 1 Star Spring Rune Pool: 7 Body Rune 5 Fury Rune Sideboard: 2 Brittle Steel 1 Decree of Rage 2 Decree of Strength 2 Disposal Order 1 Ferrous Forerunner 1 Rampage 1 Sabotage |
+
+| | |
+| --- | --- |
+| ZNT Agazapado Legend Rank: #1/41 Overall Ranking: #178 | |
+| Legend: 1 Rumble, Mechanized Menace Champion: 1 Rumble, Scrapper Main Deck: 1 Bellows Breath 1 Brynhir Thundersong 3 Bubble Bot 2 Cleave 1 Cloth Armor 1 Consult the Past 2 Falling Star 3 Ferrous Forerunner 3 Forecaster 3 Gem Jammer 2 Noxus Hopeful 2 Patched Porobot 3 Production Surge 3 Rumble, Hotheaded 1 Singularity 3 Stupefy 2 Temporal Breach 3 Thousand-Tailed Watcher | Battlefields: 1 Heisho, Shell of the World 1 Seat of Power 1 Zaun Warrens Rune Pool: 6 Fury Rune 6 Mind Rune Sideboard: 1 Against the Odds 1 Bellows Breath 2 Brittle Steel 2 Brynhir Thundersong 2 Decree of Insight 1 Temporal Breach 1 Turn to Dust |
+
+| | |
+| --- | --- |
+| Ghosterdriver Legend Rank: #1/25 Overall Ranking: #164 | |
+| Legend: 1 Zed, Master of Shadows Champion: 1 Zed, Without a Sound Main Deck: 3 Boots of Swiftness 3 Death Mark 2 Edge of Night 1 Evelynn, Entrancing 1 Gust Monk 1 Inferna 3 Kharox 1 Last Rites 3 Noxus Hopeful 2 Perfect Execution 2 Rek'Sai, Breacher 1 Rengar, Pouncing 2 Seal of Discord 1 Stacked Deck 2 Switcheroo 2 Tail-Cloaked Matriarch 2 Tideturner 3 Tornado Warrior 3 Traveling Merchant 1 Up from the Deep | Battlefields: 1 Forge of the Fluft 1 Minefield 1 Zaun Warrens Rune Pool: 7 Chaos Rune 5 Fury Rune Sideboard: 1 Brittle Steel 1 Brynhir Thundersong 1 Falling Star 1 Hard Bargain 1 Invert Timelines 1 Ravenbloom Prefect 1 Rhasa the Sunderer 1 Star-Crossed 2 Vex, Apathetic |
+
+| | |
+| --- | --- |
+| AA SwiTHoR Legend Rank: #1/47 Overall Ranking: #152 | |
+| Legend: 1 Lillia, Bashful Bloom Champion: 1 Lillia, Fae Fawn Main Deck: 1 Brutalizer 2 Charm 3 Defy 3 Discipline 3 En Garde 1 Heart of Dark Ice 1 Janna, Savior 3 Lonely Poro 3 Mask of Foresight 1 Mournful Witness 3 Ravenbloom Student 2 Smoke and Mirrors 2 Smoke Screen 3 Sprite Burst 3 Sprite Fountain 3 Stupefy 1 Thousand-Tailed Watcher 1 Unchecked Power | Battlefields: 1 Dusk Rose Lab 1 Seat of Power 1 Targon's Peak Rune Pool: 6 Calm Rune 6 Mind Rune Sideboard: 1 Decree of Focus 2 Decree of Insight 3 Disarming Rake 1 Lilting Lullaby 1 Pickpocket 1 Smoke and Mirrors 1 Unchecked Power |
+
+| | |
+| --- | --- |
+| Boxingringxd Legend Rank: #1/29 Overall Ranking: #150 | |
+| Legend: 1 Vex, Gloomist Champion: 1 Vex, Apathetic Main Deck: 3 Astral Heron 3 Back Off 2 Boots of Swiftness 3 Defy 3 Discipline 2 En Garde 3 Evelynn, Entrancing 2 Gust 3 Gust Monk 2 Rebuke 3 Stacked Deck 2 Star-Crossed 2 Switcheroo 1 Tasty Faefolk 3 Tideturner 2 Vex, Apathetic | Battlefields: 1 Abandoned Hall 1 Targon's Peak 1 Threshold of the Gray Rune Pool: 5 Calm Rune 7 Chaos Rune Sideboard: 1 Angler Beast 1 Decree of Focus 3 Disarming Rake 1 Hard Bargain 1 Not So Fast 3 Sneaky Deckhand |
+
+| | |
+| --- | --- |
+| drinkmaker888 Legend Rank: #1/103 Overall Ranking: #80 | |
+| Legend: 1 Nasus, Curator of the Sands Champion: 1 Nasus, Ascended Main Deck: 3 Bellows Breath 2 Charm 3 Clockwork Keeper 3 Defy 3 Discipline 2 Eclipse 3 En Garde 3 Find Your Center 3 Lonely Poro 1 Not So Fast 3 Ravenbloom Student 3 Sprite Queen 3 Stupefy 1 Tasty Faefolk 3 Thousand-Tailed Watcher | Battlefields: 1 Ravenbloom Conservatory 1 Targon's Peak 1 Vilemaw's Lair Rune Pool: 6 Calm Rune 6 Mind Rune Sideboard: 3 Disarming Rake 2 Helm of Suppression 1 Not So Fast 2 Pickpocket 1 Singularity 1 Vilemaw |
+
+| | |
+| --- | --- |
+| Swagyolo420yea Legend Rank: #1/18 Overall Ranking: #79 | |
+| Legend: 1 Sivir, Battle Mistress Champion: 1 Sivir, Mercenary Main Deck: 1 Baron Nashor 1 Boots of Swiftness 3 Catalyst of Aeons 3 Dazzling Aurora 3 Elder Dragon 3 Flurry of Blades 3 Gust 1 Hard Bargain 3 Lunar Boon 3 Platewyrm Egg 1 Punch First 2 Rampage 1 Ride the Wind 3 Scryer's Bloom 3 Stacked Deck 2 The Harrowing 3 Up from the Deep | Battlefields: 1 Forgotten Monument 1 Sigil of the Storm 1 Threshold of the Gray Rune Pool: 6 Body Rune 6 Chaos Rune Sideboard: 2 Baron Nashor 2 Hard Bargain 1 Last Rites 1 Punch First 1 Rampage 1 Ride the Wind 2 Sabotage |
+
+| | |
+| --- | --- |
+| Sam Legend Rank: #1/70 Overall Ranking: #78 | |
+| Legend: 1 LeBlanc, Deceiver Champion: 1 LeBlanc, Fragmented Main Deck: 3 Baited Hook 2 Black Rose Dignitary 3 Glasc Mixologist 3 Harnessed Dragon 2 Hidden Blade 3 Honest Broker 3 Karthus, Eternal 2 Mirror Image 2 Rift Herald 3 Ruined Rex 3 Sacrifice 3 Soaring Scout 2 Thousand-Tailed Watcher 3 Vi, Peacekeeper 2 Watchful Sentry | Battlefields: 1 Forbidding Waste 1 Star Spring 1 Windswept Hillock Rune Pool: 4 Mind Rune 8 Order Rune Sideboard: 1 Atakhan 1 Decree of Insight 2 Decree of Unity 1 Hidden Blade 1 LeBlanc, Everywhere at Once 2 Pickpocket 1 Salvage 1 Thousand-Tailed Watcher |
+
+| | |
+| --- | --- |
+| Kevplayer Legend Rank: #1/109 Overall Ranking: #50 | |
+| Legend: 1 Rek'Sai, Void Burrower Champion: 1 Rek'Sai, Breacher Main Deck: 3 Blood Rush 3 Carrion Dredger 2 Cleave 3 Cull the Weak 3 Faithful Manufactor 3 Falling Star 1 Hidden Blade 3 Honest Broker 2 Inferna 3 Noxian Emissary 3 Noxus Hopeful 1 Rage Amplifier 3 Undertitan 2 Vanguard Captain 1 Vi, Peacekeeper 3 Void Rush | Battlefields: 1 Forbidding Waste 1 The Candlelit Sanctum 1 Trifarian War Camp Rune Pool: 6 Fury Rune 6 Order Rune Sideboard: 1 Against the Odds 2 Brittle Steel 1 Decree of Unity 1 Ferrous Forerunner 3 Forge of the Future 2 Kennen, Keeper of Balance |
+
+| | |
+| --- | --- |
+| Cramo Legend Rank: #1/72 Overall Ranking: #39 | |
+| Legend: 1 Jayce, Defender of Tomorrow Champion: 1 Jayce, Brilliant Inventor Main Deck: 2 Bellows Breath 3 Catalyst of Aeons 3 Clairvoyance 3 Dazzling Aurora 1 Deadly Flourish 3 Dredge Up 3 Elder Dragon 2 Flurry of Blades 2 Garbage Grabber 2 Gutter Palace 3 Mobilize 3 Platewyrm Egg 1 Progress Day 1 Promising Future 1 Rocket Barrage 2 Sabotage 2 Sprite Burst 1 Sprite Fountain 1 Temporal Breach | Battlefields: 1 Forgotten Monument 1 Sigil of the Storm 1 The Papertree Rune Pool: 6 Body Rune 6 Mind Rune Sideboard: 1 Bellows Breath 1 Deadly Flourish 1 Decree of Strength 2 Disposal Order 2 Promising Future 1 Sabotage 1 Singularity 1 Turn to Dust |
+
+| | |
+| --- | --- |
+| V0LKATA2 Legend Rank: #1/89 Overall Ranking: #33 | |
+| Legend: 1 Draven, Glorious Executioner Champion: 1 Draven, Showboat Main Deck: 1 Blood Rush 1 Cleave 2 Edge of Night 2 Evelynn, Entrancing 2 Falling Star 1 Ferrous Forerunner 3 Kai'Sa, Survivor 3 Noxus Hopeful 3 Overzealous Fan 1 Pyke, Dockside Butcher 2 Pyke, Returned 3 Rebuke 1 Rek'Sai, Breacher 1 Rengar, Pouncing 3 Spinning Axe 3 Stacked Deck 3 Tideturner 1 Up from the Deep 3 Vex, Apathetic | Battlefields: 1 Amateur Recital 1 Forge of the Fluft 1 Zaun Warrens Rune Pool: 6 Chaos Rune 6 Fury Rune Sideboard: 1 Abandon 2 Brittle Steel 1 Brynhir Thundersong 1 Evelynn, Entrancing 1 Ferrous Forerunner 2 Ravenbloom Prefect 1 Switcheroo 1 Up from the Deep |
+
+| | |
+| --- | --- |
+| ASC JUN Legend Rank: #1/79 Overall Ranking: #28 | |
+| Legend: 1 Kha'Zix, Voidreaver Champion: 1 Kha'Zix, Mutating Horror Main Deck: 1 Acceptable Losses 3 Fizz, Trickster 1 Hard Bargain 3 Irresistible Faefolk 1 Onslaught 3 Punch First 1 Rampage 2 Rengar, Trophy Hunter 2 Sabotage 3 Shadow Order Disciple 3 Stacked Deck 2 Star-Crossed 2 Tail-Cloaked Matriarch 2 Traveling Merchant 3 Up from the Deep 2 Vex, Apathetic 3 Void Assault 2 Zed, Without a Sound | Battlefields: 1 Forbidding Waste 1 Sandswept Tomb 1 Zaun Warrens Rune Pool: 6 Body Rune 6 Chaos Rune Sideboard: 1 Acceptable Losses 2 Angler Beast 2 Decree of Strength 1 Fiora, Peerless 1 Hard Bargain 1 Ravenbloom Prefect 1 Sabotage 1 Switcheroo |
+
+| | |
+| --- | --- |
+| Dhawally Legend Rank: #1/78 Overall Ranking: #27 | |
+| Legend: 1 Diana, Scorn of the Moon Champion: 1 Diana, Lunari Main Deck: 2 Fizz, Trickster 1 Flash 1 Gust 2 Hard Bargain 2 Hwei, Brooding Painter 1 Kha'Zix, Mutating Horror 3 Moonfall 3 Ravenbloom Student 2 Ride the Wind 2 Smoke Screen 3 Sprite Fountain 3 Stacked Deck 2 Star-Crossed 3 Stupefy 1 Switcheroo 3 Tideturner 2 Traveling Merchant 3 Vex, Apathetic | Battlefields: 1 Abandoned Hall 1 Seat of Power 1 Targon's Peak Rune Pool: 7 Chaos Rune 5 Mind Rune Sideboard: 1 Baron Nashor 1 Gust 1 Hwei, Brooding Painter 2 Pickpocket 1 Star-Crossed 1 Switcheroo 2 Turn to Dust 1 Vex, Cheerless |
+
+| | |
+| --- | --- |
+| BANRATE DEMON Legend Rank: #1/27 Overall Ranking: #25 | |
+| Legend: 1 Lucian, Purifier Champion: 1 Lucian, Merciless Main Deck: 2 Blighted Battleaxe 3 Doran's Blade 2 Falling Star 3 Ferrous Forerunner 3 First Mate 3 Irresistible Faefolk 3 Kai'Sa, Survivor 3 Kinkou Initiate 3 Long Sword 1 Lucian, Merciless 3 Noxus Hopeful 3 Pit Rookie 3 Punch First 1 Relentless Pursuit 3 Sabotage | Battlefields: 1 Forbidding Waste 1 Forge of the Fluft 1 Windswept Hillock Rune Pool: 6 Body Rune 6 Fury Rune Sideboard: 3 Brittle Steel 1 Falling Star 2 Legion Rearguard 1 Pendulum Blade 3 Rampage |
+
+| | |
+| --- | --- |
+| PoW SpaghetiCode Legend Rank: #1/59 Overall Ranking: #23 | |
+| Legend: 1 Ezreal, Prodigal Explorer Champion: 1 Ezreal, Prodigy Main Deck: 3 Bellows Breath 3 Bewitching Spirit 3 Deadly Flourish 3 Fizz, Trickster 1 Gust 1 Hard Bargain 3 Pack of Wonders 1 Pickpocket 1 Singularity 1 Sprite Fountain 3 Stacked Deck 2 Star-Crossed 3 Stupefy 2 The List 2 Thousand-Tailed Watcher 2 Treasure Trove 1 Turn to Dust 2 Vex, Apathetic 2 Wages of Pain | Battlefields: 1 Frozen Fortress 1 Heisho, Shell of the World 1 Sigil of the Storm Rune Pool: 6 Chaos Rune 6 Mind Rune Sideboard: 1 Acceptable Losses 1 Angler Beast 1 Gust 1 Hard Bargain 2 Kha'Zix, Mutating Horror 1 Mindsplitter 1 Pickpocket 1 Sprite Fountain 1 Turn to Dust |
+
+| | |
+| --- | --- |
+| CTG Alanzq Legend Rank: #1/28 Overall Ranking: #19 | |
+| Legend: 1 Mel, Soul's Reflection Champion: 1 Mel, Defiant Soul Main Deck: 3 Applied Researchers 3 Dredge Up 3 Ravenbloom Student 3 Rebuttal 3 Shock Blast 2 Singularity 1 Smoke Screen 3 Stacked Deck 1 Star-Crossed 3 Stupefy 1 Switcheroo 2 Thousand-Tailed Watcher 3 Time Warp 3 Traveling Merchant 3 Up from the Deep 2 Vex, Apathetic | Battlefields: 1 Forbidding Waste 1 Ravenbloom Conservatory 1 Threshold of the Gray Rune Pool: 5 Chaos Rune 7 Mind Rune Sideboard: 1 Abandon 1 Acceptable Losses 1 Decree of Insight 1 Fizz, Trickster 1 Mel, Newly Awakened 2 Pickpocket 1 Star-Crossed 1 Turn to Dust 1 Unchecked Power |
+
+| | |
+| --- | --- |
+| Ricemaster Legend Rank: #1/45 Overall Ranking: #12 | |
+| Legend: 1 Fiora, Grand Duelist Champion: 1 Fiora, Worthy Main Deck: 1 Ambessa, The Wolf 2 B.F. Sword 2 Baited Hook 2 Call to Glory 1 Deathgrip 2 Divining Shells 3 First Mate 2 Harnessed Dragon 2 Hidden Blade 3 Kinkou Initiate 3 Pit Rookie 3 Punch First 2 Rampage 2 Riposte 3 Sett, Brawler 3 Spectral Matron 3 Unsung Hero | Battlefields: 1 Monastery of Hirana 1 Sunken Temple 1 Trifarian War Camp Rune Pool: 5 Body Rune 7 Order Rune Sideboard: 2 Ashe, Focused 1 Challenge 2 Decree of Unity 1 Rampage 1 Sabotage 3 Salvage |
+
+| | |
+| --- | --- |
+| asiptofu Legend Rank: #1/164 Overall Ranking: #11 | |
+| Legend: 1 Irelia, Blade Dancer Champion: 1 Irelia, Fervent Main Deck: 2 Akali, Silent 3 Boots of Swiftness 2 Charm 3 Defiant Dance 3 Defy 3 Discipline 2 En Garde 1 Flash 2 Guardian Angel 1 Gust 1 Gust Monk 3 Lonely Poro 1 Not So Fast 1 Rebuke 2 Ride the Wind 3 Stacked Deck 3 Stellacorn Herder 3 Tideturner | Battlefields: 1 Abandoned Hall 1 Sunken Temple 1 Targon's Peak Rune Pool: 6 Calm Rune 6 Chaos Rune Sideboard: 2 Adaptatron 1 Heart of Dark Ice 1 Not So Fast 2 Ravenbloom Prefect 1 Rebuke 1 Star-Crossed 1 Twilight Shroud 1 Vex, Apathetic |
+
+| | |
+| --- | --- |
+| ASC HaruKaze Legend Rank: #1/65 Overall Ranking: #10 | |
+| Legend: 1 Akali, Rogue Assassin Champion: 1 Akali, Deadly Weapon Main Deck: 3 Astral Heron 2 Back Off 3 Defy 3 Discipline 2 En Garde 3 Falling Star 3 Irelia, Fervent 3 Lonely Poro 3 Long Sword 3 Scuttle Crab 3 Shuriken Flip 2 Sky Splitter 3 Stellacorn Herder 3 Zhonya's Hourglass | Battlefields: 1 Back-Alley Bar 1 Targon's Peak 1 Void Gate Rune Pool: 5 Calm Rune 7 Fury Rune Sideboard: 1 Adaptatron 1 Against the Odds 1 Akali, Silent 2 Charm 2 Ferrous Forerunner 2 Not So Fast 1 Tomb-Raider Barbara |
+
+| | |
+| --- | --- |
+| DSG Prismaticism Legend Rank: #1/26 Overall Ranking: #6 | |
+| Legend: 1 Rengar, Pridestalker Champion: 1 Rengar, Trophy Hunter Main Deck: 1 Darius, Trifarian 1 Ferrous Forerunner 2 First Mate 3 Grim Apothecary 3 Inferna 3 Irresistible Faefolk 3 Kai'Sa, Survivor 3 Kinkou Initiate 2 Nidalee, Cat Form 3 Noxus Hopeful 1 Pakaa Cub 3 Pit Rookie 3 Punch First 1 Pyke, Dockside Butcher 2 Rampage 2 Sabotage 3 Thrill of the Hunt | Battlefields: 1 Emperor's Dais 1 Seat of Power 1 Star Spring Rune Pool: 8 Body Rune 4 Fury Rune Sideboard: 1 Brittle Steel 1 Brynhir Thundersong 2 Decree of Strength 2 Ferrous Forerunner 1 Noxian Demolitionist 1 Pyke, Dockside Butcher 1 Rampage 1 Sabotage |
+
+| | |
+| --- | --- |
+| MICE Squirtle Legend Rank: #1/79 Overall Ranking: #3 | |
+| Legend: 1 Azir, Emperor of the Sands Champion: 1 Azir, Sovereign Main Deck: 3 Arise! 3 B.F. Sword 3 Back Off 3 Brutalizer 2 Deathgrip 3 Defy 3 Discipline 3 Doran's Shield 2 En Garde 3 Eye of the Herald 3 Guards! 1 Hand Hammer 3 Hidden Blade 1 Kennen, Keeper of Balance 3 Soul Sword | Battlefields: 1 Hall of Legends 1 Seat of Power 1 Trifarian War Camp Rune Pool: 7 Calm Rune 5 Order Rune Sideboard: 1 Ashe, Focused 2 Decree of Focus 3 Decree of Unity 2 Salvage 1 Tomb-Raider Barbara 1 Vi, Peacekeeper |
+
+| | |
+| --- | --- |
+| CTCG Koko Lopez Legend Rank: #1/270 Overall Ranking: #2 | |
+| Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 1 Baron Nashor 2 Fizz, Trickster 1 Flash 1 Hard Bargain 2 Last Rites 3 Lightning Rush 3 Nocturne, Horrifying 3 Rhasa the Sunderer 3 Ride the Wind 3 Seal of Discord 1 Shadow Order Disciple 3 Stacked Deck 1 Star-Crossed 2 Switcheroo 1 The Harrowing 1 Tideturner 3 Traveling Merchant 3 Treasure Hunter 2 Up from the Deep | Battlefields: 1 Minefield 1 Sandswept Tomb 1 Zaun Warrens Rune Pool: 9 Chaos Rune 3 Order Rune Sideboard: 1 Abandon 2 Decree of Unity 2 Gust 1 Invert Timelines 2 Ravenbloom Prefect 1 Salvage 1 Star-Crossed |
+
+| | |
+| --- | --- |
+| MICE TheManland Legend Rank: #1/42 Overall Ranking: #1 | |
+| Legend: 1 Ornn, Fire Below the Mountain Champion: 1 Ornn, Blacksmith Main Deck: 2 Aspiring Engineer 3 Brutalizer 2 Charm 3 Clockwork Keeper 1 Cloth Armor 3 Defy 1 Guardian Angel 1 Helm of Suppression 1 Lecturing Yordle 1 Mask of Foresight 3 Patched Porobot 3 Pit Crew 3 Poro Snax 3 Scuttle Crab 3 Seal of Focus 3 Sprite Fountain 3 Sterak's Gage | Battlefields: 1 Ornn's Forge 1 Seat of Power 1 Veiled Temple Rune Pool: 8 Calm Rune 4 Mind Rune Sideboard: 2 Decree of Focus 2 Decree of Insight 2 Disarming Rake 1 Guardian Angel 1 Not So Fast 2 Pickpocket |
+
+## Top 8 Decks
+
+| | |
+| --- | --- |
+| Hisoka Legend Rank: #2/199 Overall Ranking: #8 | |
+| Legend: 1 Master Yi, Wuju Bladesman Champion: 1 Master Yi, Tempered Main Deck: 3 Charm 3 Defy 3 Discipline 2 En Garde 3 First Mate 3 Lonely Poro 1 Onslaught 2 Pit Rookie 3 Punch First 2 Rampage 3 Rengar, Trophy Hunter 2 Ruin Runner 2 Sabotage 3 Scuttle Crab 2 Stellacorn Herder 2 Zhonya's Hourglass | Battlefields: 1 Emperor's Dais 1 Grove of the God-Willow 1 Star Spring Rune Pool: 7 Body Rune 5 Calm Rune Sideboard: 2 Akali, Silent 1 Decree of Strength 1 Not So Fast 1 Rampage 1 Sabotage 3 Tomb-Raider Barbara 1 Unyielding Spirit |
+
+| | |
+| --- | --- |
+| Shaßßat Shalom Legend Rank: #1/199 Overall Ranking: #7 | |
+| Legend: 1 Master Yi, Wuju Bladesman Champion: 1 Master Yi, Tempered Main Deck: 1 Alpha Strike 1 Back Off 3 Charm 3 Defy 3 Discipline 3 En Garde 2 First Mate 1 Grim Resolve 2 Irelia, Fervent 3 Lonely Poro 1 Not So Fast 2 Pit Rookie 3 Punch First 1 Rampage 3 Rengar, Trophy Hunter 1 Ruin Runner 1 Sabotage 3 Scuttle Crab 1 Steel Paws 1 Zhonya's Hourglass | Battlefields: 1 Abandoned Hall 1 Emperor's Dais 1 Grove of the God-Willow Rune Pool: 7 Body Rune 5 Calm Rune Sideboard: 1 Alpha Strike 2 Decree of Focus 1 Irelia, Fervent 1 Not So Fast 1 Rampage 1 Ruin Runner 1 Sabotage 2 Tomb-Raider Barbara |
+
+| | |
+| --- | --- |
+| DSG Prismaticism Legend Rank: #1/96 Overall Ranking: #6 | |
+| Legend: 1 Rengar, Pridestalker Champion: 1 Rengar, Trophy Hunter Main Deck: 1 Darius, Trifarian 1 Ferrous Forerunner 2 First Mate 3 Grim Apothecary 3 Inferna 3 Irresistible Faefolk 3 Kai'Sa, Survivor 3 Kinkou Initiate 2 Nidalee, Cat Form 3 Noxus Hopeful 1 Pakaa Cub 3 Pit Rookie 3 Punch First 1 Pyke, Dockside Butcher 2 Rampage 2 Sabotage 3 Thrill of the Hunt | Battlefields: 1 Emperor's Dais 1 Seat of Power 1 Star Spring Rune Pool: 8 Body Rune 4 Fury Rune Sideboard: 1 Brittle Steel 1 Brynhir Thundersong 2 Decree of Strength 2 Ferrous Forerunner 1 Noxian Demolitionist 1 Pyke, Dockside Butcher 1 Rampage 1 Sabotage |
+
+| | |
+| --- | --- |
+| ECL Mosik Legend Rank: #3/270 Overall Ranking: #5 | |
+| Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 1 Baron Nashor 2 Fizz, Trickster 2 Gust 1 Gust Monk 1 Hard Bargain 2 Last Rites 3 Lightning Rush 3 Nocturne, Horrifying 1 Rebuke 3 Rhasa the Sunderer 3 Ride the Wind 3 Seal of Discord 3 Stacked Deck 2 Star-Crossed 1 Switcheroo 1 Tail-Cloaked Matriarch 1 The Harrowing 2 Tideturner 3 Traveling Merchant 1 Up from the Deep | Battlefields: 1 Forbidding Waste 1 Minefield 1 Zaun Warrens Rune Pool: 9 Chaos Rune 3 Order Rune Sideboard: 1 Abandon 1 Angler Beast 2 Decree of Unity 1 Downwell 2 Salvage 1 Switcheroo 1 Up from the Deep 1 Vi, Peacekeeper |
+
+| | |
+| --- | --- |
+| HXN Gonkra Legend Rank: #2/270 Overall Ranking: #4 | |
+| Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 2 Fizz, Trickster 2 Gust 1 Hard Bargain 1 Last Rites 3 Lightning Rush 3 Nocturne, Horrifying 3 Rhasa the Sunderer 3 Ride the Wind 3 Seal of Discord 1 Shadows of the Past 3 Stacked Deck 2 Star-Crossed 2 Switcheroo 1 Tail-Cloaked Matriarch 1 Tideturner 3 Traveling Merchant 3 Treasure Hunter 2 Up from the Deep | Battlefields: 1 Minefield 1 Veiled Temple 1 Zaun Warrens Rune Pool: 9 Chaos Rune 3 Order Rune Sideboard: 1 Angler Beast 2 Decree of Unity 1 Hard Bargain 1 Invert Timelines 1 Last Rites 1 Ravenbloom Prefect 1 Rebuke 1 Salvage 1 Vi, Peacekeeper |
+
+| | |
+| --- | --- |
+| MICE Squirtle Legend Rank: #1/79 Overall Ranking: #3 | |
+| Legend: 1 Azir, Emperor of the Sands Champion: 1 Azir, Sovereign Main Deck: 3 Arise! 3 B.F. Sword 3 Back Off 3 Brutalizer 2 Deathgrip 3 Defy 3 Discipline 3 Doran's Shield 2 En Garde 3 Eye of the Herald 3 Guards! 1 Hand Hammer 3 Hidden Blade 1 Kennen, Keeper of Balance 3 Soul Sword | Battlefields: 1 Hall of Legends 1 Seat of Power 1 Trifarian War Camp Rune Pool: 7 Calm Rune 5 Order Rune Sideboard: 1 Ashe, Focused 2 Decree of Focus 3 Decree of Unity 2 Salvage 1 Tomb-Raider Barbara 1 Vi, Peacekeeper |
+
+| | |
+| --- | --- |
+| CTCG Koko Lopez Legend Rank: #1/270 Overall Ranking: #2 | |
+| Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 1 Baron Nashor 2 Fizz, Trickster 1 Flash 1 Hard Bargain 2 Last Rites 3 Lightning Rush 3 Nocturne, Horrifying 3 Rhasa the Sunderer 3 Ride the Wind 3 Seal of Discord 1 Shadow Order Disciple 3 Stacked Deck 1 Star-Crossed 2 Switcheroo 1 The Harrowing 1 Tideturner 3 Traveling Merchant 3 Treasure Hunter 2 Up from the Deep | Battlefields: 1 Minefield 1 Sandswept Tomb 1 Zaun Warrens Rune Pool: 9 Chaos Rune 3 Order Rune Sideboard: 1 Abandon 2 Decree of Unity 2 Gust 1 Invert Timelines 2 Ravenbloom Prefect 1 Salvage 1 Star-Crossed |
+
+| | |
+| --- | --- |
+| MICE TheManland Legend Rank: #1/42 Overall Ranking: #1 | |
+| Legend: 1 Ornn, Fire Below the Mountain Champion: 1 Ornn, Blacksmith Main Deck: 2 Aspiring Engineer 3 Brutalizer 2 Charm 3 Clockwork Keeper 1 Cloth Armor 3 Defy 1 Guardian Angel 1 Helm of Suppression 1 Lecturing Yordle 1 Mask of Foresight 3 Patched Porobot 3 Pit Crew 3 Poro Snax 3 Scuttle Crab 3 Seal of Focus 3 Sprite Fountain 3 Sterak's Gage | Battlefields: 1 Ornn's Forge 1 Seat of Power 1 Veiled Temple Rune Pool: 8 Calm Rune 4 Mind Rune Sideboard: 2 Decree of Focus 2 Decree of Insight 2 Disarming Rake 1 Guardian Angel 1 Not So Fast 2 Pickpocket |
+
+## Related Articles
+
+1. Organized Play2026-08-24T01:00:00.000ZAll Eyes on SingaporeSingapore plays host to the penultimate Regional Qualifier of 2026
+2. Organized Play2026-08-10T16:00:00.000ZAll Eyes on BarcelonaSpain sees the first Vendetta Regional Qualifier kick off the new set’s competitive season.
+3. Organized Play2026-08-04T16:00:00.000ZAugust 2026 State of PlayWe’ve got a bunch of updates and news about Organized Play for Riftbound in 2027
+4. Organized Play2026-08-04T16:00:00.000Z2026 Regional Championship InfoDetails on 3 Championships hitting the calendar this year
+5. Organized Play2026-07-11T17:00:00.000ZNorth American Regional Championship InfoConvergence Fest in Las Vegas, Dec. 11-13.
+6. Organized Play2026-06-17T16:00:00.000ZUtrecht’s Top DecksMaster Yi, Wuju Bladesman dominates the field but comes up short in the Top 8
+7. Organized Play2026-06-04T16:00:00.000ZVancouver’s Top DecksRQ Vancouver saw more than 2000 players in Canada’s first Regional Qualifier and Diana came out victorious!
+8. Organized Play2026-05-29T11:00:00.000ZAnnouncing the Showdown Series & Le Rift TourRiftbound is expanding Organized Play with more ways to compete and qualify for top-level events.
+9. Organized Play2026-05-21T16:00:00.000ZSydney’s Top DecksSydney’s first ever Regional Qualifier saw Irelia come out on top!
