@@ -1,0 +1,43 @@
+===
+player: Fаne
+event: S4 Shenzhen City Challenge
+date: 2026-08-08
+placing: 30
+field: 128
+source: Public City Challenge list
+bucket: locals
+===
+Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 3 Shadow Order Disciple 2 Traveling Merchant 3 Treasure Hunter 2 Fizz, Trickster 3 Nocturne, Horrifying 2 Tail-Cloaked Matriarch 1 Atakhan 3 Rhasa the Sunderer 3 Seal of Discord 2 Last Rites 3 Lightning Rush 3 Stacked Deck 2 Abandon 1 Cull the Weak 3 Ride the Wind 1 Salvage 2 Star-Crossed Battlefields: 1 Forbidding Waste 1 Minefield 1 Zaun Warrens Rune Pool: 8 Chaos Rune 4 Order Rune Sideboard: 1 Abandon 1 Cull the Weak 1 Salvage 2 Switcheroo 1 Edge of Night 1 Fizz, Trickster 1 Star-Crossed 1 Tail-Cloaked Matriarch 1 Atakhan
+
+===
+player: 糕大饼
+event: S4 Beijing City Challenge
+date: 2026-08-23
+placing: 5
+field: 123
+source: Public City Challenge list
+bucket: locals
+===
+Legend: 1 Kennen, Heart of the Tempest Champion: 1 Kennen, Storm of Shuriken Main Deck: 2 Carrion Dredger 2 Tideturner 2 Traveling Merchant 2 Treasure Hunter 1 Ezreal, Prodigy 2 Fizz, Trickster 3 Nocturne, Horrifying 1 Vex, Apathetic 1 Vi, Peacekeeper 3 Rhasa the Sunderer 3 Seal of Discord 2 Last Rites 3 Lightning Rush 3 Stacked Deck 1 Abandon 1 Deathgrip 1 Rebuke 2 Ride the Wind 2 Switcheroo 2 Star-Crossed Battlefields: 1 Minefield 1 Veiled Temple 1 Zaun Warrens Rune Pool: 8 Chaos Rune 4 Order Rune Sideboard: 1 Abandon 2 Forge of the Future 2 Salvage 1 Invert Timelines 1 Shadows of the Past 1 Angler Beast 1 Vi, Peacekeeper 1 Downwell
+
+===
+player: Benobi
+event: NRG Series Riftbound $5k Constructed Showdown
+date: 2026-08-23
+placing: 14
+field: 109
+source: Public NRG Showdown list
+bucket: showdown
+===
+Legend: 1 Master Yi, Wuju Bladesman Champion: 1 Master Yi, Tempered Main Deck: 3 Charm 3 Defy 3 Discipline 2 En Garde 3 First Mate 3 Lonely Poro 2 Pit Rookie 3 Punch First 2 Rampage 3 Rengar, Trophy Hunter 2 Ruin Runner 2 Sabotage 3 Scuttle Crab 2 Stellacorn Herder 2 Zhonya's Hourglass 1 Onslaught Battlefields: 1 Emperor's Dais 1 Grove of the God-Willow 1 Star Spring Rune Pool: 7 Body Rune 5 Calm Rune Sideboard: 2 Akali, Silent 1 Decree of Strength 1 Not So Fast 1 Rampage 1 Sabotage 3 Tomb-Raider Barbara 1 Unyielding Spirit
+
+===
+player: kuxist
+event: Turniej Riftbound TCG Showdown Series Lodz
+date: 2026-08-02
+placing: 9
+field: 256
+source: Public Showdown Series list
+bucket: showdown
+===
+Legend: 1 Sett, The Boss Champion: 1 Sett, Kingpin Main Deck: 3 Cithria of Cloudfield 3 Pit Rookie 2 Sea Monkey 3 First Mate 3 Fiora, Victorious 2 Kinkou Monk 2 Rengar, Trophy Hunter 2 Vi, Peacekeeper 3 Arena Bar 3 Punch First 1 Repulse 3 Sabotage 2 Showstopper 2 Challenge 2 Hidden Blade 3 Call to Glory Battlefields: 1 Grove of the God-Willow 1 Monastery of Hirana 1 Valley of Idols Rune Pool: 7 Body Rune 5 Order Rune Sideboard: 2 Repulse 2 Fiora, Peerless 2 Akshan, Mischievous 2 Ashe, Focused
