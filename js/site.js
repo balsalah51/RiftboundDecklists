@@ -82,6 +82,52 @@
     });
   }
 
+  var THEME_COOKIE = "rbdb-theme";
+
+  function readThemeCookie() {
+    var m = document.cookie.match(/(?:^|; )rbdb-theme=(dark|light)(?:;|$)/);
+    return m ? m[1] : "";
+  }
+
+  function writeThemeCookie(theme) {
+    var parts = [THEME_COOKIE + "=" + theme, "path=/", "max-age=31536000", "SameSite=Lax"];
+    if (location.protocol === "https:") parts.push("Secure");
+    document.cookie = parts.join("; ");
+  }
+
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function applyTheme(theme, persist) {
+    theme = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    if (persist !== false) writeThemeCookie(theme);
+    var btn = document.getElementById("theme-toggle");
+    var dark = theme === "dark";
+    if (btn) {
+      btn.setAttribute("aria-checked", dark ? "true" : "false");
+      btn.setAttribute("aria-label", dark ? "Dark mode" : "Light mode");
+      btn.title = dark ? "Switch to light mode" : "Switch to dark mode";
+    }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", dark ? "#13110f" : "#b42318");
+    try {
+      window.dispatchEvent(new CustomEvent("rbdb-theme", { detail: theme }));
+    } catch (err) {}
+  }
+
+  function initTheme() {
+    var saved = readThemeCookie();
+    applyTheme(saved || currentTheme(), !!saved);
+    var btn = document.getElementById("theme-toggle");
+    if (!btn || btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", function () {
+      applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
+    });
+  }
+
   function initYear() {
     var el = document.getElementById("year");
     if (el) el.textContent = String(new Date().getFullYear());
@@ -96,6 +142,7 @@
   }
 
   function boot() {
+    initTheme();
     initYear();
     initCopy();
     initFilters();

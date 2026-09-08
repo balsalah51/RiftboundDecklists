@@ -521,9 +521,19 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <meta name="impact-site-verification" content="2a231ac3-b656-4c47-806f-411dadcf4bb1" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {{
+      try {{
+        var m = document.cookie.match(/(?:^|; )rbdb-theme=(dark|light)(?:;|$)/);
+        document.documentElement.setAttribute("data-theme", m ? m[1] : "light");
+      }} catch (e) {{
+        document.documentElement.setAttribute("data-theme", "light");
+      }}
+    }})();
+  </script>
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-2" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-3" />
   <link rel="canonical" href="{e(canon)}" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#b42318" />
@@ -554,6 +564,10 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
           <div class="subtitle">Legends, Runes, Battlefields</div>
         </div>
       </a>
+      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="theme-toggle-option" data-on="light">Light</span>
+        <span class="theme-toggle-option" data-on="dark">Dark</span>
+      </button>
       <nav aria-label="Primary">
         {header_nav(current)}
       </nav>
@@ -567,7 +581,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
     </footer>
   </div>
   <script src="/js/tcgplayer-config.js?v=rift-1"></script>
-  <script src="/js/site.js?v=rift-1"></script>
+  <script src="/js/site.js?v=rift-2"></script>
   <script src="/js/tcgplayer.js?v=rift-1"></script>
 </body>
 </html>
@@ -963,7 +977,7 @@ def build():
         "Riftbound card price tracker",
         "Price history for Riftbound singles with TCGplayer affiliate buy links.",
         prices_page(prices), current="prices", canonical=f"{SITE}/prices.html",
-        extra_head='<script src="/js/prices.js?v=rift-1"></script>\n  <script>window.RBDB_PRICES = ' + json.dumps({p["id"]: p for p in prices}) + ";</script>",
+        extra_head='<script src="/js/prices.js?v=rift-2"></script>\n  <script>window.RBDB_PRICES = ' + json.dumps({p["id"]: p for p in prices}) + ";</script>",
     ))
     search_index.append({"title": "Price tracker", "url": "/prices.html", "hay": "card prices tcgplayer seal of discord lightning rush"})
 
@@ -1172,7 +1186,7 @@ def privacy_page():
     return '''      <div class="card hero policy">
         <div class="crumb"><a href="/">Home</a> / Privacy Policy</div>
         <h2>Privacy Policy</h2>
-        <p>Last updated: September 7, 2026</p>
+        <p>Last updated: September 8, 2026</p>
         <p>Riftbound Decklists ("we," "us," or "this site") respects your privacy. This Privacy Policy explains what information we collect when you visit riftbounddecklists.com, how we use it, and the choices you have.</p>
         <section>
           <h3>Information We Collect</h3>
@@ -1182,6 +1196,7 @@ def privacy_page():
         <section>
           <h3>Cookies</h3>
           <p>We use cookies and similar tracking technologies to understand how visitors use the site, remember basic preferences, and support advertising if ads are enabled. You can disable cookies through your browser settings.</p>
+          <p>A first-party cookie named <code>rbdb-theme</code> stores only <code>light</code> or <code>dark</code> so the Light / Dark toggle at the top of every page can restore your last choice on the next visit. It lasts up to one year, is not used for advertising or tracking, and clearing cookies returns the site to light mode.</p>
         </section>
         <section>
           <h3>Advertising</h3>

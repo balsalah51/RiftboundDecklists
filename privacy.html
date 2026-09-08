@@ -4,9 +4,19 @@
   <meta name="impact-site-verification" content="2a231ac3-b656-4c47-806f-411dadcf4bb1" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {
+      try {
+        var m = document.cookie.match(/(?:^|; )rbdb-theme=(dark|light)(?:;|$)/);
+        document.documentElement.setAttribute("data-theme", m ? m[1] : "light");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
   <title>Privacy Policy | Riftbound Decklists</title>
   <meta name="description" content="Privacy, affiliates, fair use, and disclaimer for Riftbound Decklists." />
-  <link rel="stylesheet" href="/css/site.css?v=rift-2" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-3" />
   <link rel="canonical" href="https://riftbounddecklists.com/privacy.html" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#b42318" />
@@ -37,6 +47,10 @@
           <div class="subtitle">Legends, Runes, Battlefields</div>
         </div>
       </a>
+      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="theme-toggle-option" data-on="light">Light</span>
+        <span class="theme-toggle-option" data-on="dark">Dark</span>
+      </button>
       <nav aria-label="Primary">
         <a href="/tier-list.html">Tier List</a>
         <a href="/#recent">Recent lists</a>
@@ -54,7 +68,7 @@
             <div class="card hero policy">
         <div class="crumb"><a href="/">Home</a> / Privacy Policy</div>
         <h2>Privacy Policy</h2>
-        <p>Last updated: September 7, 2026</p>
+        <p>Last updated: September 8, 2026</p>
         <p>Riftbound Decklists ("we," "us," or "this site") respects your privacy. This Privacy Policy explains what information we collect when you visit riftbounddecklists.com, how we use it, and the choices you have.</p>
         <section>
           <h3>Information We Collect</h3>
@@ -64,6 +78,7 @@
         <section>
           <h3>Cookies</h3>
           <p>We use cookies and similar tracking technologies to understand how visitors use the site, remember basic preferences, and support advertising if ads are enabled. You can disable cookies through your browser settings.</p>
+          <p>A first-party cookie named <code>rbdb-theme</code> stores only <code>light</code> or <code>dark</code> so the Light / Dark toggle at the top of every page can restore your last choice on the next visit. It lasts up to one year, is not used for advertising or tracking, and clearing cookies returns the site to light mode.</p>
         </section>
         <section>
           <h3>Advertising</h3>
@@ -110,7 +125,7 @@
     </footer>
   </div>
   <script src="/js/tcgplayer-config.js?v=rift-1"></script>
-  <script src="/js/site.js?v=rift-1"></script>
+  <script src="/js/site.js?v=rift-2"></script>
   <script src="/js/tcgplayer.js?v=rift-1"></script>
 </body>
 </html>
