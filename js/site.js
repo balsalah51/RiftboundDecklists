@@ -141,12 +141,46 @@
     });
   }
 
+  function initSharePie() {
+    var svg = document.querySelector(".share-pie-svg");
+    var root = document.querySelector(".share-pie-card");
+    if (!svg || !root) return;
+
+    function frame() {
+      var desk = svg.getAttribute("data-desktop-viewbox");
+      var mob = svg.getAttribute("data-mobile-viewbox");
+      if (window.matchMedia("(max-width:700px)").matches && mob) svg.setAttribute("viewBox", mob);
+      else if (desk) svg.setAttribute("viewBox", desk);
+    }
+    frame();
+    window.addEventListener("resize", frame);
+
+    function setOn(id, on) {
+      var nodes = root.querySelectorAll('[data-share-id="' + id + '"]');
+      nodes.forEach(function (n) {
+        if (on) n.classList.add("is-on");
+        else n.classList.remove("is-on");
+      });
+      if (on) svg.classList.add("is-hovering");
+      else if (!root.querySelector(".is-on")) svg.classList.remove("is-hovering");
+    }
+    root.querySelectorAll("[data-share-id]").forEach(function (el) {
+      var id = el.getAttribute("data-share-id");
+      if (!id) return;
+      el.addEventListener("mouseenter", function () { setOn(id, true); });
+      el.addEventListener("mouseleave", function () { setOn(id, false); });
+      el.addEventListener("focus", function () { setOn(id, true); });
+      el.addEventListener("blur", function () { setOn(id, false); });
+    });
+  }
+
   function boot() {
     initTheme();
     initYear();
     initCopy();
     initFilters();
     initPops();
+    initSharePie();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

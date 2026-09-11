@@ -14,6 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legend_strategy import html_for as strategy_html, hub_excerpt, STRAT
 import topic_guides
+import share_pie
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://riftbounddecklists.com"
@@ -695,7 +696,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <meta name="author" content="{e(NAME)}" />
   <meta name="application-name" content="{e(NAME)}" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-6" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-7" />
   <link rel="canonical" href="{e(canon)}" />
   <meta name="robots" content="{robots}" />
   <meta name="theme-color" content="#b42318" />
@@ -784,7 +785,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   </div>
   <script src="/js/ads-config.js?v=rift-1" defer></script>
   <script src="/js/tcgplayer-config.js?v=rift-1" defer></script>
-  <script src="/js/site.js?v=rift-2" defer></script>
+  <script src="/js/site.js?v=rift-3" defer></script>
   <script src="/js/tcgplayer.js?v=rift-1" defer></script>
   <script src="/js/affiliates.js?v=rift-1" defer></script>
   <script src="/js/ads.js?v=rift-1" defer></script>
@@ -885,6 +886,9 @@ def build():
 
     search_index = []
 
+    share_slices, share_total = share_pie.share_slices(decks, LEGEND_META, legend_img, legend_slug)
+    share_block = share_pie.share_section_html(share_slices, share_total, share_total, len(decks))
+
     # Home
     leader_cards = []
     for name in legends_ordered:
@@ -946,7 +950,7 @@ def build():
         <nav class="home-big3" aria-label="Main sections">
           <a class="home-big home-big-tier" href="/tier-list.html">
             <span class="home-big-title">Tier List</span>
-            <span class="home-big-note">Vendetta Standard, S through D, legend pictures</span>
+            <span class="home-big-note">Vendetta Standard, S through D, plus meta-share pie</span>
           </a>
           <a class="home-big home-big-recent" href="#recent">
             <span class="home-big-title">Recent Lists</span>
@@ -977,6 +981,8 @@ def build():
             <button type="submit">Search</button>
           </div>
         </form>
+
+{share_block}
 
         <section class="home-leaders-flow" id="legends">
           <div class="home-leaders-intro">
@@ -1015,6 +1021,8 @@ def build():
           <p>Standard. That is the only constructed legality in 2026 organized play. Deck construction notes are on the <a href="/format.html">format page</a>.</p>
           <h3>What is a Legend?</h3>
           <p>The identity card that sits outside your 40. This site organizes decks by Legend. Strategy for each name is on the legend hub and in <a href="/guides/legend-strategy.html">legend strategy</a>.</p>
+          <h3>How is Vendetta meta share counted?</h3>
+          <p>The pie on this page only includes lists that run at least one Vendetta (VEN) card. Origins-only piles are left out. Percentages are of that filtered pool, grouped by Legend, and the key under the chart also shows each legend's tier-list score.</p>
           <h3>How do I buy a list?</h3>
           <p>Copy list, then Buy on TCGplayer (Impact affiliate). Table gear in the <a href="/shop/">shop</a> uses Amazon Associate links. Cardmarket and eBay catalog links sit next to buy buttons for EU and secondary-market singles.</p>
           <h3>Do you show ads?</h3>
@@ -1044,6 +1052,7 @@ def build():
             {"@type": "Question", "name": "What is Riftbound Decklists?", "acceptedAnswer": {"@type": "Answer", "text": "A fan archive of public Riftbound TCG Standard constructed lists, grouped by Legend, with current-meta strategy. Not affiliated with Riot Games or UVS Games."}},
             {"@type": "Question", "name": "What format are these Riftbound lists?", "acceptedAnswer": {"@type": "Answer", "text": "Standard constructed, the only constructed legality in 2026 organized play."}},
             {"@type": "Question", "name": "What is a Legend in Riftbound?", "acceptedAnswer": {"@type": "Answer", "text": "The identity card that sits outside the 40-card main. Decks on this site are organized by Legend."}},
+            {"@type": "Question", "name": "How is Vendetta meta share counted?", "acceptedAnswer": {"@type": "Answer", "text": "The pie only includes public lists that run at least one Vendetta card. Origins-only piles are left out. Share is grouped by Legend and the key under the chart includes each legend's tier-list score."}},
             {"@type": "Question", "name": "How do I buy a Riftbound list?", "acceptedAnswer": {"@type": "Answer", "text": "Copy the list and use the TCGplayer affiliate buy button. Table gear uses Amazon Associate links. Cardmarket and eBay catalog searches are linked for singles."}},
         ],
     }
@@ -1059,7 +1068,7 @@ def build():
             home_faq,
         ],
     ))
-    search_index.append({"title": NAME, "url": "/", "hay": "riftbound decklists legends runes battlefields standard"})
+    search_index.append({"title": NAME, "url": "/", "hay": "riftbound decklists legends runes battlefields standard vendetta meta share pie"})
 
     # Legend index
     tiles = []
@@ -1308,13 +1317,16 @@ def build():
     write(ROOT / "tier-list.html", layout(
         tier_title,
         tier_desc,
-        tier_page(by_legend, legends_ordered), current="tier", canonical=f"{SITE}/tier-list.html",
+        tier_page(by_legend, legends_ordered, share_pie.share_section_html(
+            share_slices, share_total, share_total, len(decks),
+            cta_href="/decklists/", cta_label="All legends →",
+        )), current="tier", canonical=f"{SITE}/tier-list.html",
         json_ld=[
             breadcrumb_ld([("Home", "/"), ("Tier list", "/tier-list.html")]),
             webpage_ld("/tier-list.html", tier_title, tier_desc),
         ],
     ))
-    search_index.append({"title": "Tier List", "url": "/tier-list.html", "hay": "tier list kennen akali master yi ornn"})
+    search_index.append({"title": "Tier List", "url": "/tier-list.html", "hay": "tier list kennen akali master yi ornn vendetta meta share pie"})
 
     # Privacy
     privacy_title = "Privacy Policy | Riftbound Decklists"
@@ -1659,7 +1671,7 @@ def events_page():
       </div>'''
 
 
-def tier_page(by_legend, ordered):
+def tier_page(by_legend, ordered, share_html=""):
     tiers = defaultdict(list)
     for name in ordered:
         tiers[LEGEND_META[name].get("tier", "D")].append(name)
@@ -1683,7 +1695,7 @@ def tier_page(by_legend, ordered):
     return f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Tier List</div>
         <h1>Vendetta Standard tier list</h1>
-        <p>Picture board after Barcelona (23 Aug), Wuhan (30 Aug), and Singapore (5–6 Sep) 2026. S is the regional pair: Kennen and Master Yi, Wuju Bladesman. Ornn and Akali sit in A because they actually won the two biggest events in this window. This is a fan read of public lists, not an official Riot ranking.</p>
+        <p>Picture board after Barcelona (23 Aug), Wuhan (30 Aug), and Singapore (5–6 Sep) 2026. S is the regional pair: Kennen and Master Yi, Wuju Bladesman. Ornn and Akali sit in A because they actually won the two biggest events in this window. This is a fan read of public lists, not an official Riot ranking. The pie below is share among lists that include Vendetta cards.</p>
         <div class="tier-board">
 {chr(10).join(rows)}
         </div>
@@ -1695,7 +1707,8 @@ def tier_page(by_legend, ordered):
             <li>Public City Challenge and Showdown Series lists from August 2026.</li>
           </ol>
         </section>
-      </div>'''
+      </div>
+{share_html}'''
 
 
 def privacy_page():
