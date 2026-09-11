@@ -4,9 +4,19 @@
   <meta name="impact-site-verification" content="2a231ac3-b656-4c47-806f-411dadcf4bb1" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {
+      try {
+        var m = document.cookie.match(/(?:^|; )rbdb-theme=(dark|light)(?:;|$)/);
+        document.documentElement.setAttribute("data-theme", m ? m[1] : "light");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
   <title>IcecreaamTCG — Rek&#x27;Sai | Standard</title>
   <meta name="description" content="Rek&#x27;Sai decklist — RiftAtlas Convergence #2 · Public riftdecks tournament list" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-2" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-3" />
   <link rel="canonical" href="https://riftbounddecklists.com/decklists/rek-sai-void-burrower/icecreaamtcg-rek-sai-void-burrower-2026-08-16-16.html" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="theme-color" content="#b42318" />
@@ -37,6 +47,10 @@
           <div class="subtitle">Legends, Runes, Battlefields</div>
         </div>
       </a>
+      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="theme-toggle-option" data-on="light">Light</span>
+        <span class="theme-toggle-option" data-on="dark">Dark</span>
+      </button>
       <nav aria-label="Primary">
         <a href="/tier-list.html">Tier List</a>
         <a href="/#recent">Recent lists</a>
@@ -327,7 +341,7 @@
     </footer>
   </div>
   <script src="/js/tcgplayer-config.js?v=rift-1"></script>
-  <script src="/js/site.js?v=rift-1"></script>
+  <script src="/js/site.js?v=rift-2"></script>
   <script src="/js/tcgplayer.js?v=rift-1"></script>
 </body>
 </html>

@@ -41,8 +41,9 @@
     var min = Math.min.apply(null, history);
     var max = Math.max.apply(null, history);
     var span = max - min || 1;
-    ctx.strokeStyle = "rgba(0,0,0,0.08)";
-    ctx.fillStyle = "#6b6460";
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    ctx.strokeStyle = dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
+    ctx.fillStyle = dark ? "#b0a59a" : "#6b6460";
     ctx.font = "11px Inter, system-ui, sans-serif";
     for (var g = 0; g < 4; g++) {
       var gy = pad.t + (h - pad.t - pad.b) * g / 3;
@@ -64,7 +65,7 @@
     ctx.lineWidth = 2.4;
     ctx.stroke();
     if (labels && labels.length) {
-      ctx.fillStyle = "#6b6460";
+      ctx.fillStyle = dark ? "#b0a59a" : "#6b6460";
       ctx.fillText(labels[0], pad.l, h - 8);
       ctx.fillText(labels[labels.length - 1], w - pad.r - 64, h - 8);
     }
@@ -98,6 +99,7 @@
     }
     if (select) {
       select.addEventListener("change", render);
+      window.addEventListener("rbdb-theme", render);
       render();
     }
   }
