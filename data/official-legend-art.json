@@ -1,0 +1,236 @@
+{
+  "Kennen, Heart of the Tempest": {
+    "file": "kennen.jpg",
+    "code": "VEN-155/166",
+    "officialName": "Heart of the Tempest",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0eab83392b310417d2630d50a3bfee3dd02b31c4-744x1039.png?accountingTag=RB"
+  },
+  "Akali, Rogue Assassin": {
+    "file": "akali.jpg",
+    "code": "VEN-139/166",
+    "officialName": "Rogue Assassin",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0d53b477ed43fb9bbed84858443a606b2b51a2b5-744x1039.png?accountingTag=RB"
+  },
+  "Master Yi, Wuju Bladesman": {
+    "file": "yi.jpg",
+    "code": "OGS-019/024",
+    "officialName": "Wuju Bladesman - Starter",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8231ced23eaf22ca3bf62ec8cb86b83a3e222da6-744x1039.png?accountingTag=RB"
+  },
+  "Master Yi, Wuju Master": {
+    "file": "yi-master.jpg",
+    "code": "UNL-191/219",
+    "officialName": "Wuju Master",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ed9af55066593b4ee738b9529b847f2f738078e0-744x1039.png?accountingTag=RB"
+  },
+  "Irelia, Blade Dancer": {
+    "file": "irelia.jpg",
+    "code": "SFD-195/221",
+    "officialName": "Blade Dancer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/656ef2d1724b818e9e737ec5dcce923de067a316-744x1039.png?accountingTag=RB"
+  },
+  "Rengar, Pridestalker": {
+    "file": "rengar.jpg",
+    "code": "UNL-183/219",
+    "officialName": "Pridestalker",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b3d3085f62aee993b9f5b80d4659a88439da83be-744x1039.png?accountingTag=RB"
+  },
+  "Fiora, Grand Duelist": {
+    "file": "fiora.jpg",
+    "code": "SFD-205/221",
+    "officialName": "Grand Duelist",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/37064aa79c13316b5dd28f0a2b054821a43f6650-744x1039.png?accountingTag=RB"
+  },
+  "Azir, Emperor of the Sands": {
+    "file": "azir.jpg",
+    "code": "SFD-197/221",
+    "officialName": "Emperor of the Sands",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0472274c49f6540858758ebf9bd2f107a601541a-744x1039.png?accountingTag=RB"
+  },
+  "Diana, Scorn of the Moon": {
+    "file": "diana.jpg",
+    "code": "UNL-197/219",
+    "officialName": "Scorn of the Moon",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b00d922d62daca19190e13149fe3cf725c900330-744x1039.png?accountingTag=RB"
+  },
+  "Jayce, Defender of Tomorrow": {
+    "file": "jayce.jpg",
+    "code": "VEN-149/166",
+    "officialName": "Defender of Tomorrow",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/670b7efd367a42beba11c18fb59e240a7c574a57-744x1039.png?accountingTag=RB"
+  },
+  "Ornn, Fire Below the Mountain": {
+    "file": "ornn.jpg",
+    "code": "SFD-189/221",
+    "officialName": "Fire Below the Mountain",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ed58d654034d545e54c85d836f3a6552772dd75b-744x1039.png?accountingTag=RB"
+  },
+  "Ezreal, Prodigal Explorer": {
+    "file": "ezreal.jpg",
+    "code": "SFD-199/221",
+    "officialName": "Prodigal Explorer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d0e143d9edbc14971b2a7b463b3c25b2b6a0c098-744x1039.png?accountingTag=RB"
+  },
+  "LeBlanc, Deceiver": {
+    "file": "leblanc.jpg",
+    "code": "UNL-199/219",
+    "officialName": "Deceiver",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c17d29602d61d6702372fec4db44c6fb2a29e8a2-744x1039.png?accountingTag=RB"
+  },
+  "Draven, Glorious Executioner": {
+    "file": "draven.jpg",
+    "code": "SFD-185/221",
+    "officialName": "Glorious Executioner",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b01b2d0454ceeffdc106c4c64a390b275ebf390b-744x1039.png?accountingTag=RB"
+  },
+  "Vex, Gloomist": {
+    "file": "vex.jpg",
+    "code": "UNL-193/219",
+    "officialName": "Gloomist",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/653e9b8fc4989bba59aa7ade4e0c33ffd5596e5a-744x1039.png?accountingTag=RB"
+  },
+  "Sett, The Boss": {
+    "file": "sett.jpg",
+    "code": "OGN-269/298",
+    "officialName": "The Boss",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b132becb843b2cf418cb110ead64758f49f51554-744x1039.png?accountingTag=RB"
+  },
+  "Kha'Zix, Voidreaver": {
+    "file": "khazix.jpg",
+    "code": "UNL-201/219",
+    "officialName": "Voidreaver",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a5db0b3340a189de1cf9d8174b11eb583f19ea28-744x1039.png?accountingTag=RB"
+  },
+  "Rek'Sai, Void Burrower": {
+    "file": "reksai.jpg",
+    "code": "SFD-187/221",
+    "officialName": "Void Burrower",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2db78549c30d8f9012af797fe075c4dc2355ec5d-744x1039.png?accountingTag=RB"
+  },
+  "Viktor, Herald of the Arcane": {
+    "file": "viktor.jpg",
+    "code": "OGN-265/298",
+    "officialName": "Herald of the Arcane",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/913236dabf1e4f71650bbba46870fff8163e2eff-744x1039.png?accountingTag=RB"
+  },
+  "Lux, Lady of Luminosity": {
+    "file": "lux.jpg",
+    "code": "OGS-021/024",
+    "officialName": "Lady of Luminosity - Starter",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/44885d811b70621b188d9813b2b10b5cff1b81e6-744x1039.png?accountingTag=RB"
+  },
+  "Lillia, Bashful Bloom": {
+    "file": "lillia.jpg",
+    "code": "UNL-189/219",
+    "officialName": "Bashful Bloom",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7e1554365120c5042947aef8bcac48a07445e9f3-744x1039.png?accountingTag=RB"
+  },
+  "Nasus, Curator of the Sands": {
+    "file": "nasus.jpg",
+    "code": "VEN-145/166",
+    "officialName": "Curator of the Sands",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f26a25c5fddba7da788455c3d82b85c5abc7a2eb-744x1039.png?accountingTag=RB"
+  },
+  "Pyke, Bloodharbor Ripper": {
+    "file": "pyke.jpg",
+    "code": "UNL-185/219",
+    "officialName": "Bloodharbor Ripper",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8ca1bfde8d898a11a6abc73bbab8fc7092b0dcb4-744x1039.png?accountingTag=RB"
+  },
+  "Ambessa, Matriarch of War": {
+    "file": "ambessa.jpg",
+    "code": "VEN-153/166",
+    "officialName": "Matriarch of War",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/49e81916d7ae72b24de845223e1798652d26e789-744x1039.png?accountingTag=RB"
+  },
+  "Poppy, Keeper of the Hammer": {
+    "file": "poppy.jpg",
+    "code": "UNL-203/219",
+    "officialName": "Keeper of the Hammer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ee1393b9bace7bfea4e87405b793bb5462305ed0-744x1039.png?accountingTag=RB"
+  },
+  "Vi, Piltover Enforcer": {
+    "file": "vi.jpg",
+    "code": "UNL-187/219",
+    "officialName": "Piltover Enforcer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b52fca3d644599008c4b1a67ffd359a9f9c4d8d7-744x1039.png?accountingTag=RB"
+  },
+  "Shen, Eye of Twilight": {
+    "file": "shen.jpg",
+    "code": "VEN-147/166",
+    "officialName": "Eye of Twilight",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/54388a3124b7e1f0331e5970f952778db5f24500-744x1039.png?accountingTag=RB"
+  },
+  "Renata Glasc, Chem-Baroness": {
+    "file": "renata.jpg",
+    "code": "SFD-201/221",
+    "officialName": "Chem-Baroness",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/4bd289c281ad64229061ff909abf88c12a574833-744x1039.png?accountingTag=RB"
+  },
+  "Jax, Grandmaster at Arms": {
+    "file": "jax.jpg",
+    "code": "SFD-193/221",
+    "officialName": "Grandmaster at Arms",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c6ddf49d7249bc8ac194fd9b194bfcb8857a4466-744x1039.png?accountingTag=RB"
+  },
+  "Ivern, Green Father": {
+    "file": "ivern.jpg",
+    "code": "UNL-195/219",
+    "officialName": "Green Father",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a2ca02d26c1e95db03690729bd31113bda7e4140-744x1039.png?accountingTag=RB"
+  },
+  "Jhin, Virtuoso": {
+    "file": "jhin.jpg",
+    "code": "UNL-181/219",
+    "officialName": "Virtuoso",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d1e6947cf43a19488a2c31f71a4887aa0423a966-744x1039.png?accountingTag=RB"
+  },
+  "Renekton, Butcher of the Sands": {
+    "file": "renekton.jpg",
+    "code": "VEN-141/166",
+    "officialName": "Butcher of the Sands",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7620595b36b40a0c3d05c4c5469b016d1c18c6f2-744x1039.png?accountingTag=RB"
+  },
+  "Rumble, Mechanized Menace": {
+    "file": "rumble.jpg",
+    "code": "SFD-181/221",
+    "officialName": "Mechanized Menace",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f311115e4c527ce82010596ce462d4050a9201b2-744x1039.png?accountingTag=RB"
+  },
+  "Zed, Master of Shadows": {
+    "file": "zed.jpg",
+    "code": "VEN-143/166",
+    "officialName": "Master of Shadows",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/aa316eb1b01c8d036eaba84b03909027fe69f6e2-744x1039.png?accountingTag=RB"
+  },
+  "Sivir, Battle Mistress": {
+    "file": "sivir.jpg",
+    "code": "SFD-203/221",
+    "officialName": "Battle Mistress",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fd060882c32a8deac04aea4241c6ab7b97236a05-744x1039.png?accountingTag=RB"
+  },
+  "Lucian, Purifier": {
+    "file": "lucian.jpg",
+    "code": "SFD-183/221",
+    "officialName": "Purifier",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/450cfb71b8890904d48b37a24bbdc78f8d849614-744x1039.png?accountingTag=RB"
+  },
+  "Mel, Soul's Reflection": {
+    "file": "mel.jpg",
+    "code": "VEN-151/166",
+    "officialName": "Soul's Reflection",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2e9e60b3f161b41219c40ef0426049634fb7ba1a-744x1039.png?accountingTag=RB"
+  },
+  "Kai'Sa, Daughter of the Void": {
+    "file": "kaisa.jpg",
+    "code": "OGN-247/298",
+    "officialName": "Daughter of the Void",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a576472c7bb00f475882ac814e1d8f9be233b402-744x1040.png?accountingTag=RB"
+  },
+  "Teemo, Swift Scout": {
+    "file": "teemo.jpg",
+    "code": "OGN-263/298",
+    "officialName": "Swift Scout",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/9723181e3392bb61c2aabc804a44f7b0558cedf1-744x1039.png?accountingTag=RB"
+  }
+}

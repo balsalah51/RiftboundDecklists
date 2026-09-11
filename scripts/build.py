@@ -70,7 +70,7 @@ LEGEND_META = {
         "blurb": "The other half of the regional puzzle. Midrange combat that still posts Top 8s beside Kennen.",
     },
     "Master Yi, Wuju Master": {
-        "short": "Yi, Wuju Master", "img": "yi.jpg", "domains": ("Body", "Calm"),
+        "short": "Yi, Wuju Master", "img": "yi-master.jpg", "domains": ("Body", "Calm"),
         "set": "Origins", "tier": "D",
         "blurb": "The older Yi legend. Still a Best-Of at Barcelona, but the Bladesman shell is the one filling Top 8s.",
     },
@@ -175,77 +175,77 @@ LEGEND_META = {
         "blurb": "Noxian war-matriarch. A Barcelona Best-Of with Wolf combat.",
     },
     "Poppy, Keeper of the Hammer": {
-        "short": "Poppy", "img": "card-back", "domains": ("Body", "Order"),
+        "short": "Poppy", "img": "poppy.jpg", "domains": ("Body", "Order"),
         "set": "Spiritforged", "tier": "D",
         "blurb": "Hammer-keeper. Barcelona Best-Of in a tiny share of the field.",
     },
     "Vi, Piltover Enforcer": {
-        "short": "Vi", "img": "card-back", "domains": ("Fury", "Order"),
+        "short": "Vi", "img": "vi.jpg", "domains": ("Fury", "Order"),
         "set": "Origins", "tier": "D",
         "blurb": "Gauntlet enforcer. Best-Of at Barcelona; Day 2 conversion was rough.",
     },
     "Shen, Eye of Twilight": {
-        "short": "Shen", "img": "card-back", "domains": ("Calm", "Order"),
+        "short": "Shen", "img": "shen.jpg", "domains": ("Calm", "Order"),
         "set": "Spiritforged", "tier": "D",
         "blurb": "Kinkou tank. A Best-Of legend that lives on holds.",
     },
     "Renata Glasc, Chem-Baroness": {
-        "short": "Renata Glasc", "img": "card-back", "domains": ("Mind", "Order"),
+        "short": "Renata Glasc", "img": "renata.jpg", "domains": ("Mind", "Order"),
         "set": "Vendetta", "tier": "D",
         "blurb": "Chem-baron value. Hostile Takeover and porobot lines.",
     },
     "Jax, Grandmaster at Arms": {
-        "short": "Jax", "img": "card-back", "domains": ("Body", "Calm"),
+        "short": "Jax", "img": "jax.jpg", "domains": ("Body", "Calm"),
         "set": "Unleashed", "tier": "D",
         "blurb": "Grandmaster combat. Lamppost midrange with Rampage.",
     },
     "Ivern, Green Father": {
-        "short": "Ivern", "img": "card-back", "domains": ("Calm", "Order"),
+        "short": "Ivern", "img": "ivern.jpg", "domains": ("Calm", "Order"),
         "set": "Spiritforged", "tier": "D",
         "blurb": "Daisy and friends. Go-wide Calm-Order that Best-Of'd Barcelona.",
     },
     "Jhin, Virtuoso": {
-        "short": "Jhin", "img": "card-back", "domains": ("Fury", "Mind"),
+        "short": "Jhin", "img": "jhin.jpg", "domains": ("Fury", "Mind"),
         "set": "Vendetta", "tier": "D",
         "blurb": "Four-shot virtuoso. Spell-heavy Fury-Mind Best-Of.",
     },
     "Renekton, Butcher of the Sands": {
-        "short": "Renekton", "img": "card-back", "domains": ("Body", "Fury"),
+        "short": "Renekton", "img": "renekton.jpg", "domains": ("Body", "Fury"),
         "set": "Unleashed", "tier": "D",
         "blurb": "Rage butcher. Body-Fury combat that still takes a Best-Of.",
     },
     "Rumble, Mechanized Menace": {
-        "short": "Rumble", "img": "card-back", "domains": ("Fury", "Mind"),
+        "short": "Rumble", "img": "rumble.jpg", "domains": ("Fury", "Mind"),
         "set": "Vendetta", "tier": "D",
         "blurb": "Scrap heap. Porobot and Production Surge in Fury-Mind.",
     },
     "Zed, Master of Shadows": {
-        "short": "Zed", "img": "card-back", "domains": ("Chaos", "Fury"),
+        "short": "Zed", "img": "zed.jpg", "domains": ("Chaos", "Fury"),
         "set": "Origins", "tier": "D",
         "blurb": "Shadow clones. Chaos-Fury that still Best-Ofs in Vendetta Standard.",
     },
     "Sivir, Battle Mistress": {
-        "short": "Sivir", "img": "card-back", "domains": ("Body", "Chaos"),
+        "short": "Sivir", "img": "sivir.jpg", "domains": ("Body", "Chaos"),
         "set": "Unleashed", "tier": "D",
         "blurb": "Ricochet mistress. A Barcelona Best-Of with dragons and stacked deck.",
     },
     "Lucian, Purifier": {
-        "short": "Lucian", "img": "card-back", "domains": ("Body", "Fury"),
+        "short": "Lucian", "img": "lucian.jpg", "domains": ("Body", "Fury"),
         "set": "Spiritforged", "tier": "C",
         "blurb": "Double-shot purifier. Aggressive Body-Fury with Kai'Sa.",
     },
     "Mel, Soul's Reflection": {
-        "short": "Mel", "img": "card-back", "domains": ("Chaos", "Mind"),
+        "short": "Mel", "img": "mel.jpg", "domains": ("Chaos", "Mind"),
         "set": "Vendetta", "tier": "C",
         "blurb": "Arcane council mage. Time Warp piles that Best-Of'd Barcelona.",
     },
     "Kai'Sa, Daughter of the Void": {
-        "short": "Kai'Sa", "img": "card-back", "domains": ("Fury", "Mind"),
+        "short": "Kai'Sa", "img": "kaisa.jpg", "domains": ("Fury", "Mind"),
         "set": "Origins", "tier": "B",
         "blurb": "Void survivor midrange. City Challenge winner in Shenzhen and a regular Top 16 in August Showdowns.",
     },
     "Teemo, Swift Scout": {
-        "short": "Teemo", "img": "card-back", "domains": ("Chaos", "Mind"),
+        "short": "Teemo", "img": "teemo.jpg", "domains": ("Chaos", "Mind"),
         "set": "Origins", "tier": "D",
         "blurb": "Mushroom tempo. A spicy Chaos-Mind Showdown legend, not a regional pair.",
     },
@@ -342,8 +342,46 @@ def legend_img(full: str) -> str:
     meta = LEGEND_META.get(full, {})
     img = meta.get("img", "card-back")
     if img == "card-back" or img.endswith("card-back"):
-        return "/img/card-back.jpg"
+        return card_img(full) if full else "/img/card-back.jpg"
     return f"/img/legends/{img}"
+
+
+def _norm_card(s: str) -> str:
+    s = (s or "").lower().replace("’", "'").replace("‘", "'").replace("`", "'")
+    return re.sub(r"\s+", " ", s).strip()
+
+
+CARD_ART: dict = {}
+CARD_ART_NORM: dict = {}
+
+
+def load_card_art() -> None:
+    global CARD_ART, CARD_ART_NORM
+    path = ROOT / "data/official-card-art.json"
+    CARD_ART = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    CARD_ART_NORM = {_norm_card(k): v for k, v in CARD_ART.items()}
+
+
+def card_art_info(name: str) -> dict | None:
+    if not CARD_ART and not CARD_ART_NORM:
+        load_card_art()
+    return CARD_ART.get(name) or CARD_ART_NORM.get(_norm_card(name))
+
+
+def card_img(name: str) -> str:
+    info = card_art_info(name)
+    if info and info.get("file"):
+        return f"/img/cards/{info['file']}"
+    meta = LEGEND_META.get(name, {})
+    img = meta.get("img")
+    if img and img != "card-back" and not str(img).endswith("card-back"):
+        return f"/img/legends/{img}"
+    return "/img/card-back.jpg"
+
+
+def card_code(name: str) -> str:
+    info = card_art_info(name) or {}
+    return info.get("code") or ""
 
 
 def strategy_slug(name: str) -> str:
@@ -696,7 +734,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <meta name="author" content="{e(NAME)}" />
   <meta name="application-name" content="{e(NAME)}" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-7" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-9" />
   <link rel="canonical" href="{e(canon)}" />
   <meta name="robots" content="{robots}" />
   <meta name="theme-color" content="#b42318" />
@@ -785,7 +823,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   </div>
   <script src="/js/ads-config.js?v=rift-1" defer></script>
   <script src="/js/tcgplayer-config.js?v=rift-1" defer></script>
-  <script src="/js/site.js?v=rift-3" defer></script>
+  <script src="/js/site.js?v=rift-4" defer></script>
   <script src="/js/tcgplayer.js?v=rift-1" defer></script>
   <script src="/js/affiliates.js?v=rift-1" defer></script>
   <script src="/js/ads.js?v=rift-1" defer></script>
@@ -809,27 +847,51 @@ def placing_label(n: int) -> str:
     return f"{n}th"
 
 
-def card_line(qty, name, img="/img/card-back.jpg"):
+def card_line(qty, name, img=None):
+    img = img or card_img(name)
     return f'''            <li class="text-line" tabindex="0">
+              <img class="card-thumb" src="{e(img)}" alt="" width="36" height="50" loading="lazy" />
               <span class="qty">{qty}x</span>
               <span class="card-title">{e(name)}</span>
               <span class="muted card-id">Buy</span>
-              <img class="card-pop" src="{e(img)}" alt="{e(name)}" />
+              <img class="card-pop" src="{e(img)}" alt="{e(name)}" width="220" height="307" />
             </li>'''
 
 
 def section_lines(title, rows, legend_name=""):
     if not rows:
         return ""
-    lines = "\n".join(
-        card_line(q, n, legend_img(legend_name) if n == legend_name else "/img/card-back.jpg")
-        for q, n in rows
-    )
+    lines = "\n".join(card_line(q, n) for q, n in rows)
     return f'''          <div>
             <h4>{e(title)}</h4>
             <ul class="text-lines">
 {lines}
             </ul>
+          </div>'''
+
+
+def visual_cards(title, rows):
+    if not rows:
+        return ""
+    figs = []
+    for qty, name in rows:
+        src = card_img(name)
+        landscape = ""
+        info = card_art_info(name) or {}
+        if "1039x744" in (info.get("src") or ""):
+            landscape = " is-landscape"
+        figs.append(
+            f'''            <figure class="deck-vis-card{landscape}">
+              <span class="deck-vis-qty">{qty}</span>
+              <img src="{e(src)}" alt="{e(name)}" width="248" height="346" loading="lazy" decoding="async" />
+              <figcaption>{e(name)}</figcaption>
+            </figure>'''
+        )
+    return f'''          <div class="deck-vis-block">
+            <h4>{e(title)}</h4>
+            <div class="deck-vis-grid">
+{chr(10).join(figs)}
+            </div>
           </div>'''
 
 
@@ -858,6 +920,7 @@ def seeded_history(name: str, price: float):
 
 
 def build():
+    load_card_art()
     barcelona = parse_barcelona((ROOT / "data/barcelona-top-decks.txt").read_text(encoding="utf-8", errors="replace"))
     extra = parse_extra((ROOT / "data/extra-lists.txt").read_text(encoding="utf-8", errors="replace"))
     scraped_path = ROOT / "data/scraped-lists.txt"
@@ -894,7 +957,7 @@ def build():
     for name in legends_ordered:
         meta = LEGEND_META[name]
         leader_cards.append(f'''            <a class="leader-card-link" href="/decklists/{e(legend_slug(name))}.html">
-              <img src="{e(legend_img(name))}" alt="{e(meta['short'])} legend card" />
+              <img src="{e(legend_img(name))}" alt="{e(meta['short'])} legend card" width="744" height="1039" loading="lazy" />
               <div class="caption">{e(meta['short'])}</div>
             </a>''')
 
@@ -928,7 +991,7 @@ def build():
         <section class="home-splash" aria-label="{e(NAME)}">
           <img class="home-splash-bg" src="/img/rbdb-hero.jpg" alt="Riftbound Decklists banner" width="1400" height="788" fetchpriority="high" decoding="async">
           <a class="home-splash-card" href="/decklists/kennen-heart-of-the-tempest.html">
-            <img src="/img/legends/kennen.jpg" alt="Kennen legend card" />
+            <img src="/img/legends/kennen.jpg" alt="Kennen legend card" width="744" height="1039" />
           </a>
           <div class="home-splash-bar">
             <div>
@@ -1076,7 +1139,7 @@ def build():
         meta = LEGEND_META[name]
         n = len(by_legend[name])
         tiles.append(f'''        <a class="leader-tile {color_class(meta['domains'])}" href="/decklists/{e(legend_slug(name))}.html">
-          <img src="{e(legend_img(name))}" alt="{e(meta['short'])}" />
+          <img src="{e(legend_img(name))}" alt="{e(meta['short'])}" width="72" height="100" loading="lazy" />
           <div>
             <div class="name"><span class="swatch dual-{"-".join(d.lower() for d in meta["domains"])}"></span>{e(name)}</div>
             <div class="meta">{e(" / ".join(meta["domains"]))} · {n} list{"s" if n != 1 else ""} · {e(meta["set"])}</div>
@@ -1174,7 +1237,7 @@ def build():
         hub = f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/decklists/">Legends</a> / {e(meta['short'])}</div>
         <div class="leader-hero">
-          <img src="{e(legend_img(name))}" alt="{e(name)}" />
+          <img src="{e(legend_img(name))}" alt="{e(name)}" width="744" height="1039" />
           <div>
             <h1>{e(name)}</h1>
             <div class="stat-row">
@@ -1547,8 +1610,13 @@ Generator: scripts/build.py
 
 
 def deck_page(d, meta):
-    cc = color_class(d["domains"])
     main_count = sum(q for q, _ in d["main"])
+    code = card_code(d["legend"])
+    art_note = (
+        f"Official {code} printing from the public Riftbound card gallery."
+        if code else
+        "Official card image from the public Riftbound card gallery."
+    )
     return f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/decklists/">Legends</a> / <a href="/decklists/{e(legend_slug(d['legend']))}.html">{e(meta['short'])}</a> / Decklist</div>
         <h1>{e(d['player'])} — {e(meta['short'])} (Standard)</h1>
@@ -1560,15 +1628,26 @@ def deck_page(d, meta):
           </div>
           <div class="card-grid">
         <article class="card-entry">
-          <img src="{e(legend_img(d['legend']))}" alt="{e(d['legend'])}" loading="lazy" />
+          <img src="{e(legend_img(d['legend']))}" alt="{e(d['legend'])}" width="744" height="1039" />
           <div>
             <div class="id"><span class="qty">1x</span>Legend</div>
             <h4>{e(d['legend'])}</h4>
             <div class="stats">{e(" / ".join(d["domains"]))} · Chosen Champion: {e(d["champion"])}</div>
-            <div class="text">Original fan-made card frame for this site. Official art is Riot's; this picture is an original fair-use style portrait, not a scan of a Riftbound card.</div>
+            <div class="text">{e(art_note)}</div>
           </div>
         </article>
           </div>
+        </section>
+        <section class="deck-visual">
+          <div class="section-title">
+            <h3>List</h3>
+            <div class="muted">Official card images</div>
+          </div>
+{visual_cards("Chosen Champion", [(1, d["champion"])])}
+{visual_cards("Main deck", d["main"])}
+{visual_cards("Battlefields", d["battlefields"])}
+{visual_cards("Rune deck", d["runes"])}
+{visual_cards("Sideboard", d["sideboard"])}
         </section>
         <section class="deck-stats">
           <div class="kicker">List snapshot</div>
@@ -1682,7 +1761,7 @@ def tier_page(by_legend, ordered, share_html=""):
             meta = LEGEND_META[name]
             n = len(by_legend.get(name, []))
             cards.append(f'''          <a class="tier-leader {color_class(meta['domains'])}" href="/decklists/{e(legend_slug(name))}.html">
-            <img src="{e(legend_img(name))}" alt="{e(meta['short'])}" />
+            <img src="{e(legend_img(name))}" alt="{e(meta['short'])}" width="744" height="1039" loading="lazy" />
             <div class="name">{e(meta['short'])}</div>
             <div class="meta">{n} lists</div>
           </a>''')
@@ -1756,7 +1835,7 @@ def privacy_page():
         </section>
         <section>
           <h3>Fair use and not affiliated</h3>
-          <p>Riftbound Decklists is a fan site. It is <strong>not affiliated with, endorsed by, or sponsored by Riot Games, UVS Games, Tencent, or League of Legends</strong>. Riftbound, League of Legends, Arcane, and all related names, marks, and distinctive likenesses are property of their owners. Original illustrations on this site are newly created, stylized card-frame portraits for identification — they are not scans of official cards and are not identical to Riot product art.</p>
+          <p>Riftbound Decklists is a fan site. It is <strong>not affiliated with, endorsed by, or sponsored by Riot Games, UVS Games, Tencent, or League of Legends</strong>. Riftbound, League of Legends, Arcane, and all related names, marks, and distinctive likenesses are property of their owners. Card pictures on this site are official images from the public Riftbound card gallery, shown for identification, commentary, and decklist reference.</p>
           <p>Tournament lists are republished from public official coverage and public event postings for commentary, reporting, and fan reference. If you are a rights holder and want a list or image taken down, use Discord when the invite is posted, or open an issue on the site repository.</p>
         </section>
         <section>

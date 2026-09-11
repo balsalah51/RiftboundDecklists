@@ -86,12 +86,10 @@ SLICE_COLORS = [
 ]
 OTHER_COLOR = "#8d8680"
 
-CX, CY = 460.0, 252.0
-R_OUTER = 148.0
-R_INNER = 78.0
-R_MID = (R_INNER + R_OUTER) / 2
-R_LINE = R_OUTER + 10
-INNER_MIN_PCT = 12.0
+CX, CY = 200.0, 200.0
+R_OUTER = 158.0
+R_INNER = 88.0
+R_LABEL = 178.0
 NAMED_MIN_PCT = 2.0
 NAMED_MIN_COUNT = 6
 
@@ -250,29 +248,6 @@ def _donut_path(start: float, end: float) -> str:
     )
 
 
-def _spread_ys(ys: list[float], min_gap: float, lo: float, hi: float) -> list[float]:
-    if not ys:
-        return []
-    order = sorted(range(len(ys)), key=lambda i: ys[i])
-    placed = [ys[i] for i in order]
-    for i in range(1, len(placed)):
-        if placed[i] < placed[i - 1] + min_gap:
-            placed[i] = placed[i - 1] + min_gap
-    overflow = placed[-1] - hi
-    if overflow > 0:
-        placed = [y - overflow for y in placed]
-    if placed[0] < lo:
-        shift = lo - placed[0]
-        placed = [y + shift for y in placed]
-        for i in range(1, len(placed)):
-            if placed[i] < placed[i - 1] + min_gap:
-                placed[i] = placed[i - 1] + min_gap
-    out = [0.0] * len(ys)
-    for idx, y in zip(order, placed):
-        out[idx] = y
-    return out
-
-
 def _fmt_pct(pct: float) -> str:
     if pct >= 10:
         return f"{pct:.0f}%" if abs(pct - round(pct)) < 0.05 else f"{pct:.1f}%"
@@ -283,128 +258,36 @@ def pie_svg(slices: list[dict], total: int) -> str:
     if not slices or total <= 0:
         return '<p class="muted">No Vendetta-card lists to chart yet.</p>'
 
-    # Start at 12 o'clock, clockwise.
     angle = -math.pi / 2
-    laid = []
+    paths = []
+    labels = []
     for sl in slices:
         sweep = (sl["pct"] / 100.0) * 2 * math.pi
         start, end = angle, angle + sweep
         mid = start + sweep / 2
-        laid.append({
-            **sl,
-            "start": start,
-            "end": end,
-            "mid": mid,
-            "inner": sl["pct"] >= INNER_MIN_PCT and not sl["other"],
-            "other_label": sl["other"] and sl["pct"] >= INNER_MIN_PCT,
-        })
-        angle = end
-
-    left = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) < -0.2]
-    right = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) >= -0.2]
-    left_ys = _spread_ys([_polar(s["mid"], R_LINE)[1] for s in left], 34, 36, 470)
-    right_ys = _spread_ys([_polar(s["mid"], R_LINE)[1] for s in right], 34, 36, 470)
-    for s, y in zip(left, left_ys):
-        s["label_y"] = y
-        s["side"] = "left"
-    for s, y in zip(right, right_ys):
-        s["label_y"] = y
-        s["side"] = "right"
-
-    defs = []
-    paths = []
-    labels = []
-    callouts = []
-
-    for i, s in enumerate(laid):
-        d = _donut_path(s["start"], s["end"])
-        href = e(s["href"])
-        label = e(s["short"])
+        d = _donut_path(start, end)
+        href = e(sl["href"])
+        label = e(sl["short"])
         paths.append(
-            f'<a class="share-slice" href="{href}" data-share-id="{e(s["id"])}" aria-label="{label} {e(_fmt_pct(s["pct"]))}">'
-            f'<path fill="{e(s["color"])}" d="{d}"/>'
+            f'<a class="share-slice" href="{href}" data-share-id="{e(sl["id"])}" '
+            f'aria-label="{label} {e(_fmt_pct(sl["pct"]))}">'
+            f'<path fill="{e(sl["color"])}" d="{d}"/>'
             f"</a>"
         )
-        mx, my = _polar(s["mid"], R_MID)
-        if s["inner"]:
-            face_r = 22 if s["pct"] >= 12 else 18
-            clip_id = f"share-on-{s['id']}"
-            face_cy = my - 8
-            defs.append(
-                f'<clipPath id="{clip_id}"><circle cx="{mx:.2f}" cy="{face_cy:.2f}" r="{face_r}"/></clipPath>'
-            )
-            img_y = face_cy - face_r * 1.35
-            img_h = face_r * 2.7
+        if sl["pct"] >= 8:
+            lx, ly = _polar(mid, R_LABEL)
             labels.append(
-                f'<a class="share-on-slice" href="{href}" data-share-id="{e(s["id"])}">'
-                f'<image href="{e(s["img"])}" x="{mx - face_r:.2f}" y="{img_y:.2f}" '
-                f'width="{face_r * 2:.2f}" height="{img_h:.2f}" clip-path="url(#{clip_id})" '
-                f'preserveAspectRatio="xMidYMin slice"/>'
-                f'<circle cx="{mx:.2f}" cy="{face_cy:.2f}" r="{face_r}" fill="none" stroke="#fff" stroke-width="2"/>'
-                f'<text class="share-on-name" x="{mx:.2f}" y="{face_cy + face_r + 14:.2f}" text-anchor="middle">{label}</text>'
-                f'<text class="share-on-pct" x="{mx:.2f}" y="{face_cy + face_r + 30:.2f}" text-anchor="middle">{e(_fmt_pct(s["pct"]))}</text>'
-                f"</a>"
+                f'<text class="share-slice-pct" x="{lx:.1f}" y="{ly:.1f}" text-anchor="middle" '
+                f'dominant-baseline="middle">{e(_fmt_pct(sl["pct"]))}</text>'
             )
-        elif s.get("other_label"):
-            ox, oy = _polar(s["mid"], R_MID)
-            labels.append(
-                f'<text class="share-on-name" x="{ox:.2f}" y="{oy:.2f}" text-anchor="middle">Other</text>'
-                f'<text class="share-on-pct" x="{ox:.2f}" y="{oy + 16:.2f}" text-anchor="middle">{e(_fmt_pct(s["pct"]))}</text>'
-            )
-        elif "side" in s:
-            sx, sy = _polar(s["mid"], R_OUTER)
-            side = s["side"]
-            ly = s["label_y"]
-            if side == "left":
-                lx = 188
-                chip_x = 8
-                text_anchor = "end"
-                text_x = 148
-                img_x = 156
-                elbow = 214
-            else:
-                lx = 732
-                chip_x = 732
-                text_anchor = "start"
-                text_x = 776
-                img_x = 744
-                elbow = 706
-            line = (
-                f'M {sx:.2f} {sy:.2f} L {elbow:.2f} {ly:.2f} L {lx:.2f} {ly:.2f}'
-            )
-            chip_w = 180
-            face_clip = f"share-call-{s['id']}"
-            fy = ly
-            defs.append(
-                f'<clipPath id="{face_clip}"><circle cx="{img_x + 12:.2f}" cy="{fy:.2f}" r="12"/></clipPath>'
-            )
-            callouts.append(
-                f'<g class="share-callout share-callout-{side}" data-share-id="{e(s["id"])}">'
-                f'<path class="share-leader" d="{line}" fill="none" stroke="{e(s["color"])}" stroke-width="1.6"/>'
-                f'<a href="{href}">'
-                f'<rect x="{chip_x:.2f}" y="{ly - 16:.2f}" width="{chip_w:.2f}" height="32" rx="16" '
-                f'fill="var(--surface)" stroke="{e(s["color"])}" stroke-width="1.6"/>'
-                f'<image href="{e(s["img"])}" x="{img_x:.2f}" y="{fy - 16:.2f}" width="24" height="34" '
-                f'clip-path="url(#{face_clip})" preserveAspectRatio="xMidYMin slice"/>'
-                f'<circle cx="{img_x + 12:.2f}" cy="{fy:.2f}" r="12" fill="none" stroke="{e(s["color"])}" stroke-width="1.5"/>'
-                f'<text class="share-call-name" x="{text_x:.2f}" y="{ly - 2:.2f}" text-anchor="{text_anchor}">{label}</text>'
-                f'<text class="share-call-pct" x="{text_x:.2f}" y="{ly + 11:.2f}" text-anchor="{text_anchor}">{e(_fmt_pct(s["pct"]))}</text>'
-                f"</a></g>"
-            )
+        angle = end
 
-    hole = (
-        f'<text class="share-hole-num" x="{CX:.0f}" y="{CY - 4:.0f}" text-anchor="middle">{total}</text>'
-        f'<text class="share-hole-cap" x="{CX:.0f}" y="{CY + 16:.0f}" text-anchor="middle">Vendetta lists</text>'
-    )
-    return f'''<svg class="share-pie-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-hidden="true" focusable="false" data-desktop-viewbox="0 0 920 520" data-mobile-viewbox="300 40 320 430">
-  <defs>
-    {"".join(defs)}
-  </defs>
+    return f'''<svg class="share-pie-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-hidden="true" focusable="false">
   <g class="share-slices">{"".join(paths)}</g>
   <circle class="share-hole-ring" cx="{CX:.0f}" cy="{CY:.0f}" r="{R_INNER - 1:.0f}" fill="var(--surface)"/>
-  {hole}
-  <g class="share-on-labels">{"".join(labels)}</g>
-  <g class="share-callouts">{"".join(callouts)}</g>
+  <text class="share-hole-num" x="{CX:.0f}" y="{CY - 6:.0f}" text-anchor="middle">{total}</text>
+  <text class="share-hole-cap" x="{CX:.0f}" y="{CY + 16:.0f}" text-anchor="middle">lists</text>
+  <g class="share-pct-labels">{"".join(labels)}</g>
 </svg>'''
 
 
@@ -413,6 +296,22 @@ def _tier_class(tier: str) -> str:
     if letter in "sabcd":
         return f"tier-{letter}"
     return "tier-d"
+
+
+def share_featured_html(slices: list[dict]) -> str:
+    featured = [s for s in slices if not s.get("other")][:5]
+    cards = []
+    for i, s in enumerate(featured):
+        cards.append(
+            f'''            <li class="share-featured-item" style="--i:{i}">
+              <a href="{e(s["href"])}" data-share-id="{e(s["id"])}">
+                <img class="share-card-img" src="{e(s["img"])}" alt="{e(s["short"])} legend card" width="186" height="260" />
+                <span class="share-featured-pct">{e(_fmt_pct(s["pct"]))}</span>
+                <span class="share-featured-name">{e(s["short"])}</span>
+              </a>
+            </li>'''
+        )
+    return "\n".join(cards)
 
 
 def share_key_html(slices: list[dict]) -> str:
@@ -424,13 +323,20 @@ def share_key_html(slices: list[dict]) -> str:
             if tier else
             '<span class="share-tier share-tier-none">—</span>'
         )
+        img = (
+            f'<img class="share-card-thumb" src="{e(s["img"])}" alt="" width="52" height="72" />'
+            if not s.get("other") else
+            '<span class="share-card-thumb share-card-thumb-empty" aria-hidden="true"></span>'
+        )
         rows.append(
             f'''            <li>
               <a class="share-key-row" href="{e(s["href"])}" data-share-id="{e(s["id"])}">
                 <span class="share-swatch" style="background:{e(s["color"])}"></span>
-                <img class="share-face" src="{e(s["img"])}" alt="" width="40" height="40" />
-                <span class="share-key-name">{e(s["short"])}</span>
-                <span class="share-key-count">{s["count"]} lists</span>
+                {img}
+                <span class="share-key-copy">
+                  <span class="share-key-name">{e(s["short"])}</span>
+                  <span class="share-key-count">{s["count"]} lists</span>
+                </span>
                 <span class="share-key-pct">{e(_fmt_pct(s["pct"]))}</span>
                 {tier_html}
               </a>
@@ -442,12 +348,13 @@ def share_key_html(slices: list[dict]) -> str:
 def share_section_html(slices: list[dict], total: int, pool: int, archive: int, heading="h2",
                       cta_href="/tier-list.html", cta_label="Tier list →") -> str:
     svg = pie_svg(slices, total)
+    featured = share_featured_html(slices)
     key = share_key_html(slices)
     skipped = archive - pool
     note = (
         f"Among {pool} public lists that include at least one Vendetta card, grouped by Legend. "
-        f"{skipped} Origins / Unleashed / Spiritforged piles with no Vendetta cards are left out. "
-        f"Percentages are of this Vendetta-card pool, not the whole archive ({archive} lists)."
+        f"{skipped} lists with no Vendetta cards are left out. "
+        f"Share is of this pool, not the whole archive ({archive} lists)."
     )
     return f'''        <section class="home-leaders-flow share-pie-flow" id="meta-share">
           <div class="home-leaders-intro">
@@ -462,10 +369,15 @@ def share_section_html(slices: list[dict], total: int, pool: int, archive: int, 
           </div>
           <div class="card home-panel share-pie-card">
             <p class="muted share-pie-note">{e(note)}</p>
-            <div class="share-pie-canvas">
-              {svg}
+            <div class="share-pro">
+              <div class="share-pie-canvas">
+                {svg}
+              </div>
+              <ol class="share-featured" aria-label="Top legends">
+{featured}
+              </ol>
             </div>
-            <h3 class="share-key-title">Legend</h3>
+            <h3 class="share-key-title">By Legend</h3>
             <ul class="share-key" aria-label="Vendetta meta share by Legend">
 {key}
             </ul>
