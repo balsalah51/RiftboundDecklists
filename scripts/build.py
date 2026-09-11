@@ -12,12 +12,13 @@ from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from legend_strategy import html_for as strategy_html, hub_excerpt
+from legend_strategy import html_for as strategy_html, hub_excerpt, STRAT
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://riftbounddecklists.com"
 NAME = "Riftbound Decklists"
 SHORT = "RBDB"
+TODAY = "2026-09-11"
 
 DOMAIN_PAIR = {
     ("Chaos", "Order"): "chaos-order",
@@ -346,6 +347,137 @@ def strategy_slug(name: str) -> str:
     return slugify(meta.get("short") or name) + "-strategy"
 
 
+def legend_img_abs(full: str) -> str:
+    path = legend_img(full)
+    return SITE + path if path.startswith("/") else f"{SITE}/{path}"
+
+
+def ld_tag(*objs) -> str:
+    graph = [o for o in objs if o]
+    if not graph:
+        return ""
+    blob = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
+    return f'<script type="application/ld+json">{blob}</script>'
+
+
+def org_ld() -> dict:
+    return {
+        "@type": "Organization",
+        "@id": SITE + "/#org",
+        "name": NAME,
+        "url": SITE + "/",
+        "description": "Fan site for Riftbound TCG Standard decklists and legend strategy. Not affiliated with Riot Games or UVS Games.",
+        "logo": {"@type": "ImageObject", "url": SITE + "/img/rbdb-logo-192.jpg", "width": 192, "height": 192},
+        "image": SITE + "/img/rbdb-hero.jpg",
+    }
+
+
+def website_ld() -> dict:
+    return {
+        "@type": "WebSite",
+        "@id": SITE + "/#website",
+        "name": NAME,
+        "alternateName": ["RBDB", "Riftbound Deck Lists"],
+        "url": SITE + "/",
+        "description": "Fan archive of Riftbound TCG Standard decklists, legend hubs, and current-meta strategy.",
+        "inLanguage": "en-US",
+        "publisher": {"@id": SITE + "/#org"},
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": SITE + "/search.html?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+        },
+    }
+
+
+def webpage_ld(url: str, name: str, desc: str) -> dict:
+    loc = url if str(url).startswith("http") else SITE + (url if url.startswith("/") else "/" + url)
+    return {
+        "@type": "WebPage",
+        "@id": loc + "#webpage",
+        "url": loc,
+        "name": name,
+        "description": desc,
+        "isPartOf": {"@id": SITE + "/#website"},
+        "about": {"@id": SITE + "/#org"},
+        "inLanguage": "en-US",
+        "dateModified": TODAY,
+    }
+
+
+def sitemap_meta(loc: str) -> tuple[str, str]:
+    if loc == "/":
+        return "daily", "1.0"
+    if loc in ("/decklists/", "/tier-list.html", "/guides/legend-strategy.html"):
+        return "weekly", "0.9"
+    if loc in ("/format.html", "/events.html", "/guides/", "/shop/", "/prices.html"):
+        return "weekly", "0.8"
+    if loc.startswith("/decklists/") and loc.count("/") == 2:
+        return "weekly", "0.85"
+    if loc.endswith("-strategy.html"):
+        return "weekly", "0.75"
+    if loc.startswith("/decklists/"):
+        return "monthly", "0.45"
+    if loc.startswith("/shop/"):
+        return "monthly", "0.55"
+    if loc.startswith("/guides/"):
+        return "monthly", "0.5"
+    if loc in ("/search.html", "/privacy.html"):
+        return "yearly", "0.3"
+    return "weekly", "0.6"
+
+
+def html_loc(rel: str) -> str:
+    if rel == "index.html":
+        return "/"
+    if rel.endswith("/index.html"):
+        return "/" + rel[: -len("index.html")]
+    return "/" + rel
+
+
+def breadcrumb_ld(crumbs: list) -> dict:
+    items = []
+    for i, (name, url) in enumerate(crumbs, 1):
+        loc = url if str(url).startswith("http") else SITE + url
+        items.append({"@type": "ListItem", "position": i, "name": name, "item": loc})
+    return {"@type": "BreadcrumbList", "itemListElement": items}
+
+
+def faq_ld(name: str, meta: dict) -> dict | None:
+    row = STRAT.get(name)
+    if not row:
+        return None
+    short = meta.get("short") or name
+    return {
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": f"How do you play {short} in Vendetta Standard?", "acceptedAnswer": {"@type": "Answer", "text": row["plan"]}},
+            {"@type": "Question", "name": f"What are the key cards in {short}?", "acceptedAnswer": {"@type": "Answer", "text": row["keys"]}},
+            {"@type": "Question", "name": f"What are the {short} matchups in this meta?", "acceptedAnswer": {"@type": "Answer", "text": row["matchups"]}},
+            {"@type": "Question", "name": f"When should I register {short}?", "acceptedAnswer": {"@type": "Answer", "text": row["pick"]}},
+        ],
+    }
+
+
+def clip(s: str, n: int) -> str:
+    s = re.sub(r"\s+", " ", s or "").strip()
+    if len(s) <= n:
+        return s
+    return s[: n - 1].rsplit(" ", 1)[0] + "…"
+
+
+def sitemap_url(loc: str, lastmod: str = "", changefreq: str = "weekly", priority: str = "0.6") -> str:
+    href = loc if loc.startswith("http") else SITE + (loc if loc.startswith("/") else "/" + loc)
+    parts = [f"  <url><loc>{href}</loc>"]
+    if lastmod:
+        parts.append(f"<lastmod>{lastmod}</lastmod>")
+    parts.append(f"<changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>")
+    return "".join(parts)
+
+
 def color_class(domains) -> str:
     if not domains or len(domains) < 2:
         return "color-fury"
@@ -512,63 +644,117 @@ def header_nav(current: str) -> str:
     return "\n        ".join(out)
 
 
-def layout(title, desc, body, current="", extra_head="", body_class="", canonical=""):
+def layout(title, desc, body, current="", extra_head="", body_class="", canonical="",
+           og_image="", og_type="website", json_ld=None, published="", noindex=False):
     canon = canonical or SITE + "/"
-    og = f"{SITE}/img/rbdb-hero.jpg"
+    og = og_image or (SITE + "/img/rbdb-hero.jpg")
+    robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    extra_ld = list(json_ld or [])
+    ld = ld_tag(org_ld(), website_ld(), *extra_ld)
+    pub = f'\n  <meta property="article:published_time" content="{e(published)}" />' if published else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta name="impact-site-verification" content="2a231ac3-b656-4c47-806f-411dadcf4bb1" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script>
+    (function () {{
+      try {{
+        var m = document.cookie.match(/(?:^|; )rbdb-theme=(dark|light)(?:;|$)/);
+        document.documentElement.setAttribute("data-theme", m ? m[1] : "light");
+      }} catch (e) {{
+        document.documentElement.setAttribute("data-theme", "light");
+      }}
+    }})();
+  </script>
   <title>{e(title)}</title>
-  <meta name="description" content="{e(desc)}" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-2" />
+  <meta name="description" content="{e(clip(desc, 160))}" />
+  <meta name="author" content="{e(NAME)}" />
+  <meta name="application-name" content="{e(NAME)}" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-5" />
   <link rel="canonical" href="{e(canon)}" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="robots" content="{robots}" />
   <meta name="theme-color" content="#b42318" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="icon" href="/img/rbdb-logo-192.jpg" type="image/jpeg" sizes="192x192" />
   <link rel="apple-touch-icon" href="/img/rbdb-logo-192.jpg" sizes="192x192" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="search" type="application/opensearchdescription+xml" title="{e(NAME)}" href="/opensearch.xml" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <link rel="author" type="text/plain" href="/humans.txt" />
   <meta property="og:site_name" content="{e(NAME)}" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="{e(og_type)}" />
   <meta property="og:title" content="{e(title)}" />
-  <meta property="og:description" content="{e(desc)}" />
+  <meta property="og:description" content="{e(clip(desc, 160))}" />
   <meta property="og:url" content="{e(canon)}" />
   <meta property="og:image" content="{e(og)}" />
+  <meta property="og:image:alt" content="{e(title)}" />
+  <meta property="og:image:width" content="1400" />
+  <meta property="og:image:height" content="788" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{e(title)}" />
-  <meta name="twitter:description" content="{e(desc)}" />
+  <meta name="twitter:description" content="{e(clip(desc, 160))}" />
   <meta name="twitter:image" content="{e(og)}" />
+  <meta name="twitter:image:alt" content="{e(title)}" />{pub}
+  {ld}
   {extra_head}
 </head>
 <body{(' class="' + body_class + '"') if body_class else ''}>
+  <a class="skip-link" href="#content">Skip to content</a>
   <div class="wrap">
     <header>
       <a class="brand" href="/">
-        <img class="logo" src="/img/rbdb-avatar.jpg" width="56" height="56" alt="{e(NAME)}" />
+        <img class="logo" src="/img/rbdb-avatar.jpg" width="56" height="56" alt="{e(NAME)} logo" />
         <div>
-          <h1>{e(NAME)}</h1>
-          <div class="subtitle">Legends, Runes, Battlefields</div>
+          <p class="brand-name">{e(NAME)}</p>
+          <div class="subtitle">Riftbound TCG · Standard lists · Legend strategy</div>
         </div>
       </a>
+      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="theme-toggle-option" data-on="light">Light</span>
+        <span class="theme-toggle-option" data-on="dark">Dark</span>
+      </button>
       <nav aria-label="Primary">
         {header_nav(current)}
       </nav>
     </header>
-    <main class="single" role="main">
+    <main id="content" class="single" role="main">
       {body}
     </main>
     <footer>
-      © <span id="year"></span> {e(NAME)} — Fan site, not affiliated with Riot Games, UVS Games, or League of Legends.
-      <a href="/tier-list.html">Tier List</a> · <a href="/guides/">Guides</a> · <a href="/decklists/">Legends</a> · <a href="/format.html">Format</a> · <a href="/prices.html">Prices</a> · <a href="/search.html">Search</a> · <a href="/shop/">Shop</a> · <a href="/privacy.html">Privacy</a>
+      <nav class="footer-grid" aria-label="Footer">
+        <div>
+          <div class="footer-kicker">Lists</div>
+          <a href="/decklists/">Legends</a>
+          <a href="/tier-list.html">Tier list</a>
+          <a href="/#recent">Recent lists</a>
+          <a href="/guides/legend-strategy.html">Legend strategy</a>
+        </div>
+        <div>
+          <div class="footer-kicker">Play</div>
+          <a href="/format.html">Standard format</a>
+          <a href="/events.html">Events</a>
+          <a href="/guides/">Guides</a>
+          <a href="/search.html">Search</a>
+        </div>
+        <div>
+          <div class="footer-kicker">Shop</div>
+          <a href="/shop/">Table gear</a>
+          <a href="/prices.html">Price tracker</a>
+          <a href="/shop/buy-list.html">Buy a list</a>
+          <a href="/privacy.html">Privacy</a>
+        </div>
+      </nav>
+      <p class="footer-legal">© <span id="year"></span> {e(NAME)} — Fan site, not affiliated with Riot Games, UVS Games, or League of Legends. Riftbound and League of Legends are trademarks of their owners. Tournament lists are republished from public results for commentary and reference.</p>
     </footer>
   </div>
-  <script src="/js/tcgplayer-config.js?v=rift-1"></script>
-  <script src="/js/site.js?v=rift-1"></script>
-  <script src="/js/tcgplayer.js?v=rift-1"></script>
+  <script src="/js/tcgplayer-config.js?v=rift-1" defer></script>
+  <script src="/js/site.js?v=rift-2" defer></script>
+  <script src="/js/tcgplayer.js?v=rift-1" defer></script>
 </body>
 </html>
 """
@@ -616,7 +802,7 @@ def section_lines(title, rows, legend_name=""):
 def shop_card(p):
     return f'''          <article class="shop-card">
             <a class="shop-photo-link" href="{e(p['amazon'])}" target="_blank" rel="sponsored noopener noreferrer">
-              <img class="shop-photo" src="/img/shop/{e(p['img'])}" alt="{e(p['title'])}" />
+              <img class="shop-photo" src="/img/shop/{e(p['img'])}" alt="{e(p['title'])}" width="400" height="400" loading="lazy" decoding="async" />
             </a>
             <div style="font-weight:800">{e(p['title'])}</div>
             <p class="shop-note">{e(p['note'])}</p>
@@ -709,7 +895,7 @@ def build():
           </a>
           <div class="home-splash-bar">
             <div>
-              <h2>Riftbound Decklists</h2>
+              <h1>Riftbound Decklists</h1>
               <p class="banner-terms">Channel runes · Hold battlefields · Conquer · Score the Rift</p>
             </div>
           </div>
@@ -764,7 +950,7 @@ def build():
             <p class="home-leaders-kicker">The Rift</p>
             <div class="home-leaders-intro-row">
               <div>
-                <h3>Legends</h3>
+                <h2>Legends</h2>
                 <p>Pick a picture. Each page has lists for that legend. Names live in the <a href="/guides/">guides</a>.</p>
               </div>
               <a href="/decklists/">All legend pages →</a>
@@ -779,7 +965,7 @@ def build():
 
         <section class="card home-panel" id="recent">
           <div class="section-title">
-            <h3>Recent lists</h3>
+            <h2>Recent lists</h2>
             <div class="muted">{len(picked)} lists</div>
           </div>
           <p class="muted">Newest first. At least one list from each legend, then the latest results. {len(decks)} public Standard lists from August–September 2026 tournaments, including Singapore, Wuhan, Ottawa, Speyer, and City Challenges.</p>
@@ -788,10 +974,33 @@ def build():
           </ul>
         </section>
 '''
+    home_title = "Riftbound Decklists | Standard tournament lists and legend strategy"
+    home_desc = "Public Riftbound TCG Standard decklists from August–September 2026. Browse by Legend, copy lists from Singapore, Wuhan, and Barcelona, and read current-meta strategy."
+    home_list = {
+        "@type": "ItemList",
+        "name": "Riftbound Standard legends",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": min(16, len(legends_ordered)),
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": i,
+                "name": name,
+                "url": f"{SITE}/decklists/{legend_slug(name)}.html",
+            }
+            for i, name in enumerate(legends_ordered[:16], 1)
+        ],
+    }
     write(ROOT / "index.html", layout(
-        "Riftbound Decklists | Standard constructed lists",
-        "Riftbound TCG decklists organized by Legend. Standard constructed lists from August and September 2026, plus shop, guides, and a card price tracker.",
+        home_title,
+        home_desc,
         home, current="recent", canonical=SITE + "/",
+        extra_head='<link rel="preload" as="image" href="/img/rbdb-hero.jpg" fetchpriority="high">',
+        json_ld=[
+            breadcrumb_ld([("Home", "/")]),
+            webpage_ld("/", home_title, home_desc),
+            home_list,
+        ],
     ))
     search_index.append({"title": NAME, "url": "/", "hay": "riftbound decklists legends runes battlefields standard"})
 
@@ -807,18 +1016,30 @@ def build():
             <div class="meta">{e(" / ".join(meta["domains"]))} · {n} list{"s" if n != 1 else ""} · {e(meta["set"])}</div>
           </div>
         </a>''')
+    legends_title = "Riftbound legends | Standard decklists"
+    legends_desc = "Every Riftbound legend with public Standard lists: Kennen, Master Yi, Akali, Ornn, Irelia, and the rest of the August–September 2026 field."
     write(ROOT / "decklists/index.html", layout(
-        "Riftbound legends | Decklists",
-        "Every Riftbound legend with public Standard lists on this site.",
+        legends_title,
+        legends_desc,
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Legends</div>
-        <h2>Legends</h2>
-        <p>Riftbound organizes decks around a Legend — the identity card that sits outside your 40. Current Standard is the only constructed format in organized play.</p>
+        <h1>Riftbound legends</h1>
+        <p>Riftbound organizes decks around a Legend — the identity card that sits outside your 40. Current Standard is the only constructed format in organized play. Each hub has public tournament lists and current-meta strategy.</p>
         <div class="leader-grid">
 {chr(10).join(tiles)}
         </div>
       </div>''',
         current="legends", canonical=f"{SITE}/decklists/",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Legends", "/decklists/")]),
+            webpage_ld("/decklists/", legends_title, legends_desc),
+            {
+                "@type": "CollectionPage",
+                "name": legends_title,
+                "url": f"{SITE}/decklists/",
+                "numberOfItems": len(legends_ordered),
+            },
+        ],
     ))
     search_index.append({"title": "Legends", "url": "/decklists/", "hay": "legends decklists"})
 
@@ -842,11 +1063,42 @@ def build():
           </li>''')
             # deck page
             body = deck_page(d, meta)
+            place = placing_label(d["placing"])
+            deck_title = clip(f"{d['player']} {meta['short']} decklist ({place}) | Riftbound", 62)
+            deck_desc = clip(
+                f"{place} {meta['short']} Standard list from {d['event']} on {d['date']}. "
+                f"Riftbound TCG decklist with legend, runes, battlefields, and sideboard.",
+                160,
+            )
             write(ROOT / d["url"].lstrip("/"), layout(
-                f"{d['player']} — {meta['short']} | Standard",
-                f"{meta['short']} decklist — {d['event']} · {d['source']}",
+                deck_title,
+                deck_desc,
                 body, current="legends", body_class=color_class(d["domains"]),
                 canonical=SITE + d["url"],
+                og_image=legend_img_abs(name),
+                og_type="article",
+                published=d.get("date") or "",
+                json_ld=[
+                    breadcrumb_ld([
+                        ("Home", "/"),
+                        ("Legends", "/decklists/"),
+                        (meta["short"], f"/decklists/{legend_slug(name)}.html"),
+                        (f"{d['player']} list", d["url"]),
+                    ]),
+                    {
+                        "@type": "Article",
+                        "headline": f"{d['player']} — {meta['short']} Standard decklist",
+                        "datePublished": d.get("date"),
+                        "dateModified": d.get("date") or TODAY,
+                        "author": {"@type": "Person", "name": d["player"]},
+                        "publisher": {"@id": SITE + "/#org"},
+                        "about": name,
+                        "image": legend_img_abs(name),
+                        "mainEntityOfPage": SITE + d["url"],
+                        "inLanguage": "en-US",
+                        "isPartOf": {"@id": SITE + "/#website"},
+                    },
+                ],
             ))
             search_index.append({
                 "title": f"{d['player']} {meta['short']}",
@@ -858,7 +1110,7 @@ def build():
         <div class="leader-hero">
           <img src="{e(legend_img(name))}" alt="{e(name)}" />
           <div>
-            <h2>{e(name)}</h2>
+            <h1>{e(name)}</h1>
             <div class="stat-row">
               <span class="pill">{e(" / ".join(meta["domains"]))}</span>
               <span class="pill">{e(meta["set"])}</span>
@@ -905,50 +1157,92 @@ def build():
         </section>
       </div>'''
         write(ROOT / f"decklists/{slug}.html", layout(
-            f"{name} decklists | Standard",
-            meta["blurb"],
+            clip(f"{name} decklists ({len(lists)}) | Riftbound Standard", 62),
+            clip(f"{meta['blurb']} {len(lists)} public Standard lists for {meta['short']} from August–September 2026 tournaments.", 160),
             hub, current="legends", body_class=color_class(meta["domains"]),
             canonical=f"{SITE}/decklists/{slug}.html",
+            og_image=legend_img_abs(name),
+            json_ld=[
+                breadcrumb_ld([("Home", "/"), ("Legends", "/decklists/"), (meta["short"], f"/decklists/{slug}.html")]),
+                {
+                    "@type": "CollectionPage",
+                    "name": f"{name} Standard decklists",
+                    "url": f"{SITE}/decklists/{slug}.html",
+                    "about": name,
+                    "numberOfItems": len(lists),
+                },
+                faq_ld(name, meta),
+            ],
         ))
         search_index.append({"title": name, "url": f"/decklists/{slug}.html", "hay": f"{name} {meta['short']} legend {meta['blurb']}"})
 
     # Format
+    format_title = "Riftbound Standard format | Deck construction 2026"
+    format_desc = "Riftbound Standard constructed rules: 40-card main, one Legend, three Battlefields, 12 runes, and 2026 set legality including Vendetta and Radiance."
     write(ROOT / "format.html", layout(
-        "Riftbound format | Standard",
-        "Current Riftbound constructed format, deck construction, and official event links.",
+        format_title,
+        format_desc,
         format_page(), current="format", canonical=f"{SITE}/format.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Format", "/format.html")]),
+            webpage_ld("/format.html", format_title, format_desc),
+        ],
     ))
     search_index.append({"title": "Format", "url": "/format.html", "hay": "standard constructed runes battlefields sideboard banlist radiance"})
 
     # Events page (internal companion to official hub)
+    events_title = "Riftbound events 2026 | Regional Qualifiers and Championships"
+    events_desc = "Riftbound organized play digest for 2026: Barcelona, Wuhan, Singapore, Stuttgart, Las Vegas, Showdown Series, and Summoner Skirmish."
     write(ROOT / "events.html", layout(
-        "Riftbound events and schedule",
-        "Official Riftbound organized play schedule for late 2026: Regional Qualifiers, Championships, Showdown Series.",
-        events_page(), current="format", canonical=f"{SITE}/events.html",
+        events_title,
+        events_desc,
+        events_page(), canonical=f"{SITE}/events.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Events", "/events.html")]),
+            webpage_ld("/events.html", events_title, events_desc),
+        ],
     ))
     search_index.append({"title": "Events", "url": "/events.html", "hay": "singapore barcelona wuhan stuttgart las vegas championships"})
 
     # Tier list
+    tier_title = "Riftbound Standard tier list | Vendetta 2026"
+    tier_desc = "Legend tier list for Riftbound Vendetta Standard after Regional Qualifiers in Barcelona, Wuhan, and Singapore."
     write(ROOT / "tier-list.html", layout(
-        "Riftbound Standard tier list | Vendetta",
-        "Legend tier list for Riftbound Standard after Barcelona, Wuhan, and Singapore 2026.",
+        tier_title,
+        tier_desc,
         tier_page(by_legend, legends_ordered), current="tier", canonical=f"{SITE}/tier-list.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Tier list", "/tier-list.html")]),
+            webpage_ld("/tier-list.html", tier_title, tier_desc),
+        ],
     ))
     search_index.append({"title": "Tier List", "url": "/tier-list.html", "hay": "tier list kennen akali master yi ornn"})
 
     # Privacy
+    privacy_title = "Privacy Policy | Riftbound Decklists"
+    privacy_desc = "Privacy, cookies, affiliates, fair use, and disclaimer for Riftbound Decklists, a Riftbound TCG fan site."
     write(ROOT / "privacy.html", layout(
-        "Privacy Policy | Riftbound Decklists",
-        "Privacy, affiliates, fair use, and disclaimer for Riftbound Decklists.",
+        privacy_title,
+        privacy_desc,
         privacy_page(), current="", canonical=f"{SITE}/privacy.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Privacy", "/privacy.html")]),
+            webpage_ld("/privacy.html", privacy_title, privacy_desc),
+        ],
     ))
 
     # Search
+    search_title = "Search Riftbound decklists, legends, and guides"
+    search_desc = "Search Riftbound TCG Standard decklists by legend, player, card, event, or strategy guide on Riftbound Decklists."
     write(ROOT / "search.html", layout(
-        "Search | Riftbound Decklists",
-        "Search legends, players, events, and guides.",
+        search_title,
+        search_desc,
         search_page(), current="search", canonical=f"{SITE}/search.html",
-        extra_head='<script src="/js/search.js?v=rift-1"></script>',
+        extra_head='<script src="/js/search.js?v=rift-1" defer></script>',
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Search", "/search.html")]),
+            webpage_ld("/search.html", search_title, search_desc),
+        ],
     ))
 
     # Prices
@@ -959,11 +1253,17 @@ def build():
         change = (hist[-1] - hist[0]) / hist[0] * 100 if hist[0] else 0
         prices.append({"id": slugify(name), "name": name, "price": price, "kind": kind, "history": hist, "change": change, "labels": [labels[0], labels[-1]]})
     write(ROOT / "data/prices.json", json.dumps(prices, indent=2))
+    prices_title = "Riftbound card price tracker | TCGplayer singles"
+    prices_desc = "Riftbound TCG singles price history with TCGplayer affiliate buy links. Fan-side tracker for cards that showed up in 2026 Standard lists."
     write(ROOT / "prices.html", layout(
-        "Riftbound card price tracker",
-        "Price history for Riftbound singles with TCGplayer affiliate buy links.",
+        prices_title,
+        prices_desc,
         prices_page(prices), current="prices", canonical=f"{SITE}/prices.html",
-        extra_head='<script src="/js/prices.js?v=rift-1"></script>\n  <script>window.RBDB_PRICES = ' + json.dumps({p["id"]: p for p in prices}) + ";</script>",
+        extra_head='<script>window.RBDB_PRICES = ' + json.dumps({p["id"]: p for p in prices}) + ';</script>\n  <script src="/js/prices.js?v=rift-2" defer></script>',
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Prices", "/prices.html")]),
+            webpage_ld("/prices.html", prices_title, prices_desc),
+        ],
     ))
     search_index.append({"title": "Price tracker", "url": "/prices.html", "hay": "card prices tcgplayer seal of discord lightning rush"})
 
@@ -977,36 +1277,106 @@ def build():
     # Search data + misc
     write(ROOT / "data/search.json", json.dumps(search_index, ensure_ascii=False, indent=2))
     write(ROOT / "js/search.js", SEARCH_JS)
-    write(ROOT / "robots.txt", "User-agent: *\nAllow: /\nSitemap: https://riftbounddecklists.com/sitemap.xml\n")
-    urls = ["/", "/tier-list.html", "/format.html", "/events.html", "/privacy.html", "/search.html", "/prices.html", "/shop/", "/guides/", "/guides/legend-strategy.html", "/decklists/"]
-    urls += [f"/decklists/{legend_slug(n)}.html" for n in legends_ordered]
-    urls += [f"/guides/{strategy_slug(n)}.html" for n in legends_ordered]
-    urls += [d["url"] for d in decks]
+    write(ROOT / "robots.txt", """User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://riftbounddecklists.com/sitemap.xml
+""")
+    lastmods = {d["url"]: d["date"] for d in decks}
+    for name, lists in by_legend.items():
+        if lists:
+            lastmods[f"/decklists/{legend_slug(name)}.html"] = max(x["date"] for x in lists)
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for u in urls:
-        sm.append(f"  <url><loc>{SITE}{u if u.startswith('/') else '/' + u}</loc></url>")
+    seen = set()
+    for path in sorted(ROOT.rglob("*.html")):
+        rel = path.relative_to(ROOT)
+        if any(part.startswith(".") for part in rel.parts):
+            continue
+        posix = rel.as_posix()
+        if posix == "404.html":
+            continue
+        loc = html_loc(posix)
+        if loc in seen:
+            continue
+        seen.add(loc)
+        freq, pri = sitemap_meta(loc)
+        sm.append(sitemap_url(loc, lastmods.get(loc, TODAY), freq, pri))
     sm.append("</urlset>")
     write(ROOT / "sitemap.xml", "\n".join(sm) + "\n")
     write(ROOT / "site.webmanifest", json.dumps({
-        "name": NAME, "short_name": SHORT, "start_url": "/", "display": "standalone",
-        "background_color": "#f4f1eb", "theme_color": "#b42318",
-        "icons": [{"src": "/img/rbdb-logo-192.jpg", "sizes": "192x192", "type": "image/jpeg"}],
+        "name": NAME,
+        "short_name": SHORT,
+        "description": "Riftbound TCG Standard decklists, legend hubs, and current-meta strategy.",
+        "start_url": "/",
+        "scope": "/",
+        "lang": "en-US",
+        "display": "standalone",
+        "background_color": "#f4f1eb",
+        "theme_color": "#b42318",
+        "categories": ["games", "sports"],
+        "icons": [
+            {"src": "/img/rbdb-logo-192.jpg", "sizes": "192x192", "type": "image/jpeg", "purpose": "any"},
+            {"src": "/img/rbdb-avatar.jpg", "sizes": "192x192", "type": "image/jpeg", "purpose": "any"},
+        ],
     }, indent=2))
+    write(ROOT / "llms.txt", f"""# {NAME}
+
+> Fan archive of Riftbound TCG Standard tournament decklists, legend hubs, and current-meta strategy.
+
+Riftbound is Riot Games' League of Legends trading card game. This site is not affiliated with Riot Games or UVS Games. The identity card is a Legend.
+
+## Primary pages
+
+- [Home]({SITE}/): Latest public Standard lists
+- [Legends]({SITE}/decklists/): Every legend with public lists
+- [Legend strategy]({SITE}/guides/legend-strategy.html): Current-meta plans by legend
+- [Tier list]({SITE}/tier-list.html): Vendetta Standard picture board
+- [Format]({SITE}/format.html): Standard deck construction
+- [Events]({SITE}/events.html): 2026 organized play digest
+- [Guides]({SITE}/guides/): Topics, domains, and character pages
+- [Search]({SITE}/search.html): Site search
+- [Sitemap]({SITE}/sitemap.xml)
+
+## Optional
+
+- Tournament lists are republished from public results for commentary.
+- Shop and price pages use Amazon and TCGplayer affiliate links.
+""")
+    write(ROOT / "humans.txt", """/* TEAM */
+Fan site: Riftbound Decklists
+Site: https://riftbounddecklists.com/
+
+/* THANKS */
+Public tournament organizers, PlayRiftbound, Piltover Archive.
+
+/* SITE */
+Language: English
+Standards: HTML5, CSS, JSON-LD
+Doctype: HTML5
+Generator: scripts/build.py
+""")
     write(ROOT / "opensearch.xml", f'''<?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>{e(NAME)}</ShortName>
-  <Description>Search Riftbound decklists</Description>
+  <Description>Search Riftbound TCG Standard decklists, legends, and guides</Description>
   <Url type="text/html" method="get" template="{SITE}/search.html?q={{searchTerms}}"/>
+  <Image width="192" height="192" type="image/jpeg">{SITE}/img/rbdb-logo-192.jpg</Image>
+  <Language>en-US</Language>
 </OpenSearchDescription>
 ''')
     write(ROOT / "404.html", layout(
-        "Not found | Riftbound Decklists",
-        "That page is missing.",
+        "Page not found | Riftbound Decklists",
+        "That Riftbound Decklists URL is missing. Search legends, lists, and guides, or return home.",
         '''      <div class="card hero">
-        <h2>Missing battlefield</h2>
-        <p>That URL is not on this site. Try <a href="/">home</a>, <a href="/decklists/">legends</a>, or <a href="/search.html">search</a>.</p>
+        <div class="crumb"><a href="/">Home</a> / Not found</div>
+        <h1>This page is not on the site</h1>
+        <p>The URL you opened is not a published Riftbound Decklists page. It may have moved when legend hubs were renamed, or it was never generated.</p>
+        <p>Try <a href="/">home</a>, <a href="/decklists/">legend lists</a>, <a href="/guides/legend-strategy.html">legend strategy</a>, or <a href="/search.html">search</a>.</p>
       </div>''',
         canonical=f"{SITE}/404.html",
+        noindex=True,
+        json_ld=[breadcrumb_ld([("Home", "/"), ("Not found", "/404.html")])],
     ))
 
     print(f"Wrote {len(decks)} decks across {len(by_legend)} legends")
@@ -1017,7 +1387,7 @@ def deck_page(d, meta):
     main_count = sum(q for q, _ in d["main"])
     return f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/decklists/">Legends</a> / <a href="/decklists/{e(legend_slug(d['legend']))}.html">{e(meta['short'])}</a> / Decklist</div>
-        <h2>{e(d['player'])} — {e(meta['short'])} (Standard)</h2>
+        <h1>{e(d['player'])} — {e(meta['short'])} (Standard)</h1>
         <p>{e(placing_label(d['placing']))}{(' of ' + str(d['field'])) if d['field'] else ''} · {e(d['event'])} · {e(d['source'])} · {e(d['date'])}</p>
         <section class="leader-block" style="margin-top:22px">
           <div class="section-title">
@@ -1067,13 +1437,14 @@ def deck_page(d, meta):
           </div>
         </section>
         <p class="amazon-disclosure-line">As an Amazon Associate I earn from qualifying purchases. Buy-list buttons go to TCGplayer as an affiliate.</p>
+        <p class="related-links">More <a href="/decklists/{e(legend_slug(d['legend']))}.html">{e(meta['short'])} lists</a> · <a href="/guides/{e(strategy_slug(d['legend']))}.html">{e(meta['short'])} strategy</a> · <a href="/tier-list.html">Tier list</a> · <a href="/guides/legend-strategy.html">All legend strategy</a></p>
       </div>'''
 
 
 def format_page():
     return '''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Format</div>
-        <h2>Standard is the constructed format</h2>
+        <h1>Standard is the constructed format</h1>
         <p>Right now Riftbound organized play uses one constructed legality: <strong>Standard</strong>. Riot has not split an Eternal or extra-block format the way some other TCGs do. Lists on this site are Standard constructed unless a page says otherwise.</p>
         <section class="policy">
           <h3>Deck construction</h3>
@@ -1102,7 +1473,7 @@ def format_page():
 def events_page():
     return '''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Events</div>
-        <h2>Events and schedule</h2>
+        <h1>Riftbound events and schedule</h1>
         <p>Primary source is always <a href="https://playriftbound.com/en-us/news/organizedplay/" target="_blank" rel="noopener">playriftbound.com organized play</a>. This page is a fan-side digest of August–December 2026.</p>
         <section class="policy">
           <h3>Just played</h3>
@@ -1152,7 +1523,7 @@ def tier_page(by_legend, ordered):
         </div>''')
     return f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Tier List</div>
-        <h2>Vendetta Standard tier list</h2>
+        <h1>Vendetta Standard tier list</h1>
         <p>Picture board after Barcelona (23 Aug), Wuhan (30 Aug), and Singapore (5–6 Sep) 2026. S is the regional pair: Kennen and Master Yi, Wuju Bladesman. Ornn and Akali sit in A because they actually won the two biggest events in this window. This is a fan read of public lists, not an official Riot ranking.</p>
         <div class="tier-board">
 {chr(10).join(rows)}
@@ -1171,8 +1542,8 @@ def tier_page(by_legend, ordered):
 def privacy_page():
     return '''      <div class="card hero policy">
         <div class="crumb"><a href="/">Home</a> / Privacy Policy</div>
-        <h2>Privacy Policy</h2>
-        <p>Last updated: September 7, 2026</p>
+        <h1>Privacy Policy</h1>
+        <p>Last updated: September 11, 2026</p>
         <p>Riftbound Decklists ("we," "us," or "this site") respects your privacy. This Privacy Policy explains what information we collect when you visit riftbounddecklists.com, how we use it, and the choices you have.</p>
         <section>
           <h3>Information We Collect</h3>
@@ -1182,6 +1553,7 @@ def privacy_page():
         <section>
           <h3>Cookies</h3>
           <p>We use cookies and similar tracking technologies to understand how visitors use the site, remember basic preferences, and support advertising if ads are enabled. You can disable cookies through your browser settings.</p>
+          <p>A first-party cookie named <code>rbdb-theme</code> stores only <code>light</code> or <code>dark</code> so the Light / Dark toggle at the top of every page can restore your last choice on the next visit. It lasts up to one year, is not used for advertising or tracking, and clearing cookies returns the site to light mode.</p>
         </section>
         <section>
           <h3>Advertising</h3>
@@ -1226,7 +1598,7 @@ def privacy_page():
 def search_page():
     return '''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Search</div>
-        <h2>Search</h2>
+        <h1>Search Riftbound decklists</h1>
         <form class="site-search" method="get" action="/search.html" role="search">
           <label class="site-search-label" for="q">Search legends, players, cards, guides</label>
           <div class="site-search-row">
@@ -1253,7 +1625,7 @@ def prices_page(prices):
           </tr>''')
     return f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Prices</div>
-        <h2>Card price tracker</h2>
+        <h1>Riftbound card price tracker</h1>
         <p>Fan-side history for singles that showed up in August–September Standard lists. Figures are illustrative market snapshots for this site, not a live TCGplayer API feed. Buy buttons still go through the same TCGplayer affiliate partnership as OPDB.</p>
         <div class="price-hero">
           <div>
@@ -1291,29 +1663,33 @@ def build_shop():
 {cards}
         </div>''')
         write(ROOT / f"shop/{cat}.html", layout(
-            f"{label} | Shop",
-            f"{label} with Amazon affiliate links.",
+            clip(f"{label} for Riftbound TCG | Shop", 62),
+            clip(f"{label} for Riftbound TCG tables. Amazon affiliate listings for Standard constructed play — same shop as One Piece Deck Base.", 160),
             f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/shop/">Shop</a> / {e(label)}</div>
-        <h2>{e(label)}</h2>
-        <p>Same Amazon Associate listings as One Piece Deck Base. Open Amazon for live price and stock.</p>
+        <h1>{e(label)} for Riftbound</h1>
+        <p>Same Amazon Associate listings as One Piece Deck Base. Open Amazon for live price and stock. These sleeves, dice, and boxes fit a 40-card Riftbound main deck plus extras.</p>
         <div class="shop-grid">
 {cards}
         </div>
         <p class="amazon-disclosure-line">As an Amazon Associate I earn from qualifying purchases.</p>
       </div>''',
             current="shop", canonical=f"{SITE}/shop/{cat}.html",
+            json_ld=[
+                breadcrumb_ld([("Home", "/"), ("Shop", "/shop/"), (label, f"/shop/{cat}.html")]),
+                webpage_ld(f"/shop/{cat}.html", f"{label} for Riftbound TCG | Shop", f"{label} for Riftbound TCG tables."),
+            ],
         ))
     also = "\n".join(
         f'          <a class="item" href="/shop/{cat}.html"><div><div>{e(label)}</div><div class="muted">Amazon shop · table gear</div></div><span class="link">Open →</span></a>'
         for cat, label in CAT_LABEL.items()
     )
     write(ROOT / "shop/index.html", layout(
-        "Shop | Sleeves, dice, playmats, deck boxes",
-        "The same affiliate shop as One Piece Deck Base: sleeves, dice, playmats, deck boxes, table extras.",
+        "Riftbound shop | Sleeves, dice, playmats, deck boxes",
+        "Riftbound TCG table gear: sleeves, dice, playmats, deck boxes, and extras. Amazon Associate listings with live price and stock on Amazon.",
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Shop</div>
-        <h2>Shop</h2>
+        <h1>Shop Riftbound table gear</h1>
         <p>Sleeves, dice, playmats, deck boxes, and a table extra. Open Amazon for live price and stock. These are the same affiliate links as OPDB.</p>
 {chr(10).join(blocks)}
         <div class="section-title" style="margin-top:28px"><h3>Also in the shop</h3></div>
@@ -1321,30 +1697,47 @@ def build_shop():
         <p class="amazon-disclosure-line">As an Amazon Associate I earn from qualifying purchases.</p>
       </div>''',
         current="shop", canonical=f"{SITE}/shop/",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Shop", "/shop/")]),
+            webpage_ld("/shop/", "Riftbound shop | Sleeves, dice, playmats, deck boxes", "Riftbound TCG table gear with Amazon affiliate listings."),
+            {"@type": "CollectionPage", "name": "Riftbound shop", "url": f"{SITE}/shop/"},
+        ],
     ))
     write(ROOT / "shop/buy-list.html", layout(
-        "Buy a list on TCGplayer",
-        "Mass-entry helper with TCGplayer affiliate tracking.",
+        "Buy a Riftbound list on TCGplayer",
+        "Open TCGplayer mass entry with affiliate tracking to buy a Riftbound Standard list from this site.",
         '''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/shop/">Shop</a> / Buy list</div>
-        <h2>Buy a list</h2>
+        <h1>Buy a Riftbound list</h1>
         <p>Deck pages already open TCGplayer mass entry with the affiliate partner link. Copy a list, then use Buy list on TCGplayer.</p>
         <p><a class="shop-buy" href="https://partner.tcgplayer.com/c/7670706/1780961/21018?u=https%3A%2F%2Fwww.tcgplayer.com%2Fmassentry%3Fproductline%3DRiftbound" target="_blank" rel="sponsored noopener noreferrer">Open TCGplayer mass entry</a></p>
       </div>''',
         current="shop", canonical=f"{SITE}/shop/buy-list.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Shop", "/shop/"), ("Buy a list", "/shop/buy-list.html")]),
+            webpage_ld("/shop/buy-list.html", "Buy a Riftbound list on TCGplayer", "TCGplayer mass entry for Riftbound Standard lists."),
+        ],
     ))
 
 
-def guide_page(title, slug, body, crumbs="Guides"):
+def guide_page(title, slug, body, desc="", json_ld=None, og_image="", og_type="article", h1=""):
+    heading = h1 or title
+    desc = desc or f"{title} — Riftbound TCG guide for Vendetta Standard constructed play on Riftbound Decklists."
+    extras = [
+        breadcrumb_ld([("Home", "/"), ("Guides", "/guides/"), (title, f"/guides/{slug}.html")]),
+        webpage_ld(f"/guides/{slug}.html", f"{title} | Riftbound TCG", desc),
+    ]
+    extras.extend(x for x in (json_ld or []) if x)
     return layout(
-        f"{title} | Riftbound guides",
-        f"{title} — Riftbound TCG guide on Riftbound Decklists.",
+        clip(f"{title} | Riftbound TCG", 62),
+        clip(desc, 160),
         f'''      <div class="card hero policy">
         <div class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / {e(title)}</div>
-        <h2>{e(title)}</h2>
+        <h1>{e(heading)}</h1>
         {body}
       </div>''',
         current="guides", canonical=f"{SITE}/guides/{slug}.html",
+        og_image=og_image, og_type=og_type, json_ld=extras, published=TODAY,
     )
 
 
@@ -1390,7 +1783,10 @@ def build_guides(legends_ordered, by_legend, search_index):
     topic_links = []
     for title, slug, blurb in topics:
         body = f"<p>{blurb}</p><p>Jump to <a href=\"/decklists/\">legend lists</a>, the <a href=\"/format.html\">format page</a>, or <a href=\"/events.html\">events</a>.</p>"
-        write(ROOT / f"guides/{slug}.html", guide_page(title, slug, body))
+        write(ROOT / f"guides/{slug}.html", guide_page(
+            title, slug, body,
+            desc=f"{blurb} Riftbound TCG guide on Riftbound Decklists.",
+        ))
         topic_links.append(f'        <a class="item" href="/guides/{slug}.html"><div><div>{e(title)}</div><div class="muted">Topic</div></div><span class="link">Open →</span></a>')
         search_index.append({"title": title, "url": f"/guides/{slug}.html", "hay": f"{title} {blurb}"})
 
@@ -1399,22 +1795,47 @@ def build_guides(legends_ordered, by_legend, search_index):
         meta = LEGEND_META[name]
         sslug = strategy_slug(name)
         lists = by_legend[name]
+        row = STRAT.get(name)
+        plan = row["plan"] if row else meta["blurb"]
         body = strategy_html(name, meta, len(lists), f"/decklists/{e(legend_slug(name))}.html")
-        write(ROOT / f"guides/{sslug}.html", guide_page(f"{meta['short']} strategy", sslug, f'<div class="policy">{body}</div>'))
+        write(ROOT / f"guides/{sslug}.html", guide_page(
+            f"{meta['short']} strategy",
+            sslug,
+            f'<div class="policy">{body}</div>',
+            desc=f"{plan} {meta['short']} Vendetta Standard strategy with public Riftbound lists.",
+            json_ld=[
+                faq_ld(name, meta),
+                {
+                    "@type": "Article",
+                    "headline": f"{meta['short']} strategy — Vendetta Standard",
+                    "about": name,
+                    "dateModified": TODAY,
+                    "author": {"@id": SITE + "/#org"},
+                    "publisher": {"@id": SITE + "/#org"},
+                    "inLanguage": "en-US",
+                },
+            ],
+            og_image=legend_img_abs(name),
+            h1=f"{meta['short']} strategy",
+        ))
         strat_links.append(f'        <a class="item" href="/guides/{sslug}.html"><div><div>{e(meta["short"])} strategy</div><div class="muted">{e(" / ".join(meta["domains"]))} · {meta.get("tier", "D")}</div></div><span class="link">Open →</span></a>')
         search_index.append({"title": f"{meta['short']} strategy", "url": f"/guides/{sslug}.html", "hay": f"{name} strategy meta {meta['blurb']}"})
     write(ROOT / "guides/legend-strategy.html", layout(
-        "Legend strategy | Vendetta Standard",
-        "Current-meta strategy for every Riftbound legend with public Standard lists on this site.",
+        "Legend strategy | Vendetta Standard | Riftbound",
+        "Current-meta strategy for every Riftbound legend with public Standard lists: game plan, key cards, matchups, and when to register it.",
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / Legend strategy</div>
-        <h2>Legend strategy</h2>
+        <h1>Legend strategy</h1>
         <p>August–September 2026 Vendetta Standard. Each page is a game plan, key cards, matchups, and when to register that legend. Lists stay on the legend hubs.</p>
         <div class="list">
 {chr(10).join(strat_links)}
         </div>
       </div>''',
         current="guides", canonical=f"{SITE}/guides/legend-strategy.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Guides", "/guides/"), ("Legend strategy", "/guides/legend-strategy.html")]),
+            webpage_ld("/guides/legend-strategy.html", "Legend strategy | Vendetta Standard", "Current-meta strategy for every Riftbound legend with public Standard lists."),
+        ],
     ))
     search_index.append({"title": "Legend strategy", "url": "/guides/legend-strategy.html", "hay": "legend strategy meta kennen akali ornn yi"})
     topic_links.insert(0, '        <a class="item" href="/guides/legend-strategy.html"><div><div>Legend strategy</div><div class="muted">Current meta</div></div><span class="link">Open →</span></a>')
@@ -1428,31 +1849,43 @@ def build_guides(legends_ordered, by_legend, search_index):
         body = strategy_html(name, meta, len(lists), f"/decklists/{e(legend_slug(name))}.html")
         body += f'<p>Domains: {e(" / ".join(meta["domains"]))}. Set: {e(meta["set"])}.</p>'
         write(ROOT / f"guides/characters/{slug}.html", layout(
-            f"{meta['short']} | Riftbound guides",
-            meta["blurb"],
+            clip(f"{name} | Riftbound TCG legend", 62),
+            clip(f"{meta['blurb']} {name} in Riftbound TCG Vendetta Standard — lists and strategy.", 160),
             f'''      <div class="card hero policy">
-        <div class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / {e(meta["short"])}</div>
-        <h2>{e(name)}</h2>
+        <div class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / {e(meta['short'])}</div>
+        <h1>{e(name)}</h1>
         {body}
       </div>''',
             current="guides", canonical=f"{SITE}/guides/characters/{slug}.html",
+            og_image=legend_img_abs(name),
+            og_type="article",
+            published=TODAY,
+            json_ld=[
+                breadcrumb_ld([("Home", "/"), ("Guides", "/guides/"), (meta["short"], f"/guides/characters/{slug}.html")]),
+                webpage_ld(f"/guides/characters/{slug}.html", f"{name} | Riftbound TCG legend", meta["blurb"]),
+                faq_ld(name, meta),
+            ],
         ))
         char_links.append(f'        <a class="item" href="/guides/characters/{slug}.html"><div><div>{e(name)}</div><div class="muted">{e(" / ".join(meta["domains"]))}</div></div><span class="link">Open →</span></a>')
         search_index.append({"title": meta["short"], "url": f"/guides/characters/{slug}.html", "hay": f"{name} {meta['blurb']}"})
 
     write(ROOT / "guides/index.html", layout(
-        "Riftbound TCG guides",
-        "Topic and character pages that link to the Standard lists on this site.",
+        "Riftbound TCG guides | Standard, legends, and strategy",
+        "Riftbound TCG guides: Standard format notes, domain primers, per-legend strategy, and character pages that link to public constructed lists.",
         f'''      <div class="card hero">
         <div class="crumb"><a href="/">Home</a> / Guides</div>
-        <h2>Riftbound TCG guides</h2>
+        <h1>Riftbound TCG guides</h1>
         <p>Topic pages, per-legend strategy, and character pages that link to the constructed lists on this site.</p>
-        <div class="section-title"><h3>Topics</h3></div>
+        <div class="section-title"><h2>Topics</h2></div>
         <div class="list">{chr(10).join(topic_links)}</div>
-        <div class="section-title" style="margin-top:28px"><h3>Legends</h3><div class="muted">{len(char_links)} names</div></div>
+        <div class="section-title" style="margin-top:28px"><h2>Legends</h2><div class="muted">{len(char_links)} names</div></div>
         <div class="list">{chr(10).join(char_links)}</div>
       </div>''',
         current="guides", canonical=f"{SITE}/guides/",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Guides", "/guides/")]),
+            webpage_ld("/guides/", "Riftbound TCG guides", "Topic and character pages that link to Standard lists."),
+        ],
     ))
     search_index.append({"title": "Guides", "url": "/guides/", "hay": "guides topics legends riftbound"})
 

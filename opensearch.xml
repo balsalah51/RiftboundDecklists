@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>Riftbound Decklists</ShortName>
-  <Description>Search Riftbound decklists</Description>
+  <Description>Search Riftbound TCG Standard decklists, legends, and guides</Description>
   <Url type="text/html" method="get" template="https://riftbounddecklists.com/search.html?q={searchTerms}"/>
+  <Image width="192" height="192" type="image/jpeg">https://riftbounddecklists.com/img/rbdb-logo-192.jpg</Image>
+  <Language>en-US</Language>
 </OpenSearchDescription>
