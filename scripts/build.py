@@ -13,12 +13,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from legend_strategy import html_for as strategy_html, hub_excerpt, STRAT
+import topic_guides
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://riftbounddecklists.com"
 NAME = "Riftbound Decklists"
 SHORT = "RBDB"
 TODAY = "2026-09-11"
+# Fill after AdSense approval (ca-pub-…). Empty = no ads.txt seller line, slots stay hidden.
+ADSENSE_PUB = ""
 
 DOMAIN_PAIR = {
     ("Chaos", "Order"): "chaos-order",
@@ -367,6 +370,7 @@ def org_ld() -> dict:
         "name": NAME,
         "url": SITE + "/",
         "description": "Fan site for Riftbound TCG Standard decklists and legend strategy. Not affiliated with Riot Games or UVS Games.",
+        "knowsAbout": ["Riftbound", "Riftbound TCG", "Vendetta Standard"],
         "logo": {"@type": "ImageObject", "url": SITE + "/img/rbdb-logo-192.jpg", "width": 192, "height": 192},
         "image": SITE + "/img/rbdb-hero.jpg",
     }
@@ -390,6 +394,20 @@ def website_ld() -> dict:
             },
             "query-input": "required name=search_term_string",
         },
+    }
+
+
+def riftbound_game_ld() -> dict:
+    return {
+        "@type": "VideoGame",
+        "@id": SITE + "/#riftbound",
+        "name": "Riftbound",
+        "alternateName": ["Riftbound TCG", "League of Legends TCG"],
+        "genre": "Trading card game",
+        "author": {"@type": "Organization", "name": "Riot Games"},
+        "publisher": {"@type": "Organization", "name": "UVS Games"},
+        "gamePlatform": "Tabletop",
+        "url": "https://playriftbound.com/",
     }
 
 
@@ -425,7 +443,7 @@ def sitemap_meta(loc: str) -> tuple[str, str]:
         return "monthly", "0.55"
     if loc.startswith("/guides/"):
         return "monthly", "0.5"
-    if loc in ("/search.html", "/privacy.html"):
+    if loc in ("/search.html", "/privacy.html", "/advertise.html"):
         return "yearly", "0.3"
     return "weekly", "0.6"
 
@@ -469,12 +487,15 @@ def clip(s: str, n: int) -> str:
     return s[: n - 1].rsplit(" ", 1)[0] + "…"
 
 
-def sitemap_url(loc: str, lastmod: str = "", changefreq: str = "weekly", priority: str = "0.6") -> str:
+def sitemap_url(loc: str, lastmod: str = "", changefreq: str = "weekly", priority: str = "0.6", image: str = "") -> str:
     href = loc if loc.startswith("http") else SITE + (loc if loc.startswith("/") else "/" + loc)
     parts = [f"  <url><loc>{href}</loc>"]
     if lastmod:
         parts.append(f"<lastmod>{lastmod}</lastmod>")
-    parts.append(f"<changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>")
+    parts.append(f"<changefreq>{changefreq}</changefreq><priority>{priority}</priority>")
+    if image:
+        parts.append(f"<image:image><image:loc>{e(image)}</image:loc></image:image>")
+    parts.append("</url>")
     return "".join(parts)
 
 
@@ -650,8 +671,9 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
     og = og_image or (SITE + "/img/rbdb-hero.jpg")
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     extra_ld = list(json_ld or [])
-    ld = ld_tag(org_ld(), website_ld(), *extra_ld)
+    ld = ld_tag(org_ld(), website_ld(), riftbound_game_ld(), *extra_ld)
     pub = f'\n  <meta property="article:published_time" content="{e(published)}" />' if published else ""
+    ads_meta = f'\n  <meta name="google-adsense-account" content="{e(ADSENSE_PUB)}" />' if ADSENSE_PUB else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -673,7 +695,7 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <meta name="author" content="{e(NAME)}" />
   <meta name="application-name" content="{e(NAME)}" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="stylesheet" href="/css/site.css?v=rift-5" />
+  <link rel="stylesheet" href="/css/site.css?v=rift-6" />
   <link rel="canonical" href="{e(canon)}" />
   <meta name="robots" content="{robots}" />
   <meta name="theme-color" content="#b42318" />
@@ -683,7 +705,8 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="search" type="application/opensearchdescription+xml" title="{e(NAME)}" href="/opensearch.xml" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-  <link rel="author" type="text/plain" href="/humans.txt" />
+  <link rel="alternate" type="application/rss+xml" title="Recent Riftbound decklists" href="/feed.xml" />
+  <link rel="author" type="text/plain" href="/humans.txt" />{ads_meta}
   <meta property="og:site_name" content="{e(NAME)}" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="{e(og_type)}" />
@@ -722,9 +745,15 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
         {header_nav(current)}
       </nav>
     </header>
+    <aside class="ad-slot ad-slot-top" data-ad-slot="top" data-ad-format="horizontal" hidden data-nosnippet>
+      <p class="ad-kicker">Advertisement</p>
+    </aside>
     <main id="content" class="single" role="main">
       {body}
     </main>
+    <aside class="ad-slot ad-slot-bottom" data-ad-slot="bottom" data-ad-format="horizontal" hidden data-nosnippet>
+      <p class="ad-kicker">Advertisement</p>
+    </aside>
     <footer>
       <nav class="footer-grid" aria-label="Footer">
         <div>
@@ -746,15 +775,19 @@ def layout(title, desc, body, current="", extra_head="", body_class="", canonica
           <a href="/shop/">Table gear</a>
           <a href="/prices.html">Price tracker</a>
           <a href="/shop/buy-list.html">Buy a list</a>
+          <a href="/advertise.html">Advertise</a>
           <a href="/privacy.html">Privacy</a>
         </div>
       </nav>
-      <p class="footer-legal">© <span id="year"></span> {e(NAME)} — Fan site, not affiliated with Riot Games, UVS Games, or League of Legends. Riftbound and League of Legends are trademarks of their owners. Tournament lists are republished from public results for commentary and reference.</p>
+      <p class="footer-legal">© <span id="year"></span> {e(NAME)} — Fan site, not affiliated with Riot Games, UVS Games, or League of Legends. Riftbound and League of Legends are trademarks of their owners. Tournament lists are republished from public results for commentary and reference. Shop and buy-list links are affiliates; we may earn a commission.</p>
     </footer>
   </div>
+  <script src="/js/ads-config.js?v=rift-1" defer></script>
   <script src="/js/tcgplayer-config.js?v=rift-1" defer></script>
   <script src="/js/site.js?v=rift-2" defer></script>
   <script src="/js/tcgplayer.js?v=rift-1" defer></script>
+  <script src="/js/affiliates.js?v=rift-1" defer></script>
+  <script src="/js/ads.js?v=rift-1" defer></script>
 </body>
 </html>
 """
@@ -973,6 +1006,20 @@ def build():
 {chr(10).join(recent_items)}
           </ul>
         </section>
+
+        <section class="card home-panel home-faq policy" id="faq">
+          <div class="section-title"><h2>FAQ</h2></div>
+          <h3>What is Riftbound Decklists?</h3>
+          <p>A fan archive of public Riftbound TCG Standard constructed lists. Browse by Legend, copy a tournament list, and read current-meta strategy. Not affiliated with Riot Games or UVS Games.</p>
+          <h3>What format are these lists?</h3>
+          <p>Standard. That is the only constructed legality in 2026 organized play. Deck construction notes are on the <a href="/format.html">format page</a>.</p>
+          <h3>What is a Legend?</h3>
+          <p>The identity card that sits outside your 40. This site organizes decks by Legend. Strategy for each name is on the legend hub and in <a href="/guides/legend-strategy.html">legend strategy</a>.</p>
+          <h3>How do I buy a list?</h3>
+          <p>Copy list, then Buy on TCGplayer (Impact affiliate). Table gear in the <a href="/shop/">shop</a> uses Amazon Associate links. Cardmarket and eBay catalog links sit next to buy buttons for EU and secondary-market singles.</p>
+          <h3>Do you show ads?</h3>
+          <p>Ad slots are wired for Google AdSense and stay hidden until a publisher ID is approved. Details: <a href="/advertise.html">advertise and affiliates</a>.</p>
+        </section>
 '''
     home_title = "Riftbound Decklists | Standard tournament lists and legend strategy"
     home_desc = "Public Riftbound TCG Standard decklists from August–September 2026. Browse by Legend, copy lists from Singapore, Wuhan, and Barcelona, and read current-meta strategy."
@@ -991,6 +1038,15 @@ def build():
             for i, name in enumerate(legends_ordered[:16], 1)
         ],
     }
+    home_faq = {
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "What is Riftbound Decklists?", "acceptedAnswer": {"@type": "Answer", "text": "A fan archive of public Riftbound TCG Standard constructed lists, grouped by Legend, with current-meta strategy. Not affiliated with Riot Games or UVS Games."}},
+            {"@type": "Question", "name": "What format are these Riftbound lists?", "acceptedAnswer": {"@type": "Answer", "text": "Standard constructed, the only constructed legality in 2026 organized play."}},
+            {"@type": "Question", "name": "What is a Legend in Riftbound?", "acceptedAnswer": {"@type": "Answer", "text": "The identity card that sits outside the 40-card main. Decks on this site are organized by Legend."}},
+            {"@type": "Question", "name": "How do I buy a Riftbound list?", "acceptedAnswer": {"@type": "Answer", "text": "Copy the list and use the TCGplayer affiliate buy button. Table gear uses Amazon Associate links. Cardmarket and eBay catalog searches are linked for singles."}},
+        ],
+    }
     write(ROOT / "index.html", layout(
         home_title,
         home_desc,
@@ -1000,6 +1056,7 @@ def build():
             breadcrumb_ld([("Home", "/")]),
             webpage_ld("/", home_title, home_desc),
             home_list,
+            home_faq,
         ],
     ))
     search_index.append({"title": NAME, "url": "/", "hay": "riftbound decklists legends runes battlefields standard"})
@@ -1186,6 +1243,24 @@ def build():
         json_ld=[
             breadcrumb_ld([("Home", "/"), ("Format", "/format.html")]),
             webpage_ld("/format.html", format_title, format_desc),
+            {
+                "@type": "HowTo",
+                "name": "Build a Riftbound Standard deck",
+                "description": "Deck construction for 2026 Riftbound Standard constructed.",
+                "step": [
+                    {"@type": "HowToStep", "name": "Choose a Legend", "text": "The Legend sits outside the 40 and locks two domains."},
+                    {"@type": "HowToStep", "name": "Build the 40", "text": "Up to three copies of a unique card. Include one Chosen Champion."},
+                    {"@type": "HowToStep", "name": "Add battlefields and runes", "text": "Three unique Battlefields and twelve Runes."},
+                    {"@type": "HowToStep", "name": "Sideboard for best-of-three", "text": "0 or 8 cards in the core rules; some 2026 packets use 10."},
+                ],
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": "Is Standard the only Riftbound constructed format?", "acceptedAnswer": {"@type": "Answer", "text": "Yes in 2026 organized play."}},
+                    {"@type": "Question", "name": "Does the Legend count toward the 40?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Legend sits outside the main deck."}},
+                ],
+            },
         ],
     ))
     search_index.append({"title": "Format", "url": "/format.html", "hay": "standard constructed runes battlefields sideboard banlist radiance"})
@@ -1200,6 +1275,29 @@ def build():
         json_ld=[
             breadcrumb_ld([("Home", "/"), ("Events", "/events.html")]),
             webpage_ld("/events.html", events_title, events_desc),
+            {
+                "@type": "Event",
+                "name": "Riftbound European Regional Championship 2026",
+                "startDate": "2026-11-06",
+                "endDate": "2026-11-08",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {"@type": "Place", "name": "Messe Stuttgart", "address": {"@type": "PostalAddress", "addressLocality": "Stuttgart", "addressCountry": "DE"}},
+                "organizer": {"@type": "Organization", "name": "Riot Games"},
+                "url": "https://playriftbound.com/en-us/news/organizedplay/2026-regional-championship-info/",
+                "description": "Standard including Radiance. $50,000. Top 8 to Worlds.",
+            },
+            {
+                "@type": "Event",
+                "name": "Riftbound North American Regional Championship 2026",
+                "startDate": "2026-12-11",
+                "endDate": "2026-12-13",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {"@type": "Place", "name": "Convergence Fest", "address": {"@type": "PostalAddress", "addressLocality": "Las Vegas", "addressCountry": "US"}},
+                "organizer": {"@type": "Organization", "name": "Riot Games"},
+                "url": "https://playriftbound.com/en-us/news/organizedplay/north-american-regional-championship-info/",
+            },
         ],
     ))
     search_index.append({"title": "Events", "url": "/events.html", "hay": "singapore barcelona wuhan stuttgart las vegas championships"})
@@ -1230,6 +1328,27 @@ def build():
             webpage_ld("/privacy.html", privacy_title, privacy_desc),
         ],
     ))
+
+    adv_title = "Advertise and affiliates | Riftbound Decklists"
+    adv_desc = "Host display ads and affiliate partnerships on Riftbound Decklists: Google AdSense, Carbon Ads, Amazon, TCGplayer, Cardmarket, eBay, and direct TCG sponsorships."
+    write(ROOT / "advertise.html", layout(
+        adv_title,
+        adv_desc,
+        advertise_page(), canonical=f"{SITE}/advertise.html",
+        json_ld=[
+            breadcrumb_ld([("Home", "/"), ("Advertise", "/advertise.html")]),
+            webpage_ld("/advertise.html", adv_title, adv_desc),
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": "Do you run Google AdSense?", "acceptedAnswer": {"@type": "Answer", "text": "Ad slots are wired for AdSense. They stay hidden until a ca-pub publisher ID is approved and enabled in ads-config.js."}},
+                    {"@type": "Question", "name": "Which affiliate programs are live?", "acceptedAnswer": {"@type": "Answer", "text": "Amazon Associates for table gear and TCGplayer Impact for singles and mass-entry buy lists."}},
+                    {"@type": "Question", "name": "Can I sponsor the site directly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sleeve, playmat, and shop brands can buy labeled placements. Discord is the contact placeholder until an invite is posted."}},
+                ],
+            },
+        ],
+    ))
+    search_index.append({"title": "Advertise", "url": "/advertise.html", "hay": "adsense carbon ads amazon tcgplayer cardmarket ebay affiliate sponsor"})
 
     # Search
     search_title = "Search Riftbound decklists, legends, and guides"
@@ -1283,11 +1402,42 @@ Disallow: /404.html
 
 Sitemap: https://riftbounddecklists.com/sitemap.xml
 """)
+    if ADSENSE_PUB:
+        pub = ADSENSE_PUB.replace("ca-pub-", "pub-") if ADSENSE_PUB.startswith("ca-pub-") else ADSENSE_PUB
+        write(ROOT / "ads.txt", f"google.com, {pub}, DIRECT, f08c47fec0942fa0\n")
+    else:
+        write(ROOT / "ads.txt", """# riftbounddecklists.com authorized digital sellers
+# Add the AdSense line after approval, then rebuild:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+""")
+    items_rss = []
+    for d in decks[:40]:
+        meta = LEGEND_META[d["legend"]]
+        items_rss.append(
+            f"    <item><title>{e(d['player'])} — {e(meta['short'])} ({placing_label(d['placing'])})</title>"
+            f"<link>{SITE}{d['url']}</link><pubDate>{e(d['date'])}</pubDate>"
+            f"<description>{e(d['event'])} · {e(d['source'])}</description></item>"
+        )
+    write(ROOT / "feed.xml", f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{e(NAME)}</title>
+    <link>{SITE}/</link>
+    <description>Latest public Riftbound TCG Standard decklists</description>
+    <language>en-us</language>
+{chr(10).join(items_rss)}
+  </channel>
+</rss>
+''')
     lastmods = {d["url"]: d["date"] for d in decks}
+    hub_img = {}
     for name, lists in by_legend.items():
+        loc = f"/decklists/{legend_slug(name)}.html"
+        hub_img[loc] = legend_img_abs(name)
         if lists:
-            lastmods[f"/decklists/{legend_slug(name)}.html"] = max(x["date"] for x in lists)
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+            lastmods[loc] = max(x["date"] for x in lists)
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
     seen = set()
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
@@ -1301,7 +1451,7 @@ Sitemap: https://riftbounddecklists.com/sitemap.xml
             continue
         seen.add(loc)
         freq, pri = sitemap_meta(loc)
-        sm.append(sitemap_url(loc, lastmods.get(loc, TODAY), freq, pri))
+        sm.append(sitemap_url(loc, lastmods.get(loc, TODAY), freq, pri, hub_img.get(loc, "")))
     sm.append("</urlset>")
     write(ROOT / "sitemap.xml", "\n".join(sm) + "\n")
     write(ROOT / "site.webmanifest", json.dumps({
@@ -1336,12 +1486,14 @@ Riftbound is Riot Games' League of Legends trading card game. This site is not a
 - [Events]({SITE}/events.html): 2026 organized play digest
 - [Guides]({SITE}/guides/): Topics, domains, and character pages
 - [Search]({SITE}/search.html): Site search
+- [Advertise]({SITE}/advertise.html): Ads and affiliate programs
+- [RSS]({SITE}/feed.xml): Latest lists
 - [Sitemap]({SITE}/sitemap.xml)
 
 ## Optional
 
 - Tournament lists are republished from public results for commentary.
-- Shop and price pages use Amazon and TCGplayer affiliate links.
+- Shop uses Amazon Associates. Singles use TCGplayer Impact; Cardmarket and eBay catalog links are also present.
 """)
     write(ROOT / "humans.txt", """/* TEAM */
 Fan site: Riftbound Decklists
@@ -1466,6 +1618,13 @@ def format_page():
           <p>1v1 Duel is the competitive default (best of three, you pick a battlefield each game). Casual tables also play FFA3 Skirmish, FFA4 War, and 2v2 Magma Chamber. Those are modes. They still use Standard cards.</p>
           <p>Limited (sealed: 6 packs, 25-card decks) exists. These pages track constructed lists.</p>
           <p class="format-note">Official primer: <a href="https://playriftbound.com/en-us/news/rules-and-releases/deckbuilding-primer/" target="_blank" rel="noopener">Deckbuilding Primer</a>. Official events: <a href="https://playriftbound.com/en-us/news/organizedplay/" target="_blank" rel="noopener">Organized Play</a>. Companion schedule notes: <a href="/events.html">Events on this site</a>.</p>
+          <h2>FAQ</h2>
+          <h3>Is Standard the only constructed format?</h3>
+          <p>Yes in 2026 organized play. Casual tables can still play other modes (FFA, 2v2) using Standard cards.</p>
+          <h3>Does the Legend count toward the 40?</h3>
+          <p>No. The Legend sits outside the main. The Chosen Champion is a unit in your deck and counts toward the three-copy limit.</p>
+          <h3>When does Radiance become legal?</h3>
+          <p>23 October 2026. It is legal for Stuttgart (6–8 November) and Las Vegas (11–13 December).</p>
         </section>
       </div>'''
 
@@ -1557,7 +1716,7 @@ def privacy_page():
         </section>
         <section>
           <h3>Advertising</h3>
-          <p>This site may display advertisements served by third-party providers, including Google AdSense. Google and its partners may use cookies to serve ads based on your prior visits to this site or other websites. You can opt out of personalized advertising in Google's Ads Settings.</p>
+          <p>This site is built to host display ads once a publisher account is approved. Inventory is reserved for Google AdSense first (auto ads plus labeled units). Carbon Ads is the backup if we want a smaller, TCG-adjacent network. Empty publisher IDs keep the slots hidden so Core Web Vitals stay clean. Opt out of personalized Google ads in <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Ads Settings</a>. See <a href="/advertise.html">advertise and affiliates</a> for how to turn ads on.</p>
         </section>
         <section>
           <h3>Affiliate partnerships</h3>
@@ -1565,6 +1724,9 @@ def privacy_page():
           <ul>
             <li><strong>Amazon.</strong> We are an Amazon Associate. The Shop links to Amazon for sleeves, dice, playmats, deck boxes, and table extras, and we earn from qualifying purchases. These are the same affiliate listings used on One Piece Deck Base.</li>
             <li><strong>TCGplayer.</strong> We are a TCGplayer affiliate (Impact partner <code>7670706 / 1780961 / 21018</code>). Buy links on decklists and the price tracker go to TCGplayer, and we may earn a commission if you purchase after clicking them.</li>
+            <li><strong>Cardmarket.</strong> Catalog search links open Riftbound singles on Cardmarket (EU). Tracking is added after a partner ID is set in <code>js/ads-config.js</code>.</li>
+            <li><strong>eBay Partner Network.</strong> Catalog searches for Riftbound singles. Campaign tracking is added after a campid is set.</li>
+            <li><strong>CardNexus.</strong> Optional partner URL for the all-TCG marketplace; empty until approved.</li>
           </ul>
         </section>
         <section>
@@ -1592,6 +1754,56 @@ def privacy_page():
           <h3>Contact</h3>
           <p>Discord is a placeholder without a link for now. When an invite exists, it will land in the header.</p>
         </section>
+      </div>'''
+
+
+def advertise_page():
+    return '''      <div class="card hero policy">
+        <div class="crumb"><a href="/">Home</a> / Advertise</div>
+        <h1>Advertise and affiliates</h1>
+        <p>Riftbound Decklists is a high-intent fan archive: people land here to copy a Standard list and buy the cards. That is the inventory we sell — display ads, tracked singles links, and table-gear affiliates. This page is the menu. Nothing loads a third-party ad script until a publisher ID is approved.</p>
+
+        <h2>Display ads (hosting)</h2>
+        <p>Every page has labeled top and bottom units. They stay <code>hidden</code> until <code>js/ads-config.js</code> has <code>enabled: true</code> and an AdSense client. That keeps Core Web Vitals clean while the site is in review.</p>
+        <h3>Google AdSense</h3>
+        <p>Best first network for a custom-domain GitHub Pages site. After approval:</p>
+        <ol>
+          <li>Put <code>ca-pub-…</code> in <code>ADSENSE_PUB</code> in <code>scripts/build.py</code> and in <code>js/ads-config.js</code> (<code>adsenseClient</code>, <code>enabled: true</code>).</li>
+          <li>Rebuild. <code>ads.txt</code> gets the official <code>google.com, pub-…, DIRECT, f08c47fec0942fa0</code> line. Slots unhide. Auto ads are optional.</li>
+          <li>Confirm <a href="https://riftbounddecklists.com/ads.txt">/ads.txt</a> returns HTTP 200 on the root domain.</li>
+        </ol>
+        <h3>Carbon Ads</h3>
+        <p>Smaller, design-forward units. Fit a TCG fan site better than a wall of remnant display. Add <code>carbonServe</code> and <code>carbonPlacement</code> in the same config when you have a campaign.</p>
+        <h3>Mediavine, Raptive, Playwire, Ezoic</h3>
+        <p>Session-gated premium networks. Apply when traffic supports it. Do not load their scripts until a contract exists — they will tank LCP if they sit idle.</p>
+        <h3>Direct sponsorships</h3>
+        <p>Sleeve, playmat, dice, and local-shop brands can buy a labeled homepage or legend-hub placement. That is usually worth more than remnant AdSense on a niche TCG URL. Discord is the contact placeholder until an invite is posted.</p>
+
+        <h2>Affiliate programs</h2>
+        <h3>Live today</h3>
+        <ul>
+          <li><strong>Amazon Associates</strong> — Shop sleeves, dice, playmats, deck boxes, table extras. Same listings as One Piece Deck Base.</li>
+          <li><strong>TCGplayer (Impact)</strong> — Partner <code>7670706 / 1780961 / 21018</code>. Copy-list and per-card Buy buttons, plus mass entry. Highest intent on this site.</li>
+        </ul>
+        <h3>Wired, waiting on IDs</h3>
+        <ul>
+          <li><strong>Cardmarket</strong> — EU Riftbound singles catalog. Search links are already on deck pages. Add <code>cardmarketId</code> in <code>js/ads-config.js</code> to track.</li>
+          <li><strong>eBay Partner Network</strong> — Secondary-market singles and sealed. Set <code>ebayCampId</code> to attach campaign parameters.</li>
+          <li><strong>CardNexus</strong> — All-TCG marketplace partner program. Set <code>cardnexusUrl</code> to a tracked landing page.</li>
+        </ul>
+        <h3>Worth applying</h3>
+        <ul>
+          <li>Card Kingdom / Channel Fireball / CoolStuffInc store affiliates if they add Riftbound SKUs.</li>
+          <li>Dragon Shield / Ultra Pro brand programs for sleeves and boxes (Amazon already covers many of those SKUs).</li>
+          <li>Riot / UVS creator activations are contract-by-set, not an automated affiliate network. Do not claim an official Riftbound partner badge.</li>
+        </ul>
+        <p>FTC: affiliate links are marked <code>rel="sponsored"</code>. Amazon and TCGplayer disclosures sit on shop, prices, and deck pages.</p>
+
+        <h2>FAQ</h2>
+        <h3>Are ads on the site right now?</h3>
+        <p>Slots exist. They do not request ad servers until a publisher ID is enabled. You should not see empty “Advertisement” boxes in the meantime.</p>
+        <h3>Will ads change list copy?</h3>
+        <p>No. Tournament lists stay the product. Ads sit above and below the article, labeled, and are skipped by crawlers with <code>data-nosnippet</code>.</p>
       </div>'''
 
 
@@ -1691,6 +1903,15 @@ def build_shop():
         <div class="crumb"><a href="/">Home</a> / Shop</div>
         <h1>Shop Riftbound table gear</h1>
         <p>Sleeves, dice, playmats, deck boxes, and a table extra. Open Amazon for live price and stock. These are the same affiliate links as OPDB.</p>
+        <section class="policy" style="margin-top:18px">
+          <h2>Singles marketplaces</h2>
+          <p>Amazon is table gear. For cards, use tracked TCGplayer mass entry, then Cardmarket (EU) or eBay if you need a second market.</p>
+          <p>
+            <a class="shop-buy" href="https://partner.tcgplayer.com/c/7670706/1780961/21018?u=https%3A%2F%2Fwww.tcgplayer.com%2Fmassentry%3Fproductline%3DRiftbound" target="_blank" rel="sponsored noopener noreferrer">TCGplayer mass entry</a>
+            <a class="retailer-link" href="https://www.cardmarket.com/en/Riftbound/Products/Singles" target="_blank" rel="noopener nofollow sponsored">Cardmarket singles</a>
+            <a class="retailer-link" href="https://www.ebay.com/sch/i.html?_nkw=Riftbound+TCG" target="_blank" rel="noopener nofollow sponsored">eBay Riftbound</a>
+          </p>
+        </section>
 {chr(10).join(blocks)}
         <div class="section-title" style="margin-top:28px"><h3>Also in the shop</h3></div>
         <div class="list">{also}</div>
@@ -1782,7 +2003,7 @@ def build_guides(legends_ordered, by_legend, search_index):
     ]
     topic_links = []
     for title, slug, blurb in topics:
-        body = f"<p>{blurb}</p><p>Jump to <a href=\"/decklists/\">legend lists</a>, the <a href=\"/format.html\">format page</a>, or <a href=\"/events.html\">events</a>.</p>"
+        body = topic_guides.html_for(title, slug, blurb)
         write(ROOT / f"guides/{slug}.html", guide_page(
             title, slug, body,
             desc=f"{blurb} Riftbound TCG guide on Riftbound Decklists.",

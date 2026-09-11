@@ -1,0 +1,3 @@
+# riftbounddecklists.com authorized digital sellers
+# Add the AdSense line after approval, then rebuild:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
