@@ -91,7 +91,7 @@ R_OUTER = 148.0
 R_INNER = 78.0
 R_MID = (R_INNER + R_OUTER) / 2
 R_LINE = R_OUTER + 10
-INNER_MIN_PCT = 6.0
+INNER_MIN_PCT = 12.0
 NAMED_MIN_PCT = 2.0
 NAMED_MIN_COUNT = 6
 
@@ -283,6 +283,7 @@ def pie_svg(slices: list[dict], total: int) -> str:
     if not slices or total <= 0:
         return '<p class="muted">No Vendetta-card lists to chart yet.</p>'
 
+    # Start at 12 o'clock, clockwise.
     angle = -math.pi / 2
     laid = []
     for sl in slices:
@@ -299,8 +300,8 @@ def pie_svg(slices: list[dict], total: int) -> str:
         })
         angle = end
 
-    left = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) < 0]
-    right = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) >= 0]
+    left = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) < -0.2]
+    right = [s for s in laid if not s["inner"] and not s["other_label"] and math.cos(s["mid"]) >= -0.2]
     left_ys = _spread_ys([_polar(s["mid"], R_LINE)[1] for s in left], 34, 36, 470)
     right_ys = _spread_ys([_polar(s["mid"], R_LINE)[1] for s in right], 34, 36, 470)
     for s, y in zip(left, left_ys):
