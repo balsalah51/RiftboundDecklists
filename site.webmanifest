@@ -1,15 +1,29 @@
 {
   "name": "Riftbound Decklists",
   "short_name": "RBDB",
+  "description": "Riftbound TCG Standard decklists, legend hubs, and current-meta strategy.",
   "start_url": "/",
+  "scope": "/",
+  "lang": "en-US",
   "display": "standalone",
   "background_color": "#f4f1eb",
   "theme_color": "#b42318",
+  "categories": [
+    "games",
+    "sports"
+  ],
   "icons": [
     {
       "src": "/img/rbdb-logo-192.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/rbdb-avatar.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }

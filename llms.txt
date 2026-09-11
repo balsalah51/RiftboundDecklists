@@ -1,0 +1,22 @@
+# Riftbound Decklists
+
+> Fan archive of Riftbound TCG Standard tournament decklists, legend hubs, and current-meta strategy.
+
+Riftbound is Riot Games' League of Legends trading card game. This site is not affiliated with Riot Games or UVS Games. The identity card is a Legend.
+
+## Primary pages
+
+- [Home](https://riftbounddecklists.com/): Latest public Standard lists
+- [Legends](https://riftbounddecklists.com/decklists/): Every legend with public lists
+- [Legend strategy](https://riftbounddecklists.com/guides/legend-strategy.html): Current-meta plans by legend
+- [Tier list](https://riftbounddecklists.com/tier-list.html): Vendetta Standard picture board
+- [Format](https://riftbounddecklists.com/format.html): Standard deck construction
+- [Events](https://riftbounddecklists.com/events.html): 2026 organized play digest
+- [Guides](https://riftbounddecklists.com/guides/): Topics, domains, and character pages
+- [Search](https://riftbounddecklists.com/search.html): Site search
+- [Sitemap](https://riftbounddecklists.com/sitemap.xml)
+
+## Optional
+
+- Tournament lists are republished from public results for commentary.
+- Shop and price pages use Amazon and TCGplayer affiliate links.

@@ -1,0 +1,12 @@
+/* TEAM */
+Fan site: Riftbound Decklists
+Site: https://riftbounddecklists.com/
+
+/* THANKS */
+Public tournament organizers, PlayRiftbound, Piltover Archive.
+
+/* SITE */
+Language: English
+Standards: HTML5, CSS, JSON-LD
+Doctype: HTML5
+Generator: scripts/build.py
