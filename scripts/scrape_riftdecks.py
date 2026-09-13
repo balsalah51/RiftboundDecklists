@@ -2,6 +2,7 @@
 """Pull complete Aug–Sep 2026 top-finish lists from riftdecks.com into data/scraped-lists.txt."""
 from __future__ import annotations
 
+import argparse
 import html as htmlmod
 import re
 import time
@@ -14,9 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/scraped-lists.txt"
 BASE = "https://riftdecks.com"
 START = "2026-08-01"
-END = "2026-09-07"
+END = "2026-09-12"
 TARGET = 320
-UA_IMPERSONATE = "chrome"
+UA_IMPERSONATE = "safari"
 
 LEGEND_ALIASES = {
     "Khazix, Voidreaver": "Kha'Zix, Voidreaver",
@@ -139,7 +140,7 @@ def list_tournaments() -> list[dict]:
     return events
 
 
-def tournament_entries(t: dict) -> list[dict]:
+def tournament_entries(t: dict, keep_all: bool = False) -> list[dict]:
     html = get(t["url"])
     entries = []
     for m in re.finditer(r'<tr[^>]*id="desktop-deck-(\d+)"[^>]*data-href="([^"]+)"[\s\S]*?</tr>', html):
@@ -151,7 +152,7 @@ def tournament_entries(t: dict) -> list[dict]:
         placing = parse_placing(rank_m.group(1) if rank_m else "")
         if placing is None:
             continue
-        if placing > cutoff(t["field"]):
+        if not keep_all and placing > cutoff(t["field"]):
             continue
         player_m = re.search(r"by ([^<\n]+)", block)
         player = ascii_player(player_m.group(1) if player_m else "Unknown")
@@ -163,7 +164,6 @@ def tournament_entries(t: dict) -> list[dict]:
             "date": t["date"],
             "field": t["field"],
         })
-    # page 1 is rank-sorted and has 64 rows — enough for cutoff <= 64
     return entries
 
 
@@ -245,11 +245,12 @@ def parse_deck(html: str, meta: dict) -> dict | None:
     }
 
 
-def existing_keys() -> set:
+def existing_keys(paths: list[Path] | None = None) -> set:
     keys = set()
-    extra = ROOT / "data/extra-lists.txt"
-    if extra.exists():
-        text = extra.read_text(encoding="utf-8", errors="replace")
+    for path in paths or [ROOT / "data/extra-lists.txt", OUT]:
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
         for m in re.finditer(
             r"player:\s*(.+)\nevent:\s*(.+)\ndate:\s*.+\nplacing:\s*(\d+)",
             text,
@@ -273,14 +274,23 @@ def format_block(d: dict) -> str:
     )
 
 
-def main():
-    print("listing tournaments", flush=True)
+def main(argv: list[str] | None = None):
+    global START, END, TARGET
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start", default=START)
+    parser.add_argument("--end", default=END)
+    parser.add_argument("--target", type=int, default=TARGET)
+    parser.add_argument("--append", action="store_true", help="Keep existing scraped-lists.txt and add new blocks")
+    parser.add_argument("--keep-all", action="store_true", help="Keep every complete published list, not only the usual top-cut")
+    args = parser.parse_args(argv)
+    START, END, TARGET = args.start, args.end, args.target
+    print(f"listing tournaments {START}..{END} target={TARGET} append={args.append}", flush=True)
     events = list_tournaments()
     seen_url = set()
     candidates = []
     for t in events:
         try:
-            ents = tournament_entries(t)
+            ents = tournament_entries(t, keep_all=args.keep_all)
         except Exception as ex:
             print("  skip tournament", t["name"], ex, flush=True)
             continue
@@ -324,9 +334,14 @@ def main():
             print(f"  kept {len(kept)} after {i} fetches ({d['event']} #{d['placing']} {d['legend']})", flush=True)
     print(f"kept {len(kept)}", flush=True)
     kept.sort(key=lambda d: (d["date"], d["placing"], d["player"]))
-    text = "\n".join(format_block(d) for d in kept).rstrip() + "\n"
+    new_text = "\n".join(format_block(d) for d in kept).rstrip()
+    if args.append and OUT.exists() and new_text:
+        old = OUT.read_text(encoding="utf-8", errors="replace").rstrip()
+        text = (old + "\n\n" + new_text + "\n") if old else new_text + "\n"
+    else:
+        text = new_text + "\n" if new_text else ""
     OUT.write_text(text, encoding="utf-8")
-    print(f"wrote {len(kept)} lists to {OUT}", flush=True)
+    print(f"wrote {len(kept)} lists to {OUT} (append={args.append})", flush=True)
     from collections import Counter
     print("by legend", Counter(d["legend"] for d in kept).most_common(12))
 
