@@ -65,6 +65,12 @@
     "officialName": "Akshan, Mischievous",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f9e79f88463c1d516b9f1b053661937676e0e1f4-744x1039.png?accountingTag=RB"
   },
+  "Allay, Eager Admirer": {
+    "code": "UNL-041/219",
+    "file": "allay-eager-admirer.jpg",
+    "officialName": "Allay, Eager Admirer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/bf1045b559b20d3e86383a07de54cd1893e5a94b-744x1039.png?accountingTag=RB"
+  },
   "Alpha Strike": {
     "code": "UNL-192/219",
     "file": "alpha-strike.jpg",
@@ -76,6 +82,12 @@
     "file": "altar-of-blood.jpg",
     "officialName": "Altar of Blood",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a17e5bb639866671772dc514a6096a5863712f71-1039x744.png?accountingTag=RB"
+  },
+  "Altar to Unity": {
+    "code": "OGN-275/298",
+    "file": "altar-to-unity.jpg",
+    "officialName": "Altar to Unity",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2392529560dc9af72596c6fc65b4c0356bbc44d1-1038x744.png?accountingTag=RB"
   },
   "Amateur Recital": {
     "code": "UNL-207/219",
@@ -178,6 +190,12 @@
     "file": "back-off.jpg",
     "officialName": "Back Off",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a0e7f7fa55ae618f94fe48920f92406ddd7e3512-744x1039.png?accountingTag=RB"
+  },
+  "Back to Back": {
+    "code": "OGN-206/298",
+    "file": "back-to-back.jpg",
+    "officialName": "Back to Back",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7f5585dcd3e9c7866e3b99cb169a0404ea4c010f-744x1039.png?accountingTag=RB"
   },
   "Back-Alley Bar": {
     "code": "OGN-277/298",
@@ -455,6 +473,12 @@
     "officialName": "Daring Poro",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/41dee7ec46124c261352595cfbd8a6d38d32b947-744x1039.png?accountingTag=RB"
   },
+  "Darius, Executioner": {
+    "code": "OGN-243/298",
+    "file": "darius-executioner.jpg",
+    "officialName": "Darius, Executioner",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7b71cf13a07074a6eccbe88ae6c74133d989cb68-744x1039.png?accountingTag=RB"
+  },
   "Darius, Trifarian": {
     "code": "OGN-027a/298",
     "file": "darius-trifarian.jpg",
@@ -605,6 +629,12 @@
     "officialName": "Divining Shells",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f2b626602f5db047b96cf9112474d42bf5b483e7-744x1039.png?accountingTag=RB"
   },
+  "Dominus": {
+    "code": "VEN-142/166",
+    "file": "dominus.jpg",
+    "officialName": "Dominus",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0d5ccc8bb0b70473add784a3f4c71e1e8635e2ce-744x1039.png?accountingTag=RB"
+  },
   "Doran's Blade": {
     "code": "SFD-095/221",
     "file": "doran-s-blade.jpg",
@@ -688,6 +718,12 @@
     "file": "dusk-rose-lab.jpg",
     "officialName": "Dusk Rose Lab",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fa81c474ff29b9d2c42dd4e64a5789bf793e5221-1039x744.png?accountingTag=RB"
+  },
+  "Eager Drakehound": {
+    "code": "SFD-006/221",
+    "file": "eager-drakehound.jpg",
+    "officialName": "Eager Drakehound",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ac0fac5af309842ba91b4b8d80e1abd47622e14a-744x1039.png?accountingTag=RB"
   },
   "Eclipse": {
     "code": "UNL-063/219",
@@ -965,6 +1001,12 @@
     "officialName": "Fury Rune",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f95ed6ba0c4d4d357c45bf5bdb1a8e540af1f85f-744x1039.png?accountingTag=RB"
   },
+  "Gangplank, Naval": {
+    "code": "VEN-086/166",
+    "file": "gangplank-naval.jpg",
+    "officialName": "Gangplank, Naval",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f270a3ecc4850594513c45d145f2b855152e2cb7-744x1039.png?accountingTag=RB"
+  },
   "Garbage Grabber": {
     "code": "OGN-099/298",
     "file": "garbage-grabber.jpg",
@@ -994,6 +1036,12 @@
     "file": "glasc-mixologist.jpg",
     "officialName": "Glasc Mixologist",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e7422fee71796aa61f8d9691d07654b901fc20f2-744x1039.png?accountingTag=RB"
+  },
+  "Glowstone": {
+    "code": "VEN-133/166",
+    "file": "glowstone.jpg",
+    "officialName": "Glowstone",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6426e9c2b168f0dde5430d5bc57108a0cc2bcebb-744x1039.png?accountingTag=RB"
   },
   "Grand Strategem": {
     "code": "OGN-233/298",
@@ -1127,6 +1175,12 @@
     "officialName": "Here to Help",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6daa8caf27f76f2b0bce189fb9df196129582afa-744x1039.png?accountingTag=RB"
   },
+  "Heroic Charge": {
+    "code": "UNL-155/219",
+    "file": "heroic-charge.jpg",
+    "officialName": "Heroic Charge",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/944b89db8a7f7961a28e66ec4fb7d30bb863f324-744x1039.png?accountingTag=RB"
+  },
   "Hextech Gauntlets": {
     "code": "UNL-188/219",
     "file": "hextech-gauntlets.jpg",
@@ -1223,6 +1277,12 @@
     "officialName": "Irresistible Faefolk",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6834e4b00a22dd6d7476d36884b43cf59b60c611-744x1039.png?accountingTag=RB"
   },
+  "Iterative Design": {
+    "code": "VEN-051/166",
+    "file": "iterative-design.jpg",
+    "officialName": "Iterative Design",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8d85a05075f95b63832ed7aa15620041eacb49d3-744x1039.png?accountingTag=RB"
+  },
   "Ivern, Green Father": {
     "code": "UNL-195/219",
     "file": "ivern-green-father.jpg",
@@ -1234,6 +1294,12 @@
     "file": "ivern-nurturer.jpg",
     "officialName": "Ivern, Nurturer",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/4564b2f80dd53a8bcbca1633eb1ef69455692c58-744x1039.png?accountingTag=RB"
+  },
+  "Jagged Cutlass": {
+    "code": "VEN-073/166",
+    "file": "jagged-cutlass.jpg",
+    "officialName": "Jagged Cutlass",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/22aae23e1ac1797beb50f3f735becfe65b51ee02-744x1039.png?accountingTag=RB"
   },
   "Janna, Savior": {
     "code": "SFD-053/221",
@@ -1301,6 +1367,12 @@
     "officialName": "Daughter of the Void",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a576472c7bb00f475882ac814e1d8f9be233b402-744x1040.png?accountingTag=RB"
   },
+  "Kai'Sa, Evolutionary": {
+    "code": "OGN-112/298",
+    "file": "kai-sa-evolutionary.jpg",
+    "officialName": "Kai'Sa, Evolutionary",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fc4ee60eaedd5c56a9222fd07482b6a86b11baa4-744x1039.png?accountingTag=RB"
+  },
   "Kai'Sa, Survivor": {
     "code": "VEN-SP1/006",
     "file": "kai-sa-survivor.jpg",
@@ -1318,6 +1390,12 @@
     "file": "kayle-justified.jpg",
     "officialName": "Kayle, Justified",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8ae883f96bb3a5e20d8002ec49cace430aaf2b88-744x1039.png?accountingTag=RB"
+  },
+  "Keeper's Verdict": {
+    "code": "UNL-204/219",
+    "file": "keeper-s-verdict.jpg",
+    "officialName": "Keeper's Verdict",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/90dcafd8ca6cedd534416232ebd29c451f12107c-744x1039.png?accountingTag=RB"
   },
   "Kennen, Heart of the Tempest": {
     "code": "VEN-155/166",
@@ -1433,6 +1511,24 @@
     "officialName": "Legion Rearguard",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/aedece01c7792c689050460db1670e6b9b15b61f-744x1039.png?accountingTag=RB"
   },
+  "Leona, Determined": {
+    "code": "OGN-238/298",
+    "file": "leona-determined.jpg",
+    "officialName": "Leona, Determined",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/39a1e121031cfb4bdb009b071ed5d70411966cd9-744x1039.png?accountingTag=RB"
+  },
+  "Leona, Radiant Dawn": {
+    "code": "OGN-261/298",
+    "file": "leona-radiant-dawn.jpg",
+    "officialName": "Radiant Dawn",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/822b8bc7987a47498550708b18ef166b121fd620-744x1039.png?accountingTag=RB"
+  },
+  "Leona, Zealot": {
+    "code": "OGN-079a/298",
+    "file": "leona-zealot.jpg",
+    "officialName": "Leona, Zealot",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/451caa433b1fbe8e9d2b86548b82c3c5f2bac620-744x1039.png?accountingTag=RB"
+  },
   "Lightning Rush": {
     "code": "VEN-156/166",
     "file": "lightning-rush.jpg",
@@ -1498,6 +1594,12 @@
     "file": "lux-lady-of-luminosity.jpg",
     "officialName": "Lady of Luminosity - Starter",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/44885d811b70621b188d9813b2b10b5cff1b81e6-744x1039.png?accountingTag=RB"
+  },
+  "Mageseeker Warden": {
+    "code": "OGN-070/298",
+    "file": "mageseeker-warden.jpg",
+    "officialName": "Mageseeker Warden",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ae844b929f817cdf76fe40c7bf5d5fc02062bdac-744x1039.png?accountingTag=RB"
   },
   "Mask of Foresight": {
     "code": "OGN-060/298",
@@ -1895,6 +1997,12 @@
     "officialName": "Punch First",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d124efad90ff61d4ac29ee69fe71e48a7cd6ece2-744x1039.png?accountingTag=RB"
   },
+  "Punching Poro": {
+    "code": "VEN-007/166",
+    "file": "punching-poro.jpg",
+    "officialName": "Punching Poro",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/03b9a8e704e0f09b686d89d4c2d79f100f212b0f-744x1039.png?accountingTag=RB"
+  },
   "Pyke, Bloodharbor Ripper": {
     "code": "UNL-185/219",
     "file": "pyke-bloodharbor-ripper.jpg",
@@ -1912,6 +2020,12 @@
     "file": "pyke-returned.jpg",
     "officialName": "Pyke, Returned",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/14a9712798a0b13bfa29ed841f171a21e7fdf035-744x1039.png?accountingTag=RB"
+  },
+  "Questionable Tome": {
+    "code": "VEN-054/166",
+    "file": "questionable-tome.jpg",
+    "officialName": "Questionable Tome",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/07bb606d7cbcb218496b78a4fef354abb99875dc-744x1039.png?accountingTag=RB"
   },
   "Rage Amplifier": {
     "code": "VEN-018/166",
@@ -2405,6 +2519,18 @@
     "officialName": "Soaring Scout",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/75b6ce420888035b566c3795cabe0999a9a918b0-744x1039.png?accountingTag=RB"
   },
+  "Solari Chief": {
+    "code": "OGN-225/298",
+    "file": "solari-chief.jpg",
+    "officialName": "Solari Chief",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/02fd791fdaa7d1c63221655e889fb412de103ca2-744x1039.png?accountingTag=RB"
+  },
+  "Solari Shieldbearer": {
+    "code": "OGN-051/298",
+    "file": "solari-shieldbearer.jpg",
+    "officialName": "Solari Shieldbearer",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/9387ea6480c9fd6991760b07a178c07a5fcf1c57-744x1039.png?accountingTag=RB"
+  },
   "Solari Sunhawk": {
     "code": "VEN-122/166",
     "file": "solari-sunhawk.jpg",
@@ -2417,11 +2543,23 @@
     "officialName": "Sona, Harmonious",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2cc800fbd0011dd084426445ebb1c2831420063d-744x1039.png?accountingTag=RB"
   },
+  "Soul Shepherd": {
+    "code": "UNL-077/219",
+    "file": "soul-shepherd.jpg",
+    "officialName": "Soul Shepherd",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/cb2a157e715ef103e688e094c21f772003775e45-744x1039.png?accountingTag=RB"
+  },
   "Soul Sword": {
     "code": "UNL-039/219",
     "file": "soul-sword.jpg",
     "officialName": "Soul Sword",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/519361230cb8554cdf0f5dd795e115ffbb5bb932-744x1039.png?accountingTag=RB"
+  },
+  "Spectral Centaur": {
+    "code": "UNL-068/219",
+    "file": "spectral-centaur.jpg",
+    "officialName": "Spectral Centaur",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/60fb267f2d0cd16714d35a0eefd0d5864304102b-744x1039.png?accountingTag=RB"
   },
   "Spectral Matron": {
     "code": "OGN-226/298",
@@ -2711,6 +2849,12 @@
     "officialName": "Treasure Trove",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/682f5ee828ede4dbaf428cd0666db64ee8bae722-744x1039.png?accountingTag=RB"
   },
+  "Trevor Snoozebottom": {
+    "code": "UNL-048/219",
+    "file": "trevor-snoozebottom.jpg",
+    "officialName": "Trevor Snoozebottom",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fa843ee80d1a35416d61482bc1602279955a2c7f-744x1039.png?accountingTag=RB"
+  },
   "Tricksy Tentacles": {
     "code": "UNL-054/219",
     "file": "tricksy-tentacles.jpg",
@@ -2830,6 +2974,12 @@
     "file": "vex-gloomist.jpg",
     "officialName": "Gloomist",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/653e9b8fc4989bba59aa7ade4e0c33ffd5596e5a-744x1039.png?accountingTag=RB"
+  },
+  "Vex, Mocking": {
+    "code": "UNL-055/219",
+    "file": "vex-mocking.jpg",
+    "officialName": "Vex, Mocking",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ed2c20de6ceb7ff23f62ccb28a49fd305c5b15b7-744x1039.png?accountingTag=RB"
   },
   "Vi, Destructive": {
     "code": "OGN-036/298",
@@ -2975,6 +3125,18 @@
     "officialName": "Xin Zhao, Vigilant",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ec694ac53a49fd4419434cb144daaaf0f38da574-744x1039.png?accountingTag=RB"
   },
+  "Yasuo, Remorseful": {
+    "code": "OGN-076/298",
+    "file": "yasuo-remorseful.jpg",
+    "officialName": "Yasuo, Remorseful",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1643a6c93626884c93363557e1a483642bda6c45-744x1039.png?accountingTag=RB"
+  },
+  "Yone, Blademaster": {
+    "code": "SFD-116/221",
+    "file": "yone-blademaster.jpg",
+    "officialName": "Yone, Blademaster",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0e8efd9af74b65170e04eed45844e6d7e2c4d70b-744x1039.png?accountingTag=RB"
+  },
   "Zaun Warrens": {
     "code": "OGN-298/298",
     "file": "zaun-warrens.jpg",
@@ -2998,6 +3160,12 @@
     "file": "zed-without-a-sound.jpg",
     "officialName": "Zed, Without a Sound",
     "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a9828930a4b5ab7aa98d8199f00e1fde59fd20e3-744x1039.png?accountingTag=RB"
+  },
+  "Zenith Blade": {
+    "code": "OGN-262/298",
+    "file": "zenith-blade.jpg",
+    "officialName": "Zenith Blade",
+    "src": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a572f0bc3ed1bd47c5759d36f5b951b15338e57e-744x1039.png?accountingTag=RB"
   },
   "Zhonya's Hourglass": {
     "code": "OGN-077/298",
