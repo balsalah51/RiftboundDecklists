@@ -65,6 +65,7 @@ TARGETS = {
     "Mel, Soul's Reflection": "mel.jpg",
     "Kai'Sa, Daughter of the Void": "kaisa.jpg",
     "Teemo, Swift Scout": "teemo.jpg",
+    "Leona, Radiant Dawn": "leona.jpg",
 }
 
 SET_MAX = {"OGN": 298, "OGS": 24, "SFD": 221, "UNL": 219, "VEN": 166}

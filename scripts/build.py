@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://riftbounddecklists.com"
 NAME = "Riftbound Decklists"
 SHORT = "RBDB"
-TODAY = "2026-09-11"
+TODAY = "2026-09-13"
 # Fill after AdSense approval (ca-pub-…). Empty = no ads.txt seller line, slots stay hidden.
 ADSENSE_PUB = ""
 
@@ -248,6 +248,11 @@ LEGEND_META = {
         "short": "Teemo", "img": "teemo.jpg", "domains": ("Chaos", "Mind"),
         "set": "Origins", "tier": "D",
         "blurb": "Mushroom tempo. A spicy Chaos-Mind Showdown legend, not a regional pair.",
+    },
+    "Leona, Radiant Dawn": {
+        "short": "Leona", "img": "leona.jpg", "domains": ("Calm", "Order"),
+        "set": "Origins", "tier": "D",
+        "blurb": "Radiant Dawn. One public Nexus Nights list in the September 10–12 window.",
     },
 }
 
@@ -1070,7 +1075,7 @@ def build():
             <h2>Recent lists</h2>
             <div class="muted">{len(picked)} lists</div>
           </div>
-          <p class="muted">Newest first. At least one list from each legend, then the latest results. {len(decks)} public Standard lists from August–September 2026 tournaments, including Singapore, Wuhan, Ottawa, Speyer, and City Challenges.</p>
+          <p class="muted">Newest first. At least one list from each legend, then the latest results. {len(decks)} public Standard lists from August–September 2026 tournaments, including Singapore, Wuhan, Ottawa, Speyer, City Challenges, and the 11 September JHM Regional Qualifier Warm-Up.</p>
           <ul class="recent-list" aria-label="Recent decklists">
 {chr(10).join(recent_items)}
           </ul>
@@ -1736,6 +1741,8 @@ def events_page():
             <li><strong>15–16 August 2026</strong> — Riftbound Showdown Series Germany, Speyer. Public Top 32 lists are on this site.</li>
             <li><strong>30 August 2026</strong> — S4 Wuhan Regional Open (~1,280 players). Public Top 64 lists are on this site.</li>
             <li><strong>4–6 September 2026</strong> — Regional Qualifier Singapore, Singapore EXPO. Akali defeated Kennen in the finals. Public Top cut lists are on this site. Official preview: <a href="https://playriftbound.com/en-us/news/organizedplay/all-eyes-on-singapore/" target="_blank" rel="noopener">All Eyes on Singapore</a>.</li>
+            <li><strong>11 September 2026</strong> — Regional Qualifier Warm-Up at JHM Card &amp; Pocket Tribe (259 players). Akali won. Public lists from the published cut are on this site.</li>
+            <li><strong>12 September 2026</strong> — Weekend locals, including CaptainCards Skirmish I and Saturday Afternoon Nexus Nights. Public complete lists are on this site.</li>
           </ul>
           <h3>Coming up</h3>
           <ul>
